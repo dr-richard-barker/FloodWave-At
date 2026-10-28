@@ -55,7 +55,7 @@ Run `analysis/run_all.sh <folder with the 12 .czi files> <python>` with Python 3
 ## Archive
 
 - **Code, metadata, results and docs:** this GitHub repository (public).
-- **Raw recordings** (12 `.czi`, 5.17 GB) **and the 2020 videos** (5 `.avi`, 717 MB): a Zenodo deposit is prepared as a draft with metadata from `data/zenodo_raw_deposit.json`. It is **not yet published**; its DOI will be added here and in `CITATION.cff` on publication. Checksums: `data/RAW_CZI_SHA256SUMS` and `data/derived_2020_videos/SHA256SUMS`.
+- **Raw recordings** (12 `.czi`, 5.17 GB) **and the 2020 videos** (5 `.avi`, 717 MB): a Zenodo deposit is prepared as a draft with metadata from `data/zenodo_raw_deposit.json`. All 17 files were uploaded on 2026-10-28, and every MD5 matches Zenodo's checksum (`data/zenodo_draft_upload_report.json`, made by `scripts/zenodo_draft_upload.py`). It is **not yet published**; its DOI will be added here and in `CITATION.cff` on publication. Checksums: `data/RAW_CZI_SHA256SUMS` and `data/derived_2020_videos/SHA256SUMS`.
 
 ## The new deck
 

@@ -1,0 +1,146 @@
+{
+ "deposition_id": 23745347,
+ "draft_url": "https://zenodo.org/deposit/23745347",
+ "published": false,
+ "files": [
+  {
+   "name": "Flood_DRB_Shreya_20fps_Flooding expt 8 NormalWater small plant representative 10012020.avi",
+   "bytes": 436110996,
+   "md5": "md5:907acff31b7d8cdbfcc042481f8e5944",
+   "zenodo_checksum": "md5:907acff31b7d8cdbfcc042481f8e5944",
+   "match": true,
+   "seconds": 86.2
+  },
+  {
+   "name": "Flood_DRB_Shreya_Flooding expt 8 NormalWater small plant representative 10012020.avi",
+   "bytes": 118135556,
+   "md5": "md5:38514a858e2b442fce09978d6cc0da1a",
+   "zenodo_checksum": "md5:38514a858e2b442fce09978d6cc0da1a",
+   "match": true,
+   "seconds": 13.7
+  },
+  {
+   "name": "Flood_Wave_Surface_Plot.avi",
+   "bytes": 40753488,
+   "md5": "md5:d37d56ced2b37f3f1e809f891a53c0fd",
+   "zenodo_checksum": "md5:d37d56ced2b37f3f1e809f891a53c0fd",
+   "match": true,
+   "seconds": 4.2
+  },
+  {
+   "name": "Maxima_Flooding expt 8 NormalWater small plant representative 10012020.avi",
+   "bytes": 78237536,
+   "md5": "md5:6cfebdbb23b44d50b1c57e75546194fb",
+   "zenodo_checksum": "md5:6cfebdbb23b44d50b1c57e75546194fb",
+   "match": true,
+   "seconds": 7.7
+  },
+  {
+   "name": "Smooth_Flooding expt 8 NormalWater small plant representative 10012020.avi",
+   "bytes": 43446006,
+   "md5": "md5:c74fccdbd6dfcad05213246e1c5082c8",
+   "zenodo_checksum": "md5:c74fccdbd6dfcad05213246e1c5082c8",
+   "match": true,
+   "seconds": 7.8
+  },
+  {
+   "name": "Flooding expt 1  10012020.czi",
+   "bytes": 325084800,
+   "md5": "md5:ed6404bd1e951c456d38aaf688bfd0dc",
+   "zenodo_checksum": "md5:ed6404bd1e951c456d38aaf688bfd0dc",
+   "match": true,
+   "seconds": 85.3
+  },
+  {
+   "name": "Flooding expt 10 NormalWater Medium plant 10012020.czi",
+   "bytes": 731489312,
+   "md5": "md5:79fb059ff9e708d7d8b12d0729618988",
+   "zenodo_checksum": "md5:79fb059ff9e708d7d8b12d0729618988",
+   "match": true,
+   "seconds": 93.8
+  },
+  {
+   "name": "Flooding expt 11 NormalWater small plant 10012020.czi",
+   "bytes": 658565952,
+   "md5": "md5:ccae755d2022c1498da2bdff53582721",
+   "zenodo_checksum": "md5:ccae755d2022c1498da2bdff53582721",
+   "match": true,
+   "seconds": 146.6
+  },
+  {
+   "name": "Flooding expt 12 NormalWater YoungLeaf 10012020.czi",
+   "bytes": 233610336,
+   "md5": "md5:848c7f4e01126d10824d1340c1424dfb",
+   "zenodo_checksum": "md5:848c7f4e01126d10824d1340c1424dfb",
+   "match": true,
+   "seconds": 81.7
+  },
+  {
+   "name": "Flooding expt 2  10012020.czi",
+   "bytes": 359661760,
+   "md5": "md5:e3cb31250951b5f4c5f8aa2d99f2d99a",
+   "zenodo_checksum": "md5:e3cb31250951b5f4c5f8aa2d99f2d99a",
+   "match": true,
+   "seconds": 51.4
+  },
+  {
+   "name": "Flooding expt 3  10012020.czi",
+   "bytes": 309960736,
+   "md5": "md5:f6e2a30f6b16dbdd6543d66f26e65938",
+   "zenodo_checksum": "md5:f6e2a30f6b16dbdd6543d66f26e65938",
+   "match": true,
+   "seconds": 50.7
+  },
+  {
+   "name": "Flooding expt 4  10012020.czi",
+   "bytes": 142864896,
+   "md5": "md5:b016c2274746982e2652ed4e3a977c33",
+   "zenodo_checksum": "md5:b016c2274746982e2652ed4e3a977c33",
+   "match": true,
+   "seconds": 10.2
+  },
+  {
+   "name": "Flooding expt 5 NormalWater 10012020.czi",
+   "bytes": 308520800,
+   "md5": "md5:6a693cd5e4dc52b6baac0e55d1156147",
+   "zenodo_checksum": "md5:6a693cd5e4dc52b6baac0e55d1156147",
+   "match": true,
+   "seconds": 18.8
+  },
+  {
+   "name": "Flooding expt 6 NormalWater YoungLeaf 10012020.czi",
+   "bytes": 343089024,
+   "md5": "md5:20d00bf464254a3359c6d3721ebcb083",
+   "zenodo_checksum": "md5:20d00bf464254a3359c6d3721ebcb083",
+   "match": true,
+   "seconds": 63.3
+  },
+  {
+   "name": "Flooding expt 7 NormalWater YoungLeaf 10012020.czi",
+   "bytes": 433121984,
+   "md5": "md5:0ef5496ff77386600c1bbb9576d80fbe",
+   "zenodo_checksum": "md5:0ef5496ff77386600c1bbb9576d80fbe",
+   "match": true,
+   "seconds": 28.4
+  },
+  {
+   "name": "Flooding expt 8 NormalWater small plant representative 10012020.czi",
+   "bytes": 504428896,
+   "md5": "md5:72114e0053ae0f4f64b5d5eae7cf5834",
+   "zenodo_checksum": "md5:72114e0053ae0f4f64b5d5eae7cf5834",
+   "match": true,
+   "seconds": 28.1
+  },
+  {
+   "name": "Flooding expt 9 NormalWater small plant 10012020.czi",
+   "bytes": 821527808,
+   "md5": "md5:d33c6ba223365c191e224bd0b6c641b5",
+   "zenodo_checksum": "md5:d33c6ba223365c191e224bd0b6c641b5",
+   "match": true,
+   "seconds": 53.3
+  }
+ ],
+ "state": "unsubmitted",
+ "submitted": false,
+ "all_match": true
+}

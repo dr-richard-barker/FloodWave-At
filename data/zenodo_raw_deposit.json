@@ -19,6 +19,6 @@
   },
   "files": {
     "raw": "12 x 'Flooding expt N … 10012020.czi' (5.17 GB), checksums in data/RAW_CZI_SHA256SUMS; source: external drive Barker_2016/Hyperspectral_UW-Botany_July 2016/Flood_DRB/",
-    "videos": "5 x .avi in data/derived_2020_videos/ (716 MB), checksums in data/derived_2020_videos/SHA256SUMS"
+    "videos": "5 x .avi in data/derived_2020_videos/ (717 MB), checksums in data/derived_2020_videos/SHA256SUMS"
   }
 }
