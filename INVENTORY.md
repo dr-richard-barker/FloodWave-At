@@ -178,6 +178,8 @@ A read-only filename search of `/Volumes/Barker_2016` found **other flooding-nam
 
 These are RGB or greyscale photographs of named Arabidopsis accessions, not Zeiss fluorescence files. Nothing in the 2020 `.czi` metadata links the two. I have **not** used them to infer the species or protocol of the 2020 data.
 
+Richard's personal Google Drive also holds 2015–2019 hyperspectral water-stress and flooding material, found by another session and listed by title only: the folders "Hyperspec_plant_data" (Dec 2018) and "Hyperspectral - DRB" (May 2018), a deck "Arabidopsis Hyper spectral water stress", and "Report_Hyper spectral imaging_March_2015". According to that session's summary (I have not opened the report), the 2015 report lists the ecotypes Col, WS, Ler and Cvi plus cml24-2 and cml24-4. Those match the accession names in the drive photos above. One item was read, read-only, on 2026-10-28: "HyperSpec Flood Response", which is a Google Sheet, not a Doc. It is a planning sheet with tentative dates from 8 Feb to 23 Mar 2019. It lists 2–3-week-old plants, trays of 18, 32 flooded and 32 control plants, a day-by-day sampling schedule, and stress lasting up to 4 weeks. The sheet was read in place and no copy is kept in this repo. That is a chronic, weeks-long design measured by reflectance. It says nothing about the January 2020 GCaMP runs, the reporter line or the pour time.
+
 ## 7. Proposed analysis plan (not started; waiting for answers to §5)
 
 1. **Archive first.** Record SHA-256 checksums for the 12 originals. Convert losslessly to OME-TIFF or OME-Zarr, carrying the ZEN XML across. Plan a Zenodo deposit for the 5.2 GB of raw data; it is too large for git.

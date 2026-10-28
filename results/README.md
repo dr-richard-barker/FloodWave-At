@@ -22,6 +22,7 @@ Everything here is produced by scripts in `../analysis/` from the raw `.czi` fil
 | `figures/all_runs_order_maps.png` | All 12 runs. Each plant pixel coloured by its t50 rank within its own run (light = first). Titles give the filename label and whether the run is pooled or why it is excluded | `runs/*` |
 | `figures/enrichment_all_runs.png` | Earliest-5 % enrichment per region per run, log scale; 1× = no preference. Grey run labels are excluded from pooled numbers | `summary_all_runs.csv` |
 | `figures/mask_qc_sheet.png` | Plant mask (red outline) over each run's late reference image; the basis for the by-eye decisions in `../analysis/qc.json` | `runs/*` |
+| `clips/expt08_clip.mp4`, `clips/expt08_clip_still.png` | Expt 8 as a 23-s, 30-fps H.264 clip (one frame = 1.212 s): registered fluorescence beside the signal change since motion settled, colour scale 0–248 counts above local background; clock = true time from the start of recording. Still frame at 600 s. These numbers are in `clips/expt08_clip.json` | raw expt 8 + `runs/expt08`, via `make_clip.py` |
 | `runs/exptNN/exptNN_activation.png` | Per-run diagnostic: regions, t50 map, rise map, region traces, t50 histograms by region, registration shift | `flood_wave.py` |
 
 ## QC evidence

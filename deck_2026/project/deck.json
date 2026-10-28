@@ -4,7 +4,7 @@
   "lists": "css",
   "title": "Flood Wave, revisited",
   "cover": "cover",
-  "order": ["cover", "question", "setup", "dataset", "corrections", "roi2020", "roitable", "pipeline", "expt8maps", "expt8traces", "expt8first", "allmaps", "enrichment", "timing", "verdict", "caveats", "fair"],
+  "order": ["cover", "question", "setup", "dataset", "corrections", "roi2020", "roitable", "pipeline", "expt8maps", "expt8movie", "expt8traces", "expt8first", "allmaps", "enrichment", "timing", "verdict", "caveats", "fair"],
   "sections": {
     "s1": {"description": "The 2020 experiment and what it claimed", "start": "cover"},
     "s2": {"description": "Re-reading the 2020 analysis from raw data", "start": "corrections"},

@@ -11,7 +11,7 @@ A re-analysis, from the raw files, of a January 2020 experiment. The roots of *A
 | `INVENTORY.md` | What the 12 raw `.czi` files contain, read from their own metadata; which facts are inferred; open questions |
 | `metadata/` | Raw ZEN XML for every run, `file_table.csv` and `per_file_metadata.jsonl` |
 | `previews/` | Frame montages and whole-field QC traces for each run (not results) |
-| `analysis/` | `flood_wave.py` (per-run activation analysis), `roi2020.py` (2020 ROIs re-measured on raw data), `match_video.py` (2020 videos ↔ raw frames), `grid_acf.py` (mesh pitch), `deck_figs.py` (figures and the summary table) |
+| `analysis/` | `flood_wave.py` (per-run activation analysis), `roi2020.py` (2020 ROIs re-measured on raw data), `match_video.py` (2020 videos ↔ raw frames), `grid_acf.py` (mesh pitch), `deck_figs.py` (figures and the summary table), `make_clip.py` (expt 8 video clip), `run_all.sh` (reruns everything) |
 | `results/` | Per-run maps, summaries and figures; `summary_all_runs.csv` |
 | `data/` | Data README and the five 2020 Fiji videos (videos not in git) |
 | `legacy/2020_Flood_Wave_deck/` | The 2020 "Flood Wave" deck as PDF (the 34 MB PPTX export is kept beside it but not in git) and `ASSESSMENT.md` |
@@ -53,7 +53,7 @@ Run `analysis/run_all.sh <folder with the 12 .czi files> <python>` with Python 3
 
 ## The new deck
 
-"Flood Wave, revisited" is a 17-slide Claude Slides artifact, private to Richard: https://claude.ai/artifact/UFtgMKqHRoGHEK8AgNVB3D. Its slide sources are kept in `deck_2026/`.
+"Flood Wave, revisited" is a 18-slide Claude Slides artifact, private to Richard: https://claude.ai/artifact/UFtgMKqHRoGHEK8AgNVB3D. Its slide sources are kept in `deck_2026/`.
 
 ## Credits
 
