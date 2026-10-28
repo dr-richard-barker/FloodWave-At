@@ -1,0 +1,15 @@
+== Flood_DRB_Shreya_20fps_Flooding expt 8 NormalWater small plant representative 10012020.avi
+codec_name=rawvideo|width=552|height=399|pix_fmt=bgr24|r_frame_rate=20/1|nb_read_packets=660
+duration=33.000000|size=436110996
+== Flood_DRB_Shreya_Flooding expt 8 NormalWater small plant representative 10012020.avi
+codec_name=png|width=552|height=399|pix_fmt=rgb24|r_frame_rate=50/1|nb_read_packets=660
+duration=13.200000|size=118135556
+== Flood_Wave_Surface_Plot.avi
+codec_name=mjpeg|width=610|height=605|pix_fmt=yuvj420p|r_frame_rate=50/1|nb_read_packets=660
+duration=13.200000|size=40753488
+== Maxima_Flooding expt 8 NormalWater small plant representative 10012020.avi
+codec_name=mjpeg|width=552|height=399|pix_fmt=yuvj420p|r_frame_rate=50/1|nb_read_packets=660
+duration=13.200000|size=78237536
+== Smooth_Flooding expt 8 NormalWater small plant representative 10012020.avi
+codec_name=mjpeg|width=552|height=399|pix_fmt=yuvj420p|r_frame_rate=50/1|nb_read_packets=660
+duration=13.200000|size=43446006

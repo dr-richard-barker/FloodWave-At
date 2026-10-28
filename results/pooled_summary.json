@@ -1,0 +1,66 @@
+{
+ "runs": [
+  "expt01",
+  "expt05",
+  "expt06",
+  "expt07",
+  "expt08",
+  "expt09",
+  "expt11",
+  "expt12"
+ ],
+ "n": 8,
+ "excluded": {
+  "expt02": "motion",
+  "expt03": "mask",
+  "expt04": "mask",
+  "expt10": "step at settle"
+ },
+ "enrich_margin_median": 1.4003619818096524,
+ "enrich_margin_range": [
+  0.6222434488505943,
+  2.382840228936649
+ ],
+ "enrich_inner_median": 0.9290724029737985,
+ "enrich_inner_range": [
+  0.5742982870496979,
+  1.546265203595981
+ ],
+ "enrich_vein_median": 0.8371222780930346,
+ "enrich_vein_range": [
+  0.23990128603981023,
+  2.1472782843188205
+ ],
+ "enrich_lamina_median": 0.99065437373096,
+ "enrich_lamina_range": [
+  0.35646390293144953,
+  1.4146075558092257
+ ],
+ "margin_gt_inner_runs": "7 of 8",
+ "margin_gt_inner_sign_test_p_two_sided": 0.0703125,
+ "t_settle_s_median": 73.94422935,
+ "t_settle_s_range": [
+  48.486773299999996,
+  124.8781426
+ ],
+ "t50_median_s_median": 323.12098145,
+ "t50_median_s_range": [
+  194.0000962,
+  520.0317441
+ ],
+ "plant_trace_tpeak_s_median": 526.73362745,
+ "plant_trace_tpeak_s_range": [
+  351.5251061,
+  917.7154904
+ ],
+ "plant_rise_counts_median": 64.00379753112793,
+ "plant_rise_counts_range": [
+  25.57935333251953,
+  141.49655151367188
+ ],
+ "plant_level_at_settle_counts_median": 45.741668701171875,
+ "plant_level_at_settle_counts_range": [
+  18.7822265625,
+  71.0748062133789
+ ]
+}

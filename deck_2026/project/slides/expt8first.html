@@ -1,0 +1,25 @@
+<section id="expt8first" data-transition="fade" style="background:#f4f2ec;color:#1a1a19;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<p style="font-size:28px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#9a5510">Expt 8, the 2020 “representative” run</p>
+<h2 style="font-family:'Source Serif 4', Georgia, serif;font-size:64px;font-weight:600;line-height:1.1">Where are the first 5% of pixels to reach half-rise?</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:32px">
+<div style="display:flex;flex-direction:column;gap:12px;background:#ffffff;padding:40px;border:1px solid #dedcd5;border-top:8px solid #2a78d6;border-radius:16px">
+<p style="font-family:'Source Serif 4', Georgia, serif;font-size:96px;font-weight:600;line-height:1">2.0×</p>
+<h3 style="font-size:32px;font-weight:600">Veins</h3>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;background:#ffffff;padding:40px;border:1px solid #dedcd5;border-top:8px solid #eb6834;border-radius:16px">
+<p style="font-family:'Source Serif 4', Georgia, serif;font-size:96px;font-weight:600;line-height:1">1.8×</p>
+<h3 style="font-size:32px;font-weight:600">Outer margin</h3>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;background:#ffffff;padding:40px;border:1px dashed #8a8984;border-top:8px solid #8a8984;border-radius:16px">
+<p style="font-family:'Source Serif 4', Georgia, serif;font-size:96px;font-weight:600;line-height:1">1.3×</p>
+<h3 style="font-size:32px;font-weight:600">Inner band (control)</h3>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;background:#ffffff;padding:40px;border:1px solid #dedcd5;border-top:8px solid #1baf7a;border-radius:16px">
+<p style="font-family:'Source Serif 4', Georgia, serif;font-size:96px;font-weight:600;line-height:1">0.4×</p>
+<h3 style="font-size:32px;font-weight:600">Interior lamina</h3>
+</div>
+</div>
+<p style="font-size:32px;line-height:1.4;color:#46505a">Each figure is a region’s share of the earliest 5% divided by its share of the plant (1× = no preference). Veins and margins lead; the leaf interior lags.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#6a6862">Earliest 5% = plant pixels with t50 ≤ 261 s in expt 8. Source: results/runs/expt08/expt08_summary.json.</p>
+<aside>Exact values: veins 1.99, margin 1.80, inner band 1.34, lamina 0.36. A bright off-plant object in a mesh hole was excluded first (analysis/qc.json); before that exclusion it posed as an early responder.</aside>
+</section>

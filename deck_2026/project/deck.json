@@ -1,0 +1,20 @@
+{
+  "v": 4,
+  "createdOnFiles": {"v": 1, "at": "2026-10-28T18:20:00Z"},
+  "lists": "css",
+  "title": "Flood Wave, revisited",
+  "cover": "cover",
+  "order": ["cover", "question", "setup", "dataset", "corrections", "roi2020", "roitable", "pipeline", "expt8maps", "expt8traces", "expt8first", "allmaps", "enrichment", "timing", "verdict", "caveats", "fair"],
+  "sections": {
+    "s1": {"description": "The 2020 experiment and what it claimed", "start": "cover"},
+    "s2": {"description": "Re-reading the 2020 analysis from raw data", "start": "corrections"},
+    "s3": {"description": "A new analysis of the representative run", "start": "pipeline"},
+    "s4": {"description": "All twelve runs", "start": "allmaps"},
+    "s5": {"description": "What holds up, and what comes next", "start": "verdict"}
+  },
+  "faces": {
+    "source-serif-4": {"family": "Source Serif 4", "href": "https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400..700&display=swap"},
+    "ibm-plex-sans": {"family": "IBM Plex Sans", "href": "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap"}
+  },
+  "designSystems": []
+}

@@ -1,0 +1,14 @@
+# Raw and large derived data live outside git (Zenodo deposit planned; see data/README.md)
+*.czi
+*.avi
+*.npz
+data/derived_2020_videos/*.avi
+legacy/2020_Flood_Wave_deck/*.pptx
+
+# Python / OS
+__pycache__/
+*.pyc
+.venv/
+.DS_Store
+
+.abai/

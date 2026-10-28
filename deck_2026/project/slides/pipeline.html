@@ -1,0 +1,33 @@
+<section id="pipeline" data-transition="fade" style="background:#f4f2ec;color:#1a1a19;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:56px">
+<p style="font-size:28px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#9a5510">The new analysis</p>
+<h2 style="font-family:'Source Serif 4', Georgia, serif;font-size:72px;font-weight:600;line-height:1.1">Every pixel, every run, from the raw files</h2>
+<div style="display:flex;gap:24px;align-items:stretch">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#ffffff;padding:32px;border:1px solid #dedcd5;border-radius:16px">
+<p style="font-family:'Source Serif 4', Georgia, serif;font-size:56px;font-weight:600;color:#9a5510">1</p>
+<h3 style="font-size:32px;font-weight:600">Read</h3>
+<p style="font-size:24px;line-height:1.4;color:#46505a">Raw .czi, read-only; 2×2 binned to 41 µm</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#ffffff;padding:32px;border:1px solid #dedcd5;border-radius:16px">
+<p style="font-family:'Source Serif 4', Georgia, serif;font-size:56px;font-weight:600;color:#9a5510">2</p>
+<h3 style="font-size:32px;font-weight:600">Register</h3>
+<p style="font-size:24px;line-height:1.4;color:#46505a">Rigid, to a late reference; flood motion settles first</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#ffffff;padding:32px;border:1px solid #dedcd5;border-radius:16px">
+<p style="font-family:'Source Serif 4', Georgia, serif;font-size:56px;font-weight:600;color:#9a5510">3</p>
+<h3 style="font-size:32px;font-weight:600">Subtract</h3>
+<p style="font-size:24px;line-height:1.4;color:#46505a">Local background from off-plant pixels, checked on held-out blocks</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#ffffff;padding:32px;border:1px solid #dedcd5;border-radius:16px">
+<p style="font-family:'Source Serif 4', Georgia, serif;font-size:56px;font-weight:600;color:#9a5510">4</p>
+<h3 style="font-size:32px;font-weight:600">Time</h3>
+<p style="font-size:24px;line-height:1.4;color:#46505a">t50: when each pixel reaches half its rise</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#ffffff;padding:32px;border:1px solid #dedcd5;border-radius:16px">
+<p style="font-family:'Source Serif 4', Georgia, serif;font-size:56px;font-weight:600;color:#9a5510">5</p>
+<h3 style="font-size:32px;font-weight:600">Compare</h3>
+<p style="font-size:24px;line-height:1.4;color:#46505a">Margin vs an inner control band, veins, lamina</p>
+</div>
+</div>
+<p style="font-size:28px;line-height:1.4;color:#46505a">The control band, 80–160 µm inside the edge, tests whether an early margin is real or an edge artifact.</p>
+<aside>Why t50 and not ΔF/F: the pre-flood baseline is short and overlaps the water arriving, and the plant sits only 19–71 counts above its local background at that point (pooled runs), so ΔF/F magnitudes blow up. t50 depends only on the shape of each pixel’s rise after motion has settled. Code: analysis/flood_wave.py.</aside>
+</section>

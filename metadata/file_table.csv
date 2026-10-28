@@ -1,0 +1,13 @@
+expt,file,label_in_name,original_zen_name,start_local_CST,stop_local_CST,frames,duration_s,median_interval_s,size_MB,focus_pos_MTBFocus,display_low,display_high
+1,Flooding expt 1  10012020.czi,(none),Experiment-454.czi,11:19:58,11:29:05,451,545.8,1.212,325.1,136768,1215,2632
+2,Flooding expt 2  10012020.czi,(none),Experiment-455.czi,11:39:09,11:49:14,499,603.9,1.212,359.7,126334,1414,2194
+3,Flooding expt 3  10012020.czi,(none),Experiment-456.czi,11:53:38,12:02:20,430,520.0,1.212,310.0,125830,1354,2473
+4,Flooding expt 4  10012020.czi,(none),Experiment-457.czi,12:09:36,12:13:37,198,238.9,1.212,142.9,125830,1503,2085
+5,Flooding expt 5 NormalWater 10012020.czi,NormalWater,Experiment-459.czi,12:24:26,12:33:05,428,517.7,1.212,308.5,126293,1434,2463
+6,Flooding expt 6 NormalWater YoungLeaf 10012020.czi,NormalWater YoungLeaf,Experiment-460.czi,12:38:50,12:48:28,476,576.0,1.212,343.1,116549,1384,4096
+7,Flooding expt 7 NormalWater YoungLeaf 10012020.czi,NormalWater YoungLeaf,Experiment-461.czi,12:54:05,13:06:14,601,727.5,1.212,433.1,122762,1424,4096
+8,Flooding expt 8 NormalWater small plant representative 10012020.czi,NormalWater small plant representative,Experiment-463.czi,13:25:38,13:39:48,700,847.5,1.212,504.4,115140,1404,3538
+9,Flooding expt 9 NormalWater small plant 10012020.czi,NormalWater small plant,Experiment-464.czi,13:44:29,14:07:32,1140,1381.7,1.212,821.5,116492,1663,2304
+10,Flooding expt 10 NormalWater Medium plant 10012020.czi,NormalWater Medium plant,Experiment-466.czi,14:36:16,14:56:47,1015,1229.4,1.212,731.5,117910,1175,4096
+11,Flooding expt 11 NormalWater small plant 10012020.czi,NormalWater small plant,Experiment-465.czi,14:12:35,14:31:03,914,1106.9,1.212,658.6,117910,1374,3439
+12,Flooding expt 12 NormalWater YoungLeaf 10012020.czi,NormalWater YoungLeaf,Experiment-462.czi,13:12:55,13:19:29,324,391.6,1.212,233.6,122581,1384,3160

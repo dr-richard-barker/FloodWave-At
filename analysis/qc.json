@@ -1,0 +1,15 @@
+{
+  "_about": "Manual curation, decided by eye from results/figures/mask_qc_sheet.png (late registered reference + plant mask per run). exclude_boxes are raw-pixel rectangles [x0, y0, x1, y1] of bright off-plant objects; they are removed from both the plant mask and the background model. mask_ok=false keeps a run out of the pooled regional comparison.",
+  "expt01": {"mask_ok": true, "exclude_boxes": [], "note": "field of view jumps ~3 mm at ~96 s; analysis starts after"},
+  "expt02": {"mask_ok": true, "exclude_boxes": [], "note": "single floating leaf; drifts and rotates (see motion flag)"},
+  "expt03": {"mask_ok": false, "exclude_boxes": [], "note": "bright out-of-focus objects behind the mesh are interleaved with leaves; mask mixes them"},
+  "expt04": {"mask_ok": false, "exclude_boxes": [], "note": "rosette badly out of focus; 4-min run"},
+  "expt05": {"mask_ok": true, "exclude_boxes": [], "note": "a few bright mesh holes enter the mask (small)"},
+  "expt06": {"mask_ok": true, "exclude_boxes": [], "note": ""},
+  "expt07": {"mask_ok": true, "exclude_boxes": [], "note": ""},
+  "expt08": {"mask_ok": true, "exclude_boxes": [[40, 170, 120, 290]], "note": "bright off-plant blob in a mesh hole, left of the rosette"},
+  "expt09": {"mask_ok": true, "exclude_boxes": [], "note": "a few small bright mesh holes at upper left enter the mask"},
+  "expt10": {"mask_ok": true, "exclude_boxes": [], "note": "dim plant; bright objects at the bottom edge already excluded by size"},
+  "expt11": {"mask_ok": true, "exclude_boxes": [[40, 30, 220, 210]], "note": "large bright debris clump at upper left dominated the mask"},
+  "expt12": {"mask_ok": true, "exclude_boxes": [], "note": "saturated chevron object excluded by the clipped threshold"}
+}
