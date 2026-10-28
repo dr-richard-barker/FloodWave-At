@@ -3,6 +3,7 @@ message: "If you use these recordings, the re-analysis or its code, please cite 
 title: "FloodWave-At: root flooding and rosette GCaMP fluorescence in Arabidopsis thaliana, a re-analysis of the January 2020 recordings"
 type: dataset
 license: CC-BY-4.0
+repository-code: "https://github.com/dr-richard-barker/FloodWave-At"
 keywords:
   - "Arabidopsis thaliana"
   - "flooding"
@@ -22,4 +23,4 @@ authors:
   - family-names: Gilroy
     given-names: Simon
 # TODO (Richard): ORCIDs for Shreya Godishala and Simon Gilroy; Richard's and Simon's affiliations;
-# repository-code URL once pushed; DOI once deposited on Zenodo.
+# DOI once the Zenodo draft is published.

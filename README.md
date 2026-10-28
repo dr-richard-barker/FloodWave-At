@@ -52,6 +52,11 @@ Every figure and number comes from files in `results/`, produced by the scripts 
 
 Run `analysis/run_all.sh <folder with the 12 .czi files> <python>` with Python 3.11 and `czifile`, `imagecodecs`, `numpy`, `scipy`, `scikit-image`, `matplotlib`, `pillow` and `opencv-python-headless`. The outputs in `results/runs/` were produced by `analysis/flood_wave.py`. Expts 8 and 11 were run with `--qc analysis/qc.json`. For the other ten, the `--qc` code path is identical because they have no exclusion boxes.
 
+## Archive
+
+- **Code, metadata, results and docs:** this GitHub repository (public).
+- **Raw recordings** (12 `.czi`, 5.17 GB) **and the 2020 videos** (5 `.avi`, 717 MB): a Zenodo deposit is prepared as a draft with metadata from `data/zenodo_raw_deposit.json`. It is **not yet published**; its DOI will be added here and in `CITATION.cff` on publication. Checksums: `data/RAW_CZI_SHA256SUMS` and `data/derived_2020_videos/SHA256SUMS`.
+
 ## The new deck
 
 "Flood Wave, revisited" is a 18-slide Claude Slides artifact, private to Richard: https://claude.ai/artifact/UFtgMKqHRoGHEK8AgNVB3D. Its slide sources are kept in `deck_2026/`.
