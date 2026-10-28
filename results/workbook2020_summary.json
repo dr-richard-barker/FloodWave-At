@@ -1,0 +1,108 @@
+{
+ "DRB_example_Original_data": {
+  "rows_with_data": 660,
+  "measurement_kinds": [
+   "Max",
+   "Mean",
+   "Min",
+   "Mode",
+   "StDev"
+  ],
+  "n_columns": 36,
+  "roi_first_frame_stdev": [
+   49.023,
+   39.073,
+   38.137,
+   39.313,
+   35.474,
+   103.73,
+   39.541
+  ],
+  "roi_mean_frame_of_max": [
+   479,
+   411,
+   481,
+   537,
+   554,
+   412,
+   413
+  ],
+  "roi_mean_max_10frame_rise": [
+   17.3,
+   14.1,
+   22.7,
+   20.8,
+   15.9,
+   14.0,
+   13.3
+  ]
+ },
+ "Flood10": {
+  "rows_with_data": 1015,
+  "measurement_kinds": [
+   "StdDev"
+  ],
+  "n_columns": 8,
+  "last_time_min_as_labelled": 16.91666667
+ },
+ "Flood11": {
+  "rows_with_data": 914,
+  "measurement_kinds": [
+   "StdDev"
+  ],
+  "n_columns": 10,
+  "last_time_min_as_labelled": 0.0
+ },
+ "Flood7": {
+  "rows_with_data": 601,
+  "measurement_kinds": [
+   "StdDev"
+  ],
+  "n_columns": 8,
+  "last_time_min_as_labelled": 0.0
+ },
+ "Flood 6": {
+  "rows_with_data": 476,
+  "measurement_kinds": [
+   "StdDev"
+  ],
+  "n_columns": 9,
+  "file_or_label_values": [
+   "Flooding expt 6 NormalWater YoungLeaf 10012020.czi"
+  ],
+  "last_time_min_as_labelled": 0.0
+ },
+ "Flood5": {
+  "rows_with_data": 428,
+  "measurement_kinds": [
+   "Area",
+   "Max",
+   "Min",
+   "StdDev"
+  ],
+  "n_columns": 7,
+  "file_or_label_values": [
+   "909591.5"
+  ],
+  "last_time_min_as_labelled": 0.0
+ },
+ "NewAnalysis": {
+  "rows_with_data": 914,
+  "measurement_kinds": [
+   "StDev"
+  ],
+  "n_columns": 34
+ },
+ "Sheet7": {
+  "rows_with_data": 0,
+  "measurement_kinds": [],
+  "n_columns": 7
+ },
+ "DRB_example_StDev": {
+  "rows_with_data": 660,
+  "measurement_kinds": [
+   "StDev"
+  ],
+  "n_columns": 23
+ }
+}

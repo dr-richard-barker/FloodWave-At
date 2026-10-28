@@ -1,0 +1,24 @@
+{
+  "_about": "Metadata for the separate Zenodo deposit of the raw recordings and the 2020 videos. Files and checksums: RAW_CZI_SHA256SUMS and derived_2020_videos/SHA256SUMS. Not yet uploaded.",
+  "metadata": {
+    "title": "FloodWave-At raw data: twelve widefield GCaMP time-lapses of Arabidopsis thaliana rosettes during root flooding (Zeiss .czi, 10 January 2020) and the 2020 Fiji videos",
+    "upload_type": "dataset",
+    "creators": [
+      {"name": "Godishala, Shreya", "affiliation": "University of Wisconsin–Madison"},
+      {"name": "Barker, Richard", "orcid": "0000-0001-5681-9857"},
+      {"name": "Gilroy, Simon"}
+    ],
+    "description": "<p>Twelve single-channel time-lapse recordings (Zeiss ZEN .czi, 692 × 520 px, 20.49 µm per pixel, GFP filter set 38 HE, a median 1.212 s per frame, 198–1140 frames) made on 10 January 2020 on a Zeiss Axio Zoom.V16. In each run the roots of a GCaMP-expressing Arabidopsis thaliana rosette were flooded with water from below while the rosette was imaged from above. Also included are five Fiji video exports made from run 8 in April 2020; their burned-in clocks assume 1 s per frame (true interval 1.212 s), and they start 48.5 s into the recording. Per-file metadata, checksums, analysis code and results are in the FloodWave-At repository.</p>",
+    "access_right": "open",
+    "license": "cc-by-4.0",
+    "keywords": ["Arabidopsis thaliana", "flooding", "GCaMP", "calcium imaging", "Zeiss czi", "time-lapse", "FAIR"],
+    "related_identifiers": [
+      {"identifier": "https://github.com/dr-richard-barker/FloodWave-At", "relation": "isDocumentedBy"}
+    ],
+    "notes": "GCaMP construct not yet confirmed. The 2020 'Flood Wave' slide deck is not part of this deposit until the rights to its third-party figures are settled."
+  },
+  "files": {
+    "raw": "12 x 'Flooding expt N … 10012020.czi' (5.17 GB), checksums in data/RAW_CZI_SHA256SUMS; source: external drive Barker_2016/Hyperspectral_UW-Botany_July 2016/Flood_DRB/",
+    "videos": "5 x .avi in data/derived_2020_videos/ (716 MB), checksums in data/derived_2020_videos/SHA256SUMS"
+  }
+}

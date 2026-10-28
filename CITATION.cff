@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you use these recordings, the re-analysis or its code, please cite it as below."
+title: "FloodWave-At: root flooding and rosette GCaMP fluorescence in Arabidopsis thaliana, a re-analysis of the January 2020 recordings"
+type: dataset
+license: CC-BY-4.0
+keywords:
+  - "Arabidopsis thaliana"
+  - "flooding"
+  - "submergence"
+  - "GCaMP"
+  - "calcium imaging"
+  - "systemic signalling"
+  - "time-lapse fluorescence"
+  - "FAIR data"
+authors:
+  - family-names: Godishala
+    given-names: Shreya
+    affiliation: "University of Wisconsin–Madison"
+  - family-names: Barker
+    given-names: Richard
+    orcid: "https://orcid.org/0000-0001-5681-9857"
+  - family-names: Gilroy
+    given-names: Simon
+# TODO (Richard): ORCIDs for Shreya Godishala and Simon Gilroy; Richard's and Simon's affiliations;
+# repository-code URL once pushed; DOI once deposited on Zenodo.

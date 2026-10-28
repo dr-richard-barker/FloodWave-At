@@ -12,3 +12,4 @@ __pycache__/
 .DS_Store
 
 .abai/
+legacy/2020_Flood_Wave_deck/*.pdf

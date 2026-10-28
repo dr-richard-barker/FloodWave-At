@@ -36,7 +36,7 @@ All 12 files share the same acquisition settings **[metadata]**:
 | End of run | Every file has exactly one event: a `MARKER` reading "Stopped Execution", so every run was **stopped by hand**. |
 | Notes and annotations | Description, comments, custom attributes and annotation layers are all **empty** in every file. There are no user event markers, so the files do not record when a treatment was applied. |
 
-[inference] PlanApo Z objectives and the SyCoP3 control panel suggest a Zeiss Axio Zoom.V16. The file never names the stand, and I have not checked this against a Zeiss source. **TODO (Richard): confirm the microscope stand.**
+The stand is a **Zeiss Axio Zoom.V16**. Richard confirmed this on 2026-10-28 (§5c). It is consistent with the PlanApo Z objective and the SyCoP3 control panel in the metadata, but the file itself never names the stand.
 
 The document timestamps carry a UTC−06:00 offset **[metadata]**. That matches US Central Standard Time in January. Where the microscope was is not recorded.
 
@@ -152,7 +152,7 @@ Richard pasted a set of clarifications. Apart from the species, they are written
 | "NormalWater" | Control flooding with plain water or unsupplemented dilute MS | **Unconfirmed** ("or"). It still doesn't say what expts 1–4 received. |
 | Timing | 60–120 s baseline, then liquid added to the root zone | **Unconfirmed but compatible.** The motion spikes fall at 34–96 s (§3), and some are shorter than the stated 60 s. The application time still has to be estimated from each run. |
 | Experiment-458 | "Often" a skipped test or alignment run; Richard to check | **Still open.** |
-| Microscope | "Typically" Axio Zoom.V16 or SteREO Discovery.V20, with AxioCam or Hamamatsu Orca Flash; filter set 38 HE or 46 HE | **Settled by the metadata.** AxioCam MRm and filter set 38 HE (§1). The stand is still unnamed (TODO, §1). |
+| Microscope | "Typically" Axio Zoom.V16 or SteREO Discovery.V20, with AxioCam or Hamamatsu Orca Flash; filter set 38 HE or 46 HE | **Settled by the metadata.** AxioCam MRm and filter set 38 HE (§1). The stand is an Axio Zoom.V16 (Richard, §5c). |
 | Light source | HXP 120 excites; CL LED is transmitted/ambient light | **Accepted.** Matches the HXP 120 shutter opening for the EGFP track (§1). |
 | Replicates and GFP-only control | "Typically" run on other days or in parallel | **Unconfirmed.** No such files have been found on this drive. |
 | Sharing | Generally CC-BY 4.0 on Zenodo or OSDR "once authorized by the PI"; mentions BRIC-19 follow-ups | **Open.** It needs an explicit yes from the PI. Nothing in the files links these runs to BRIC-19. |
@@ -162,12 +162,35 @@ From the review of the analysis plan, I've adopted Cliff's delta or Hedges' g as
 ### 5b. The 2020 deck and videos (imported 2026-10-28)
 
 Richard pointed to the Google Slides deck "Flood Wave" ("The Original Flood Wave — Shreya Godishala, DRB, & Gilroy Lab et al., 2020") and to the Drive folder `Flooding_DRB_Shreya`, which holds five AVIs. All are now in the repo:
-- `legacy/2020_Flood_Wave_deck/` holds the PPTX and PDF exports and `ASSESSMENT.md`.
+- `legacy/2020_Flood_Wave_deck/` holds `ASSESSMENT.md` and two slide images made from the recordings. The PPTX and PDF exports are kept locally, outside git, because they contain third-party figures.
 - `data/derived_2020_videos/` holds the AVIs; see `data/README.md`.
 
 The deck is first-hand evidence for parts of the protocol: GCaMP, 2–3-week-old plants, water through a funnel, roots flooded in 30–60 s, focus on the rosette. It confirms that "NormalWater" runs used water. It does **not** say what expts 1–4 received. Its "2 experimental groups: 2 week old, 3 week old" does not match the filename labels.
 
-The deck analysed **expt 8 only**. `ASSESSMENT.md` documents what the raw data show about its analysis: the traces were within-ROI SD, the time stamps assumed 1 s per frame, and not every "hydathode" ROI sits on a margin.
+The deck **shows expt 8 only**; the 2020 ROI workbook (§5c) also measured expts 5, 6, 7, 10 and 11. `ASSESSMENT.md` documents what the raw data show about its analysis: the traces were within-ROI SD, the time stamps assumed 1 s per frame, and not every "hydathode" ROI sits on a margin.
+
+### 5c. Second set of answers (2026-10-28) and the 2020 ROI workbook
+
+Richard supplied a second set of answers. They are recorded below with how each one stands against the files.
+
+| Topic | Answer | Status here |
+|---|---|---|
+| Microscope stand | Zeiss Axio Zoom.V16 | **Accepted** (Richard's confirmation; consistent with §1) |
+| Expts 1–4 vs "NormalWater" | Same setup: roots flooded with water from below. The "NormalWater" label distinguishes plain-water floods from possible osmotic or chemical controls, none of which are in this set | **Accepted.** All 12 runs are one treatment, a water flood, so there is no treatment contrast in this set |
+| Unflooded control | None; the frames before water arrives are the baseline | **Accepted.** Matches §3 and the re-analysis |
+| GCaMP line | "Typically" 35S::GCaMP3 or GCaMP6s | **Still unconfirmed** (TODO) |
+| Experiment-458 | Not an independent dataset; an aborted or unsaved run | **Accepted as Richard's account.** Consistent with the files: every one of the 12 runs maps to a different ZEN counter value (454–466) and none maps to 458. The answer's mention of "Expts 1–10" is a slip; there are 12 runs |
+| Mesh | Standard plastic plant-support mesh suspending the plants | **Recorded.** The measured pitch (1.46 mm, §3) stands; the material is not checked |
+| Pour time | Can be read off the data. The answer says the trace "holds steady until an immediate, steep rise", citing `Flood_Glow_Shreya_DRB_Spring_2020` | **Contradicted by that workbook and by the raw data** (below). The re-analysis uses the motion-settle time as its stand-in for water arrival |
+| Authorship | Shreya Godishala (UW–Madison at the time; data collection and imaging), Richard Barker, Simon Gilroy | **Accepted** and applied in `CITATION.cff` and README |
+| Licences | MIT for code; CC BY 4.0 for data, figures and videos | **Applied** (`LICENSE`, `LICENSE-DATA.md`), with third-party figures in the 2020 deck excluded |
+| 2018–19 hyperspectral data | Belongs in a separate AstroBotany hyperspectral repo | **Consistent:** §6 lists it only as related and none of it is used here |
+
+**The 2020 ROI workbook.** `Flood_Glow_Shreya_DRB_Spring_2020` is a Google Sheet in Richard's personal Drive. Its xlsx export was imported on 2026-10-28 to `legacy/2020_roi_workbook/` (checksum alongside). The numbers below come from `analysis/workbook2020_summary.py` → `results/workbook2020_summary.json`.
+- **Contents:** 9 tabs. One (`DRB_example_Original_data`) holds expt 8's Fiji ROI measurements: Mean, StDev, Mode, Min and Max for 7 ROIs over 660 frames labelled "Time (1fps)". The tabs for expts 5, 6, 7, 10 and 11 hold StDev columns and **no Mean columns** (Flood5 also has Area, Min and Max). Row counts match each run's frame count: 428, 476, 601, 1015 and 914. The `Flood 6` tab names its source file, `Flooding expt 6 NormalWater YoungLeaf 10012020.czi`.
+- **It corrects this repo:** the 2020 work **measured 6 of the 12 runs**, not one; the deck shows only expt 8. Every 2020 trace is a within-ROI SD, and every tab counts time at 1 s per frame. Flood10 ends at "16.92 min", against a true 20.5 min.
+- **No sudden rise in expt 8's own Mean columns.** The steepest rise over any 10 frames is 13–23 counts, and the ROI means peak at frames 411–554 (roughly 8–11 min). That matches the slow rise in §3 and `results/`.
+- **The SD finding is confirmed directly.** The workbook's first-frame StDev values (for example 49.0, 39.1 and 103.7 for ROIs 1, 2 and 6) match the SDs recomputed from raw data in `results/roi2020_expt08.json` (49, 40, 104).
 
 ## 6. Related files elsewhere on the drive (not examined)
 

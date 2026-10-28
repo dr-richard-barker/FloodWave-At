@@ -2,7 +2,7 @@
 
 A re-analysis, from the raw files, of a January 2020 experiment. The roots of *Arabidopsis thaliana* plants expressing GCaMP were flooded with water while the rosette was filmed from above. The question was whether a calcium signal reaches the leaves within seconds.
 
-**Status:** first-pass analysis complete; nothing published or deposited. Several protocol facts still need confirming by Richard Barker (see `INVENTORY.md` §5 and §5a).
+**Status:** first-pass analysis complete. Richard Barker's answers are recorded in `INVENTORY.md` §5a and §5c. The GCaMP line is still unconfirmed. The raw recordings are not yet deposited.
 
 ## What is here
 
@@ -14,11 +14,12 @@ A re-analysis, from the raw files, of a January 2020 experiment. The roots of *A
 | `analysis/` | `flood_wave.py` (per-run activation analysis), `roi2020.py` (2020 ROIs re-measured on raw data), `match_video.py` (2020 videos ↔ raw frames), `grid_acf.py` (mesh pitch), `deck_figs.py` (figures and the summary table), `make_clip.py` (expt 8 video clip), `run_all.sh` (reruns everything) |
 | `results/` | Per-run maps, summaries and figures; `summary_all_runs.csv` |
 | `data/` | Data README and the five 2020 Fiji videos (videos not in git) |
-| `legacy/2020_Flood_Wave_deck/` | The 2020 "Flood Wave" deck as PDF (the 34 MB PPTX export is kept beside it but not in git) and `ASSESSMENT.md` |
+| `legacy/2020_Flood_Wave_deck/` | `ASSESSMENT.md` of the 2020 "Flood Wave" deck and two of its images made from the recordings. The deck's PDF and PPTX exports are kept locally, not in git, because they contain third-party figures |
+| `legacy/2020_roi_workbook/` | The 2020 Fiji ROI measurement workbook (xlsx), summarised by `analysis/workbook2020_summary.py` |
 | `scripts/` | Read-only metadata and preview extraction |
 | `deck_2026/` | Slide sources of the new deck, "Flood Wave, revisited" |
 
-Large files (raw `.czi`, the 2020 AVIs, the PPTX and the per-run `.npz` maps) stay out of git and are listed in `.gitignore`. They are for the planned Zenodo deposit.
+Large files (raw `.czi`, the 2020 AVIs and the per-run `.npz` maps) and the 2020 deck exports stay out of git and are listed in `.gitignore`. They are for the planned Zenodo deposit.
 
 ## The data
 
@@ -57,8 +58,8 @@ Run `analysis/run_all.sh <folder with the 12 .czi files> <python>` with Python 3
 
 ## Credits
 
-The experiment and the 2020 analysis are by Shreya Godishala, Richard Barker and the Gilroy Lab (2020), as credited on the 2020 deck. Richard Barker's ORCID is 0000-0001-5681-9857. Author details for Shreya Godishala are still to be confirmed.
+Shreya Godishala (University of Wisconsin–Madison at the time) ran the experiment, collected the data and did the imaging, with Richard Barker and Simon Gilroy (2020). Richard Barker's ORCID is 0000-0001-5681-9857. ORCIDs for Shreya Godishala and Simon Gilroy are still to be added (`CITATION.cff`).
 
 ## Licence
 
-Not chosen yet. Richard needs to decide before anything is shared or deposited.
+Code (`analysis/`, `scripts/`) is MIT (`LICENSE`). Data, metadata, results, figures, the video clip and the documentation are CC BY 4.0 (`LICENSE-DATA.md`). The exception is third-party figures reproduced inside the 2020 deck in `legacy/`, which stay with their owners.

@@ -1,0 +1,17 @@
+{
+  "title": "FloodWave-At: root flooding and rosette GCaMP fluorescence in Arabidopsis thaliana, a re-analysis of the January 2020 recordings (code, metadata, derived results, figures, slides)",
+  "creators": [
+    {"name": "Godishala, Shreya", "affiliation": "University of Wisconsin–Madison"},
+    {"name": "Barker, Richard", "orcid": "0000-0001-5681-9857"},
+    {"name": "Gilroy, Simon"}
+  ],
+  "description": "<p>Re-analysis of twelve widefield GCaMP time-lapse recordings made on 10 January 2020 on a Zeiss Axio Zoom.V16. In each run the roots of an Arabidopsis thaliana rosette were flooded with water from below while the rosette was imaged every 1.21 s. The archive contains the metadata extracted read-only from the raw Zeiss .czi files, the analysis code (registration, local-background subtraction with a held-out check, per-pixel half-rise times, region enrichment, QC curation), per-run results and figures, a written assessment of the 2020 analysis, and the slide sources of a 2026 deck. The raw recordings and the 2020 videos are deposited separately (see related identifiers once minted).</p>",
+  "access_right": "open",
+  "license": "mit",
+  "upload_type": "software",
+  "keywords": ["Arabidopsis thaliana", "flooding", "submergence", "GCaMP", "calcium imaging", "systemic signalling", "time-lapse fluorescence", "FAIR"],
+  "related_identifiers": [
+    {"identifier": "https://github.com/dr-richard-barker/FloodWave-At", "relation": "isSupplementTo"}
+  ],
+  "notes": "Code: MIT licence. Data, metadata, results, figures, video clip and text: CC BY 4.0 (LICENSE-DATA.md); third-party figures inside the 2020 deck are excluded. ORCIDs for S. Godishala and S. Gilroy pending."
+}
