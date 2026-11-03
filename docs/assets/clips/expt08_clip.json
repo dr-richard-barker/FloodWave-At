@@ -1,0 +1,16 @@
+{
+ "tag": "expt08",
+ "frames": 700,
+ "size": [
+  1456,
+  692
+ ],
+ "fps": 30,
+ "clip_seconds": 23.333333333333332,
+ "frame_interval_s": 1.2120693000000529,
+ "run_seconds": 847.4664723,
+ "settle_s": 48.486773299999996,
+ "dF_scale_counts": 248.46571350097656,
+ "still_s": 600.0003181,
+ "mp4_bytes": 3348719
+}

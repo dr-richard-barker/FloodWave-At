@@ -18,6 +18,8 @@ A re-analysis, from the raw files, of a January 2020 experiment. The roots of *A
 | `legacy/2020_roi_workbook/` | The 2020 Fiji ROI measurement workbook (xlsx), summarised by `analysis/workbook2020_summary.py` |
 | `scripts/` | Read-only metadata and preview extraction |
 | `deck_2026/` | Slide sources of the new deck, "Flood Wave, revisited" |
+| `docs/` | GitHub Pages interactive showcase (`docs/index.html`) and formatted Perspective edition (`docs/manuscript.html`) |
+| `manuscript/` | Draft manuscript in the style of a *Nature Communications* Perspective (`FloodWave_NatureCommunications_Perspective.md`) |
 
 Large files (raw `.czi`, the 2020 AVIs and the per-run `.npz` maps) and the 2020 deck exports stay out of git and are listed in `.gitignore`. They are for the planned Zenodo deposit.
 

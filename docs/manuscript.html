@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Perspective Manuscript · From Submerged Roots to Leaf Hydathodes (FloodWave-At)</title>
+  <meta name="description" content="Draft Perspective manuscript in the style of Nature Communications: From submerged roots to leaf hydathodes: resolving vascular calcium dynamics and imaging artifacts during plant flooding.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Top Navigation (hidden when printing) -->
+  <header class="site-header no-print">
+    <div class="nav-container">
+      <a href="index.html" class="brand-link">
+        <span class="brand-dot" aria-hidden="true"></span>
+        <span>← Back to FloodWave-At Interactive Showcase</span>
+      </a>
+      <nav class="nav-links" aria-label="Manuscript Navigation">
+        <a href="#abstract">Abstract</a>
+        <a href="#sec-biophysics">Biophysical Relay</a>
+        <a href="#sec-hydathodes">Hydathodes</a>
+        <a href="#sec-forensic">2020 vs 2026 Audit</a>
+        <a href="#sec-fair">FAIR Blueprint</a>
+        <a href="#references">References (28)</a>
+        <button type="button" onclick="window.print()" class="btn btn-primary" style="padding:0.4rem 0.85rem;font-size:0.84rem;margin-left:0.4rem">🖨 Print / Save PDF</button>
+      </nav>
+    </div>
+  </header>
+
+  <main style="padding:3rem 1.25rem 4.5rem">
+    <article class="manuscript-wrapper manuscript-article">
+
+      <div class="journal-banner">
+        <span class="journal-banner-type">PERSPECTIVE · DRAFT MANUSCRIPT (NATURE COMMUNICATIONS FORMAT)</span>
+        <span class="mono" style="font-size:0.78rem;color:var(--text-muted)">FloodWave-At · October 2026</span>
+      </div>
+
+      <h1>From submerged roots to leaf hydathodes: resolving vascular calcium dynamics and imaging artifacts during plant flooding</h1>
+
+      <div class="manuscript-authors">
+        Shreya Godishala<sup>1</sup>, Richard Barker<sup>1,</sup>* &amp; Simon Gilroy<sup>1,</sup>*
+      </div>
+      <div class="manuscript-affil">
+        <sup>1</sup>Department of Botany, University of Wisconsin–Madison, 430 Lincoln Drive, Madison, WI 53706, USA.<br>
+        *Corresponding authors: Richard Barker (ORCID: <a href="https://orcid.org/0000-0001-5681-9857" target="_blank" rel="noopener">0000-0001-5681-9857</a>); Simon Gilroy.
+      </div>
+
+      <!-- Abstract -->
+      <section id="abstract" class="manuscript-abstract">
+        <strong>Abstract —</strong> When plant roots are abruptly submerged, the aerial shoot must adjust stomatal aperture, carbon allocation, and hypoxia-responsive transcription before oxygen deprivation spreads systemically. Rapid root-to-shoot communication integrates hydraulic pressure surges, reactive oxygen species (ROS), and cytosolic calcium (Ca<sup>2+</sup>) transients traveling along the vasculature toward leaf margins, where xylem vessels terminate in epithemal <strong>hydathodes</strong>. However, visualizing these long-distance signals in intact rosettes using single-wavelength fluorescent biosensors presents severe optical and analytical pitfalls. Here we synthesize the molecular physiology of the root-to-hydathode signaling pathway during flooding and present a forensic re-analysis of twelve archival widefield GCaMP time-lapse recordings of <em>Arabidopsis thaliana</em> rosettes subjected to root flooding in January 2020 (<code>FloodWave-At</code>). We show that an initial 2020 interpretation claiming a seconds-scale Ca<sup>2+</sup> wave originating at hydathodes arose from plotting within-region-of-interest pixel standard deviation (<code>StDev</code>)—which tracks leaf-edge contrast and vascular patchiness—combined with an uncalibrated frame clock. Re-analyzing every pixel from the raw files after rigid registration and held-out local background subtraction reveals that rosette fluorescence rises gradually over <strong>minutes</strong> (median half-rise <em>t</em><sub>50</sub> = 323 s; median peak = 527 s), matching independent measurements of systemic waterlogging Ca<sup>2+</sup> waves (~10 min). Across passing recordings, the earliest 5% of activating pixels are modestly enriched in the outer 80 µm leaf margin (1.40× vs. 0.93× in an adjacent inner control band in 7 of 8 runs) and veins (1.99× in the representative run), consistent with acropetal vascular delivery to marginal hydathodes. We conclude with a community blueprint for FAIR whole-plant biosensor imaging that separates physiological waves from fluid-induced optical coupling artifacts.
+      </section>
+
+      <!-- Section 1 -->
+      <h2 id="sec-intro">Introduction: The Submerged Root and the Aerial Alarm</h2>
+      <p>
+        Flooding and waterlogging are among the most acute abiotic stresses experienced by terrestrial plants, rapidly replacing gas-filled soil pores with water and restricting oxygen diffusion by approximately four orders of magnitude<sup><a href="#ref1">1</a>,<a href="#ref2">2</a></sup>. Because roots lack photosynthetic oxygen evolution and sustain high rates of mitochondrial respiration, root submergence initiates an immediate local crisis in cellular energy charge, cytosolic pH, and redox poise<sup><a href="#ref3">3</a>,<a href="#ref4">4</a></sup>. Yet the survival of a flooded plant depends on rapid coordination between the submerged root system and the still-aerial shoot. Aerial leaves must modulate stomatal conductance, re-route phloem transport, and pre-emptively transcribe core hypoxia-response genes long before low-oxygen conditions physically reach the rosette<sup><a href="#ref5">5</a>,<a href="#ref6">6</a></sup>.
+      </p>
+      <p>
+        Over the past decade, live-imaging studies using genetically encoded Ca<sup>2+</sup>, glutamate, and redox biosensors have transformed our understanding of how local root or leaf perturbations broadcast systemic alarms across the plant body<sup><a href="#ref7">7</a>–<a href="#ref12">12</a></sup>. Mechanical wounding or herbivory on a single <em>Arabidopsis thaliana</em> leaf triggers a dramatic wave of apoplastic glutamate and cytosolic Ca<sup>2+</sup> ([Ca<sup>2+</sup>]<sub>cyt</sub>) that propagates through the vasculature to systemic leaves at 400–1,000 µm s<sup>−1</sup>, traversing the rosette within 10–60 s<sup><a href="#ref8">8</a>,<a href="#ref10">10</a>,<a href="#ref12">12</a></sup>. Similarly, localized salt stress (100–150 mM NaCl) applied to the root tip elicits a root-to-shoot Ca<sup>2+</sup> wave traveling through cortical and endodermal cell files at ~400 µm s<sup>−1</sup>, reaching the shoot base within seconds to a few minutes<sup><a href="#ref7">7</a>,<a href="#ref11">11</a></sup>.
+      </p>
+      <p>
+        These striking visual demonstrations of seconds-scale plant signaling naturally prompted a compelling question: <strong>when roots are flooded with water, does a similarly rapid Ca<sup>2+</sup> wave race up the hypocotyl, course through the leaf veins, and erupt at the hydathodes—the specialized water pores distributed along the serrated leaf margin?</strong>
+      </p>
+      <p>
+        In January 2020, our laboratory recorded twelve widefield epifluorescence time-lapse series of intact <em>A. thaliana</em> rosettes expressing GCaMP while water was poured onto the root zone from below (<code>FloodWave-At</code> dataset)<sup><a href="#ref13">13</a></sup>. A preliminary analysis prepared in April 2020 (<em>“The Original Flood Wave”</em>) concluded that root flooding triggered Ca<sup>2+</sup> waves in the leaves <em>“almost within seconds,”</em> with <strong>hydathodes</strong> appearing to act as the primary source of the foliar wave. However, when we returned to the twelve raw Zeiss <code>.czi</code> files in 2026 to curate a Findable, Accessible, Interoperable, and Reusable (FAIR) data deposit, a rigorous audit of the raw pixel intensities, hardware timestamps, and region-of-interest (ROI) statistics revealed a markedly different story.
+      </p>
+      <p>
+        In this Perspective, we use the <code>FloodWave-At</code> recordings as an integrative lens to address two intertwined challenges in contemporary plant physiology. First, we synthesize the biophysical and molecular mechanisms that link root submergence to vascular Ca<sup>2+</sup>/ROS propagation and marginal hydathode physiology, explaining why root waterlogging operates on a <strong>minutes-scale (~5–10 min)</strong> rather than a seconds-scale timeline<sup><a href="#ref5">5</a>,<a href="#ref14">14</a></sup> and why veins and hydathode-bearing leaf margins act as anatomical sinks for vascularly delivered signals<sup><a href="#ref15">15</a>,<a href="#ref16">16</a></sup>. Second, we present a transparent forensic reconstruction showing how common image-processing shortcuts—specifically, exporting within-ROI pixel standard deviation (<code>StDev</code>) instead of background-corrected mean fluorescence, assuming nominal frame intervals, and omitting non-responsive optical controls—can manufacture the illusion of rapid, staggered signaling waves from slow, global intensity drifts.
+      </p>
+
+      <!-- Section 2 -->
+      <h2 id="sec-biophysics">Biophysical Relay: From Root Waterlogging to Vascular Calcium and ROS Waves</h2>
+      <p>
+        Unlike mechanical wounding (which instantaneously ruptures cell membranes and releases millimolar glutamate into the apoplast)<sup><a href="#ref8">8</a>,<a href="#ref12">12</a></sup> or hyperosmotic NaCl shock (which immediately depolarizes root epidermal membranes)<sup><a href="#ref7">7</a>,<a href="#ref11">11</a></sup>, submerging a root system in plain water imposes a <strong>biphasic physical and metabolic perturbation</strong> (Fig. 1; Table 1).
+      </p>
+
+      <!-- Figure 1 Schematic -->
+      <figure class="manuscript-figure">
+        <div style="background:#fff;padding:1rem;border-radius:8px;border:1px solid var(--border-light)">
+          <svg viewBox="0 0 800 250" role="img" aria-label="Figure 1: Multiphase root-to-hydathode signaling cascade during root flooding in Arabidopsis thaliana">
+            <rect x="10" y="15" width="240" height="220" rx="10" fill="#eef5fc" stroke="#2a78d6" stroke-width="2"/>
+            <text x="25" y="42" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" fill="#2a78d6">PHASE I · 0 – 90 s</text>
+            <text x="25" y="64" font-family="Source Serif 4, Georgia, serif" font-size="15" font-weight="700" fill="#1a1a19">Hydrostatic &amp; Osmotic Surge</text>
+            <text x="25" y="92" font-family="IBM Plex Sans, sans-serif" font-size="12" fill="#46505a">• Root flooding eliminates soil</text>
+            <text x="25" y="110" font-family="IBM Plex Sans, sans-serif" font-size="12" fill="#46505a">  matric tension (ΔΨ_w ↑)</text>
+            <text x="25" y="134" font-family="IBM Plex Sans, sans-serif" font-size="12" fill="#46505a">• Water influx via PIP2;1</text>
+            <text x="25" y="152" font-family="IBM Plex Sans, sans-serif" font-size="12" fill="#46505a">  aquaporins drives positive</text>
+            <text x="25" y="170" font-family="IBM Plex Sans, sans-serif" font-size="12" fill="#46505a">  xylem root pressure</text>
+            <text x="25" y="196" font-family="IBM Plex Mono, monospace" font-size="11" fill="#174a8b">FloodWave-At: t_settle = 74 s</text>
+
+            <path d="M254,125 L276,125" stroke="#9a5510" stroke-width="3"/>
+            <polygon points="274,119 284,125 274,131" fill="#9a5510"/>
+
+            <rect x="285" y="15" width="240" height="220" rx="10" fill="#eef9f4" stroke="#1baf7a" stroke-width="2"/>
+            <text x="300" y="42" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" fill="#0f6e4b">PHASE II · 2 – 12 min</text>
+            <text x="300" y="64" font-family="Source Serif 4, Georgia, serif" font-size="15" font-weight="700" fill="#1a1a19">Vascular ROS / Ca²⁺ Relay</text>
+            <text x="300" y="92" font-family="IBM Plex Sans, sans-serif" font-size="12" fill="#46505a">• Mechanosensors (MSL, OSCA)</text>
+            <text x="300" y="110" font-family="IBM Plex Sans, sans-serif" font-size="12" fill="#46505a">  + RBOHD apoplastic H₂O₂</text>
+            <text x="300" y="134" font-family="IBM Plex Sans, sans-serif" font-size="12" fill="#46505a">• Vascular GLR3.3 / GLR3.6 &amp;</text>
+            <text x="300" y="152" font-family="IBM Plex Sans, sans-serif" font-size="12" fill="#46505a">  vacuolar TPC1 / CAX2 gating</text>
+            <text x="300" y="170" font-family="IBM Plex Sans, sans-serif" font-size="12" fill="#46505a">  along petioles and veins</text>
+            <text x="300" y="196" font-family="IBM Plex Mono, monospace" font-size="11" fill="#0f6e4b">Median t50 = 323 s (5.4 min)</text>
+
+            <path d="M529,125 L551,125" stroke="#9a5510" stroke-width="3"/>
+            <polygon points="549,119 559,125 549,131" fill="#9a5510"/>
+
+            <rect x="560" y="15" width="230" height="220" rx="10" fill="#fdf3ee" stroke="#eb6834" stroke-width="2"/>
+            <text x="575" y="42" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" fill="#a1351b">PHASE III · 4 – 20 min</text>
+            <text x="575" y="64" font-family="Source Serif 4, Georgia, serif" font-size="15" font-weight="700" fill="#1a1a19">Hydathode Convergence</text>
+            <text x="575" y="92" font-family="IBM Plex Sans, sans-serif" font-size="12" fill="#46505a">• Veins terminate in marginal</text>
+            <text x="575" y="110" font-family="IBM Plex Sans, sans-serif" font-size="12" fill="#46505a">  epithem beneath water pores</text>
+            <text x="575" y="134" font-family="IBM Plex Sans, sans-serif" font-size="12" fill="#46505a">• Guttation pressure relief &amp;</text>
+            <text x="575" y="152" font-family="IBM Plex Sans, sans-serif" font-size="12" fill="#46505a">  solute/auxin scavenging</text>
+            <text x="575" y="170" font-family="IBM Plex Sans, sans-serif" font-size="12" fill="#46505a">• Shoot hypoxia gene priming</text>
+            <text x="575" y="196" font-family="IBM Plex Mono, monospace" font-size="11" fill="#a1351b">Margin 1.40× (7/8 runs &gt; ctrl)</text>
+          </svg>
+        </div>
+        <figcaption>
+          <strong>Figure 1 | Multiphase model of the root-to-hydathode signaling pathway during root submergence in <em>Arabidopsis thaliana</em>.</strong> Root flooding couples an immediate hydrostatic pressure shift (Phase I) with an acropetal vascular ROS and Ca<sup>2+</sup> relay (Phase II) that converges anatomically at marginal epithemal hydathodes (Phase III) over a 5–12 min window.
+        </figcaption>
+      </figure>
+
+      <h3>Phase I: The Hydraulic Pressure Surge</h3>
+      <p>
+        During the first seconds of root submergence, water fills the rhizosphere and eliminates matric tension around the root epidermis. Water enters the root cylinder down its water potential gradient ($\Delta \Psi_w$), facilitated by plasma membrane intrinsic protein aquaporins such as <strong>PIP2;1</strong><sup><a href="#ref5">5</a>,<a href="#ref17">17</a></sup>. Because xylem conduits behave as rigid, water-filled capillary tubes with low hydraulic capacitance, a sudden shift in root hydraulic pressure transmits a <strong>hydraulic wave</strong> (or turgor pressure wave) acropetally into the shoot vasculature over seconds to tens of seconds<sup><a href="#ref9">9</a>,<a href="#ref18">18</a>,<a href="#ref19">19</a></sup>. In <em>A. thaliana</em>, Peláez-Vico et al.<sup><a href="#ref5">5</a></sup> demonstrated that abrupt root waterlogging triggers a rapid hydraulic wave into the rosette that induces transient stomatal opening and leaf water-status adjustments within the first 1–5 min.
+      </p>
+
+      <h3>Phase II: Mechanosensory Transduction and the Coupled Ca<sup>2+</sup>/ROS Wave</h3>
+      <p>
+        At the plasma membrane and endomembranes of root and vascular cells, four molecular modules translate root submergence into a propagating foliar Ca<sup>2+</sup> signal:
+      </p>
+      <ol>
+        <li><strong>Mechanosensitive and Osmosensitive Channels:</strong> Membrane tension changes caused by hypo-osmotic water influx and turgor shifts gate mechanosensitive ion channels—including <strong>MscS-Like (MSL)</strong> channels, <strong>MID1-COMPLEMENTING ACTIVITY (MCA1/MCA2)</strong>, <strong>OSCA</strong> hyperosmolality-gated channels, and plant <strong>PIEZO</strong> homologs—permitting initial Ca<sup>2+</sup> entry into the cytosol<sup><a href="#ref9">9</a>,<a href="#ref10">10</a>,<a href="#ref20">20</a></sup>.</li>
+        <li><strong>The RBOHD–Ca<sup>2+</sup> Auto-Amplifying Loop:</strong> Cytosolic Ca<sup>2+</sup> elevation and CPK/CIPK phosphorylation activate <strong>RESPIRATORY BURST OXIDASE HOMOLOG D (RBOHD)</strong><sup><a href="#ref5">5</a>,<a href="#ref9">9</a>,<a href="#ref11">11</a></sup>. RBOHD generates apoplastic superoxide ($\text{O}_2^{\bullet-}$), which dismutates to $\text{H}_2\text{O}_2$ and enters neighboring cells through <strong>PIP2;1</strong> aquaporins, gating Ca<sup>2+</sup>-permeable channels in the adjacent cell and sustaining a cell-to-cell <strong>ROS-assisted calcium wave</strong><sup><a href="#ref5">5</a>,<a href="#ref11">11</a></sup>.</li>
+        <li><strong>Vascular Glutamate Receptor-Like Channels (GLR3.3 and GLR3.6):</strong> Within the vascular bundle, <strong>GLR3.3</strong> (phloem sieve elements) and <strong>GLR3.6</strong> (xylem contact cells) translate hydraulic and apoplastic chemical cues into long-distance electrical and Ca<sup>2+</sup> transients<sup><a href="#ref8">8</a>,<a href="#ref10">10</a>,<a href="#ref12">12</a></sup>. Genetic ablation of <em>GLR3.3</em> and <em>GLR3.6</em> or <em>RBOHD</em> abolishes the systemic root-to-shoot Ca<sup>2+</sup> and ROS wave triggered by root waterlogging<sup><a href="#ref5">5</a></sup>.</li>
+        <li><strong>Vacuolar Ca<sup>2+</sup> Homeostasis (TPC1 and CAX2):</strong> Tonoplast <strong>TWO PORE CHANNEL 1 (TPC1)</strong> supports root-to-shoot wave propagation<sup><a href="#ref7">7</a>,<a href="#ref11">11</a></sup>, whereas the vacuolar H<sup>+</sup>/Ca<sup>2+</sup> antiporter <strong>CATION EXCHANGER 2 (CAX2)</strong> buffers basal [Ca<sup>2+</sup>]<sub>cyt</sub> and shapes hypoxia- and flooding-induced Ca<sup>2+</sup> signatures<sup><a href="#ref14">14</a></sup>, intersecting with the <strong>ERF-VII</strong> N-degron oxygen-sensing pathway<sup><a href="#ref1">1</a>,<a href="#ref3">3</a>,<a href="#ref6">6</a></sup>, the hypoxia-induced calcium sensor <strong>CML38</strong><sup><a href="#ref21">21</a></sup>, and mitochondrial electron transport sensing<sup><a href="#ref4">4</a></sup>.</li>
+      </ol>
+
+      <h3>Reconciling the Timescale: Why Root Waterlogging Takes Minutes, Not Seconds</h3>
+      <p>
+        A critical insight emerging from recent whole-plant imaging is that <strong>waterlogging-induced systemic Ca<sup>2+</sup> waves develop over several minutes</strong>, not within a few seconds<sup><a href="#ref5">5</a>,<a href="#ref14">14</a></sup>. Using whole-rosette live imaging of <em>A. thaliana</em> subjected to root waterlogging, Peláez-Vico et al.<sup><a href="#ref5">5</a></sup> found that statistically significant systemic Ca<sup>2+</sup> accumulation in the rosette leaves is detected at <strong>~10 min (600 s)</strong> after waterlogging onset, followed by a systemic ROS wave peaking between 10 and 20 min, which drives widespread transcriptomic reprogramming of shoot hypoxia genes within 10–60 min (Table 1).
+      </p>
+
+      <div class="table-scroll" style="margin:1.75rem 0">
+        <table class="data-table">
+          <caption><strong>Table 1 | Comparison of systemic root-to-shoot stress signaling modalities, molecular machinery, and timescales in <em>Arabidopsis thaliana</em>.</strong></caption>
+          <thead>
+            <tr>
+              <th>Stress Modality</th>
+              <th>Primary Stimulus Site</th>
+              <th>Key Molecular Nodes</th>
+              <th>Shoot Arrival / Peak Timescale</th>
+              <th>Primary Spatial Pattern in Rosette Leaves</th>
+              <th>References</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Mechanical wounding / herbivory</strong></td>
+              <td>Leaf blade or petiole</td>
+              <td class="mono">L-Glu, GLR3.3, GLR3.6, MSL10, AHA1</td>
+              <td>400–1,000 µm s<sup>−1</sup>; systemic leaf arrival in <strong>15–60 s</strong></td>
+              <td>Rapid vascular wave spreading into mesophyll and marginal teeth</td>
+              <td>Toyota et al.<sup><a href="#ref8">8</a></sup>; Johns et al.<sup><a href="#ref10">10</a></sup></td>
+            </tr>
+            <tr>
+              <td><strong>Root salt shock (100–150 mM NaCl)</strong></td>
+              <td>Root tip / elongation zone</td>
+              <td class="mono">TPC1, RBOHD, cortical/endodermal relay</td>
+              <td>~400 µm s<sup>−1</sup>; shoot arrival in <strong>30–120 s</strong></td>
+              <td>Petiole entry followed by primary and secondary vein propagation</td>
+              <td>Choi et al.<sup><a href="#ref7">7</a></sup>; Evans et al.<sup><a href="#ref11">11</a></sup></td>
+            </tr>
+            <tr>
+              <td><strong>Root waterlogging (Literature)</strong></td>
+              <td>Whole root system</td>
+              <td class="mono">PIP2;1, RBOHD, GLR3.3/3.6, CAX2, ERF-VII</td>
+              <td>Hydraulic shift &lt;1 min; foliar Ca<sup>2+</sup> at <strong>~5–10 min</strong>; ROS at 10–20 min</td>
+              <td>Vascular bundles and leaf margins/hydathodes, followed by lamina</td>
+              <td>Peláez-Vico et al.<sup><a href="#ref5">5</a></sup>; Bakshi et al.<sup><a href="#ref14">14</a></sup></td>
+            </tr>
+            <tr style="background:var(--accent-ochre-light)">
+              <td><strong>Root waterlogging (<code>FloodWave-At</code> 2026)</strong></td>
+              <td>Root zone flooded via funnel</td>
+              <td class="mono">Widefield GCaMP (n = 8 QC-passing runs)</td>
+              <td>Settles at <strong>74 s</strong>; median <em>t</em><sub>50</sub> = <strong>323 s (5.4 min)</strong>; peak = <strong>527 s (8.8 min)</strong></td>
+              <td>Earliest 5% of <em>t</em><sub>50</sub> pixels enriched in <strong>outer 80 µm margin (1.40×)</strong> and <strong>veins (1.99× in <code>expt08</code>)</strong></td>
+              <td>This study<sup><a href="#ref13">13</a></sup></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Section 3 -->
+      <h2 id="sec-hydathodes">Hydathodes as Vascular Termini and Marginal Sensory-Hydraulic Hubs</h2>
+      <p>
+        Why did the 2020 investigators—and our subsequent 2026 pixel-level re-analysis—focus on <strong>hydathodes</strong> and the outer leaf margin during root flooding? The answer lies in the unique vascular anatomy and transport physiology of <em>Arabidopsis</em> leaf margins (Box 1).
+      </p>
+
+      <aside class="perspective-box">
+        <h4>Box 1 | Why Hydathodes? Vascular Termini as Hydraulic Pressure Valves and Ion-Scavenging Hubs</h4>
+        <p>
+          In <em>Arabidopsis thaliana</em> and other vascular plants, <strong>epithemal hydathodes</strong> are specialized organs positioned at the distal tips and serrated marginal teeth of leaves<sup><a href="#ref15">15</a>,<a href="#ref16">16</a>,<a href="#ref22">22</a>,<a href="#ref23">23</a></sup>. Anatomically, a hydathode comprises four integrated elements:
+        </p>
+        <ol>
+          <li><strong>Hypertrophied Xylem Termini:</strong> Primary and secondary leaf veins converge at the leaf margin and fan out into dense, blind-ending tracheary elements lacking a Casparian-like bundle sheath barrier<sup><a href="#ref15">15</a></sup>.</li>
+          <li><strong>The Epithem:</strong> A loose, highly vascularized parenchyma tissue irrigated directly by the exudate of the terminating xylem vessels, featuring an extensive apoplastic volume and high plasma-membrane surface area<sup><a href="#ref15">15</a>,<a href="#ref16">16</a></sup>.</li>
+          <li><strong>Sub-pore Intercellular Cavities:</strong> Chambers collecting fluid above the epithem.</li>
+          <li><strong>Constitutively Open Water Pores:</strong> Modified stomatal-like guard-cell pairs in the marginal epidermis that remain permanently open, exuding droplets of xylem sap via <strong>guttation</strong> whenever root pressure exceeds foliar transpiration<sup><a href="#ref15">15</a>,<a href="#ref23">23</a></sup>.</li>
+        </ol>
+        <p style="margin-bottom:0">
+          Far from acting as passive leaks, transcriptomic, single-cell RNA-seq, and metabolomic profiling by Routaboul et al.<sup><a href="#ref16">16</a></sup> and Kim et al.<sup><a href="#ref22">22</a></sup> have revealed that <em>Arabidopsis</em> hydathodes express a distinct repertoire of &gt;1,400 differentially regulated genes. Hydathode epithem cells act as high-capacity <strong>solute-scavenging hubs</strong>—recovering $\text{NO}_3^-$, $\text{PO}_4^{3-}$, $\text{K}^+$, $\text{Ca}^{2+}$, sugars, and amino acids from the xylem stream—and serve as constitutive sites of <strong>auxin accumulation</strong><sup><a href="#ref16">16</a></sup> and immune surveillance against vascular pathogens such as <em>Xanthomonas campestris</em><sup><a href="#ref15">15</a>,<a href="#ref24">24</a></sup>.
+        </p>
+      </aside>
+
+      <p>
+        When a plant's root system is suddenly flooded with water while its rosette is illuminated under a microscope, transpiration is modest while root water uptake surges. This positive <strong>root pressure</strong> drives xylem sap directly along the primary and secondary veins to their physical endpoints: the marginal hydathodes<sup><a href="#ref15">15</a>,<a href="#ref16">16</a></sup>. Because leaf veins terminate at the marginal hydathodes, any xylem-borne hydraulic wave, apoplastic glutamate/ROS signal, or vascular Ca<sup>2+</sup> wave propagating along the vein network naturally concentrates at the marginal vascular fan<sup><a href="#ref8">8</a>,<a href="#ref15">15</a></sup>. At the same time, in widefield epifluorescence microscopy, the serrated margin is the sharpest optical boundary between plant tissue and the underlying background substrate—making it simultaneously a genuine site of vascular convergence and the region most vulnerable to edge-contrast and registration artifacts.
+      </p>
+
+      <!-- Section 4 -->
+      <h2 id="sec-forensic">Forensic Re-Evaluation of the 2020 <em>Arabidopsis</em> “Flood Wave” Dataset</h2>
+      <p>
+        On the afternoon of 10 January 2020 (between 11:19 and 14:56 CST), twelve single-channel widefield epifluorescence time-lapse series (<code>expt01</code> through <code>expt12</code>; 5.17 GB total) were acquired on a motorised <strong>Zeiss Axio Zoom.V16</strong> stereo-zoom microscope equipped with a PlanApo Z 0.5× objective (NA 0.125, zoom 1.259×), GFP filter set 38 HE (excitation 450–490 nm, emission 500–550 nm), an HXP 120 excitation lamp, and an AxioCam MRm camera at 2×2 binning (692 × 520 px, 20.49 µm px<sup>−1</sup>, 14.18 × 10.66 mm field of view, 574.8 ms exposure, median interval 1.212 s)<sup><a href="#ref13">13</a></sup>.
+      </p>
+
+      <h3>Deconstructing the 2020 “Seconds-Scale Hydathode Wave”</h3>
+      <p>
+        When we inspected the original 2020 Fiji measurement workbook (<code>Flood_Glow_Shreya_DRB_Spring_2020.xlsx</code>) and registered the exact seven ROI circles from the 2020 slide image onto the raw <code>expt08</code> <code>.czi</code> image stack (normalized cross-correlation NCC = 0.959), three critical discrepancies emerged (Fig. 2; Box 2; Table 2):
+      </p>
+      <ol>
+        <li><strong>The 2020 traces plotted within-ROI pixel Standard Deviation (<code>StDev</code>), not mean fluorescence:</strong> Recomputing the within-ROI standard deviation of raw pixel counts inside the seven registered circles of <code>expt08</code> quantitatively reproduces the 2020 chart's shapes, ordering, and values (first-frame <code>StDev</code> values of 49.0, 39.1, and 103.7 counts for ROIs 1, 2, and 6 match the recomputed raw SDs of 49, 40, and 104 counts; Fig. 2). When we instead plot the <strong>background-subtracted mean fluorescence</strong> inside those exact same seven circles, the sharp staggered “waves” vanish: all seven ROIs rise smoothly over 8–11 min.</li>
+        <li><strong>ROI edge-straddling amplified the <code>StDev</code> artifact:</strong> Measuring the distance of each 2020 circle (245 µm radius; meristem circle 422 µm) to the outer plant mask outline in <code>expt08</code> showed that <code>Hydrathode-2</code> (110 µm inside outline) and <code>Mersitem-1</code> (176 µm inside outline) straddle the physical edge of the plant, with only 75% and 76% of their pixels lying on leaf tissue.</li>
+        <li><strong>Compressed frame clocks and trimmed baselines:</strong> The ZEN hardware timestamps record a true median frame interval of <strong>1.212 s</strong>, not 1.000 s. Moreover, the five 2020 <code>.avi</code> videos dropped the first 40 frames (48.5 s) and burned in a 1 fps clock starting at <code>00:00</code> on raw frame 40. Thus, <code>“06:36 Time”</code> in the 2020 deck actually occurred at <strong>8 min 48 s (528 s)</strong> after the start of recording.</li>
+      </ol>
+
+      <aside class="perspective-box">
+        <h4>Box 2 | Anatomy of an Imaging Artifact: Within-ROI Standard Deviation (<code>StDev</code>) Versus Mean Fluorescence</h4>
+        <p>
+          Consider a circular region of interest (ROI) containing a fraction $p$ of pixels on a leaf (with mean intensity $\mu_{\text{leaf}}(t)$) and a fraction $(1 - p)$ of pixels on the dark background (with mean intensity $\mu_{\text{bg}}(t)$). By the law of total variance, the spatial variance $\sigma_{\text{ROI}}^2(t)$ of pixel counts inside the ROI is:
+        </p>
+        <p style="text-align:center;font-family:var(--font-mono);font-size:0.95rem;background:#fff;padding:0.75rem;border-radius:6px;border:1px solid var(--border-light)">
+          σ²<sub>ROI</sub>(t) = p · σ²<sub>leaf</sub>(t) + (1 − p) · σ²<sub>bg</sub>(t) + p(1 − p) · [μ<sub>leaf</sub>(t) − μ<sub>bg</sub>(t)]²
+        </p>
+        <p style="margin-bottom:0">
+          The boundary contrast term, $p(1-p)[\mu_{\text{leaf}}(t) - \mu_{\text{bg}}(t)]^2$, is maximized when an ROI straddles the tissue boundary ($p \approx 0.5\text{–}0.8$, as in <code>Hydrathode-2</code> where $p = 0.75$ and <code>Mersitem-1</code> where $p = 0.76$). Similarly, when an ROI overlies a bright vein embedded in dimmer mesophyll, the contrast between vein and lamina inflates $\sigma_{\text{leaf}}^2(t)$. Consequently, plotting $\text{StDev} = \sigma_{\text{ROI}}(t)$ measures <strong>internal spatial contrast and edge sharpness</strong>, not cytosolic Ca<sup>2+</sup> concentration.
+        </p>
+      </aside>
+
+      <figure class="manuscript-figure">
+        <img src="assets/figures/roi2020_reproduction.png" alt="Figure 2: Left: within-ROI standard deviation recomputed from raw expt 8. Right: background-subtracted ROI means." data-title="Figure 2: Re-evaluating the Seven 2020 ROIs on Raw Expt 8 Data" class="zoomable-fig">
+        <figcaption>
+          <strong>Figure 2 | Re-evaluating the seven 2020 ROIs on raw <code>expt08</code> data (<code>analysis/roi2020.py</code>).</strong> <strong>Left:</strong> Within-ROI pixel standard deviation (<code>StDev</code>, raw counts) recomputed from the seven registered 2020 circles (NCC = 0.959), reproducing the 2020 <em>“All Flood Waves”</em> chart. <strong>Right:</strong> Background-subtracted mean fluorescence (counts above local background) inside the exact same seven circles, showing a gradual, minutes-scale rise across all regions peaking around 8–12 min.
+        </figcaption>
+      </figure>
+
+      <h3>What Every Pixel Shows Across All Twelve Recordings</h3>
+      <p>
+        To determine what the twelve raw recordings genuinely show without hand-picked circular ROIs, we ran a deterministic seven-step pixel-wise analysis (<code>analysis/flood_wave.py</code>) across every file: 2×2 spatial binning (41.0 µm px<sup>−1</sup>), high-pass rigid registration to the late reference, automatic motion-settle gating (<code>t_settle</code> median 73.9 s), local background subtraction via normalized Gaussian convolution validated on held-out 20×20 checkerboard blocks ($\le 0.98$ counts residual in <code>expt08</code>), pixel-wise half-rise timing ($t_{50}$) for pixels with $\text{SNR} \ge 5$, and anatomical segmentation into the <strong>outer 80 µm margin</strong>, an immediately adjacent <strong>80–160 µm inner control band</strong>, <strong>veins</strong> (Sato ridge filter), and <strong>interior lamina</strong> (Fig. 3; Fig. 4; Tables 2, 3).
+      </p>
+
+      <figure class="manuscript-figure">
+        <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:1rem;align-items:center">
+          <img src="assets/figures/expt08_regions_t50.png" alt="Figure 3a: Expt 8 region masks and pixel t50 map" data-title="Figure 3a: Expt 8 Anatomical Segmentation and Pixel-Wise t50 Map" class="zoomable-fig">
+          <img src="assets/figures/expt08_traces.png" alt="Figure 3b: Expt 8 regional background-subtracted traces" data-title="Figure 3b: Expt 8 Regional Traces and Held-Out Background Residual" class="zoomable-fig">
+        </div>
+        <figcaption>
+          <strong>Figure 3 | Pixel-wise activation mapping and regional dynamics in the representative recording (<code>expt08</code>).</strong> <strong>Left:</strong> Anatomical segmentation into outer margin (orange, 0–82 µm), inner control band (grey, 82–164 µm), veins (blue), and interior lamina (aqua), beside the pixel-wise half-maximum rise time ($t_{50}$) map (lighter = earlier; white contour outlines the earliest 5% of pixels, $t_{50} \le 260.6\text{ s}$). Scale bars, 2 mm. <strong>Right:</strong> Mean signal above local background (counts) per region from <code>t_settle</code> (48.5 s) onward, alongside the flat held-out background residual ($\le 0.98$ counts).
+        </figcaption>
+      </figure>
+
+      <figure class="manuscript-figure">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:center">
+          <img src="assets/figures/all_runs_order_maps.png" alt="Figure 4a: All 12 runs t50 rank maps" data-title="Figure 4a: Within-Run t50 Rank Order Maps Across All 12 Recordings" class="zoomable-fig">
+          <img src="assets/figures/enrichment_all_runs.png" alt="Figure 4b: Earliest-5% regional enrichment dot plot across all 12 runs" data-title="Figure 4b: Earliest-5% Regional Enrichment Across All 12 Runs" class="zoomable-fig">
+        </div>
+        <figcaption>
+          <strong>Figure 4 | Whole-dataset $t_{50}$ activation order maps and regional enrichment across all 12 runs.</strong> <strong>Left:</strong> Within-run $t_{50}$ rank maps (lighter = earlier activation) across all 12 recordings (<code>expt01</code>–<code>expt12</code>), indicating the 8 pooled QC-passing runs and 4 excluded runs. <strong>Right:</strong> Log-scale enrichment of the earliest 5% of activating pixels ($t_{50} \le P_5$) across outer margin (orange, median 1.40×), inner control band (grey, median 0.93×), veins (blue, median 0.84×), and interior lamina (aqua, median 0.99×). Margin enrichment exceeds the inner control band in 7 of 8 passing runs (two-sided exact sign test <em>p</em> = 0.070).
+        </figcaption>
+      </figure>
+
+      <div class="table-scroll" style="margin:1.75rem 0">
+        <table class="data-table">
+          <caption><strong>Table 2 | Forensic audit of the 2020 “Flood Wave” claims against the twelve raw Zeiss <code>.czi</code> recordings.</strong></caption>
+          <thead>
+            <tr>
+              <th>2020 Presentation Claim</th>
+              <th>2026 Forensic Verdict</th>
+              <th>Quantitative Evidence from Raw <code>.czi</code> Files (<em>n</em> = 12 total, <em>n</em> = 8 pooled)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>“Flooding the roots changes the rosette GCaMP signal”</strong></td>
+              <td><strong>Consistent, unproven</strong></td>
+              <td>Every pooled run rises after water arrives and motion settles (median $t_{50} = 323\text{ s}$, median peak $= 527\text{ s}$, median rise $= +64.0\text{ counts}$; held-out background residual $\le 2.8\text{ counts}$). No unflooded or <code>35S::GFP</code> control run was recorded to exclude excitation light or handling effects.</td>
+            </tr>
+            <tr>
+              <td><strong>“Calcium waves appear almost within seconds”</strong></td>
+              <td><strong>Not seen</strong></td>
+              <td>The 2020 chart plotted within-ROI pixel <code>StDev</code> on a 1.000 s/frame clock trimmed by 48.5 s. True background-subtracted ROI means rise over 5–12 min. Only <code>expt10</code> shows a 6-s jump ($+21.0\text{ counts}$), which is simultaneous field-wide and likely optical.</td>
+            </tr>
+            <tr>
+              <td><strong>“Hydathodes are the source of the foliar wave”</strong></td>
+              <td><strong>Weak / modest support</strong></td>
+              <td>At 41 µm binned pixel resolution, individual water pores are not resolved, and veins lead margins in several runs (e.g., <code>expt08</code> veins 1.99× vs. margin 1.80×). However, the outer 80 µm margin is enriched (1.40× median) over the adjacent 80–160 µm inner control band (0.93×) in <strong>7 of 8 runs</strong> (<em>p</em> = 0.070), consistent with vascular delivery to marginal hydathodes.</td>
+            </tr>
+            <tr>
+              <td><strong>“A wave travels continuously root to shoot”</strong></td>
+              <td><strong>Not testable</strong></td>
+              <td>The microscope imaged the aerial rosette from above; roots and hypocotyls were beneath the support mesh outside the focal plane.</td>
+            </tr>
+            <tr>
+              <td><strong>“LaCl<sub>3</sub> blocks the calcium wave”</strong></td>
+              <td><strong>No data in archive</strong></td>
+              <td>All 12 <code>.czi</code> files on the drive are plain-water floods; no LaCl<sub>3</sub>-treated recordings exist in this dataset.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Section 5 -->
+      <h2 id="sec-fair">Optical Confounds and FAIR Standards for Whole-Plant Biosensor Imaging</h2>
+      <p>
+        Macroscopic widefield fluorescence imaging of intact rosettes during root treatment is uniquely susceptible to physical and optical confounds: (1) <strong>refractive index and meniscus coupling</strong> when water contacts a sub-rosette support grid (1.46 mm pitch in our setup); (2) <strong>buoyant leaf motion and focal plane drift</strong>; and (3) <strong>single-wavelength intensity ambiguity</strong> when initial tissue fluorescence sits only 19–71 counts above camera offset and cytosolic pH shifts during hypoxia can quench GCaMP ($\text{p}K_a \approx 7.0\text{–}7.5$)<sup><a href="#ref4">4</a></sup>.
+      </p>
+      <p>
+        To definitively resolve root-to-hydathode Ca<sup>2+</sup> signaling during submergence, future experiments should implement a <strong>Five-Point Experimental and Computational Blueprint</strong>:
+      </p>
+      <ol>
+        <li><strong>Ratiometric or Dual-Channel Co-Imaging:</strong> Pair GCaMP6s with a Ca<sup>2+</sup>-insensitive reference (e.g., <code>MatryoshCaMP6s</code>, <code>NES-YC3.6</code>, or <code>R-GECO1</code> + <code>GFP</code>), and run interleaved <code>35S::GFP</code> and mock-pour controls in randomized order.</li>
+        <li><strong>Hardware-Synchronized Fluid Delivery:</strong> Trigger peristaltic infusion via a hardware TTL marker recorded in the <code>.czi</code> / OME-TIFF metadata after at least 120 s of undisturbed baseline.</li>
+        <li><strong>Opaque Optical Baffling at the Hypocotyl Junction:</strong> Isolate the root chamber from the aerial imaging plane with a carbon-black silicone collar around the hypocotyl so water menisci cannot alter rosette illumination.</li>
+        <li><strong>Higher-Magnification Marginal Imaging with Hydathode Markers:</strong> Image leaf serrations at 2–5 µm px<sup>−1</sup> resolution with hydathode/epithem markers alongside an internal concentric control band (80–160 µm inward).</li>
+        <li><strong>Deterministic Open Pipelines and Raw-Data Archiving:</strong> Deposit unmodified raw stacks with hardware XML metadata, SHA-256 checksums, and held-out background validation scripts<sup><a href="#ref13">13</a></sup>.</li>
+      </ol>
+
+      <!-- Section 6 -->
+      <h2 id="sec-outlook">Outlook: Dissecting the Root-to-Hydathode Circuit</h2>
+      <p>
+        Taken together, current plant signaling literature and our forensic re-analysis of the <code>FloodWave-At</code> archive converge on a coherent, testable model of root-to-shoot flooding communication. When roots go underwater, the shoot does <strong>not</strong> experience an instantaneous, seconds-scale Ca<sup>2+</sup> explosion originating autonomously at the hydathodes. Rather, root submergence initiates an immediate <strong>hydraulic pressure wave</strong> through the xylem (<code>PIP2;1</code>) coupled with a progressive, <strong>minutes-scale (~5–10 min) vascular Ca<sup>2+</sup> and ROS relay</strong> (<code>RBOHD</code>, <code>GLR3.3/GLR3.6</code>, <code>TPC1</code>, <code>CAX2</code>)<sup><a href="#ref5">5</a>,<a href="#ref7">7</a>,<a href="#ref8">8</a>,<a href="#ref14">14</a></sup>. As this acropetal vascular relay courses through the petioles and leaf veins, it naturally converges upon the <strong>epithemal hydathodes</strong> at the leaf margins—the anatomical termini of the xylem network and the physiological pressure-release and solute-scavenging hubs of the leaf blade<sup><a href="#ref15">15</a>,<a href="#ref16">16</a></sup>.
+      </p>
+
+      <!-- References -->
+      <h2 id="references">References</h2>
+      <ol class="ref-list">
+        <li id="ref1">Bailey-Serres, J. &amp; Voesenek, L. A. C. J. Flooding stress: acclimations and genetic diversity. <em>Annu. Rev. Plant Biol.</em> <strong>59</strong>, 313–339 (2008). <a href="https://doi.org/10.1146/annurev.arplant.59.032607.092752" target="_blank" rel="noopener">doi:10.1146/annurev.arplant.59.032607.092752</a></li>
+        <li id="ref2">Voesenek, L. A. C. J. &amp; Bailey-Serres, J. Flood adaptive traits and processes: an overview. <em>New Phytol.</em> <strong>206</strong>, 57–73 (2015). <a href="https://doi.org/10.1111/nph.13209" target="_blank" rel="noopener">doi:10.1111/nph.13209</a></li>
+        <li id="ref3">Sasidharan, R. et al. Signal dynamics and interactions during flooding stress. <em>Plant Physiol.</em> <strong>176</strong>, 1106–1117 (2018). <a href="https://doi.org/10.1104/pp.17.01232" target="_blank" rel="noopener">doi:10.1104/pp.17.01232</a></li>
+        <li id="ref4">Wagner, S. et al. Multiparametric real-time sensing of cytosolic physiology links hypoxia responses to mitochondrial electron transport. <em>New Phytol.</em> <strong>224</strong>, 1668–1684 (2019). <a href="https://doi.org/10.1111/nph.16093" target="_blank" rel="noopener">doi:10.1111/nph.16093</a></li>
+        <li id="ref5">Peláez-Vico, M. Á. et al. Rapid systemic responses of Arabidopsis to waterlogging stress. <em>Plant Physiol.</em> <strong>193</strong>, 2215–2231 (2023). <a href="https://doi.org/10.1093/plphys/kiad433" target="_blank" rel="noopener">doi:10.1093/plphys/kiad433</a></li>
+        <li id="ref6">Yeung, E. et al. A stress recovery signaling network for enhanced flooding tolerance in <em>Arabidopsis thaliana</em>. <em>Proc. Natl. Acad. Sci. USA</em> <strong>115</strong>, E6085–E6094 (2018). <a href="https://doi.org/10.1073/pnas.1803841115" target="_blank" rel="noopener">doi:10.1073/pnas.1803841115</a></li>
+        <li id="ref7">Choi, W.-G., Toyota, M., Kim, S.-H., Hilleary, R. &amp; Gilroy, S. Salt stress-induced Ca<sup>2+</sup> waves are associated with rapid, long-distance root-to-shoot signaling in plants. <em>Proc. Natl. Acad. Sci. USA</em> <strong>111</strong>, 6497–6502 (2014). <a href="https://doi.org/10.1073/pnas.1319955111" target="_blank" rel="noopener">doi:10.1073/pnas.1319955111</a></li>
+        <li id="ref8">Toyota, M. et al. Glutamate triggers long-distance, calcium-based plant defense signaling. <em>Science</em> <strong>361</strong>, 1112–1115 (2018). <a href="https://doi.org/10.1126/science.aat7744" target="_blank" rel="noopener">doi:10.1126/science.aat7744</a></li>
+        <li id="ref9">Fichman, Y. &amp; Mittler, R. Integration of electric, calcium, reactive oxygen species and hydraulic signals during rapid systemic signaling in plants. <em>Plant J.</em> <strong>107</strong>, 7–20 (2021). <a href="https://doi.org/10.1111/tpj.15360" target="_blank" rel="noopener">doi:10.1111/tpj.15360</a></li>
+        <li id="ref10">Johns, S., Hagihara, T., Toyota, M. &amp; Gilroy, S. The fast and the furious: rapid long-range signaling in plants. <em>Plant Physiol.</em> <strong>185</strong>, 694–706 (2021). <a href="https://doi.org/10.1093/plphys/kiaa098" target="_blank" rel="noopener">doi:10.1093/plphys/kiaa098</a></li>
+        <li id="ref11">Evans, M. J., Choi, W.-G., Gilroy, S. &amp; Morris, R. J. A ROS-assisted calcium wave dependent on the AtRBOHD NADPH oxidase and TPC1 cation channel propagates the systemic response to salt stress. <em>Plant Physiol.</em> <strong>171</strong>, 1771–1784 (2016). <a href="https://doi.org/10.1104/pp.16.00215" target="_blank" rel="noopener">doi:10.1104/pp.16.00215</a></li>
+        <li id="ref12">Mousavi, S. A. R., Chauvin, A., Pascaud, F., Kellenberger, S. &amp; Farmer, E. E. GLUTAMATE RECEPTOR-LIKE genes mediate leaf-to-leaf wound signalling. <em>Nature</em> <strong>500</strong>, 422–426 (2013). <a href="https://doi.org/10.1038/nature12478" target="_blank" rel="noopener">doi:10.1038/nature12478</a></li>
+        <li id="ref13">Godishala, S., Barker, R. &amp; Gilroy, S. FloodWave-At: root flooding and rosette GCaMP fluorescence in <em>Arabidopsis thaliana</em>, a re-analysis of the January 2020 recordings. <em>GitHub</em> <a href="https://github.com/dr-richard-barker/FloodWave-At" target="_blank" rel="noopener">https://github.com/dr-richard-barker/FloodWave-At</a> (2026).</li>
+        <li id="ref14">Bakshi, A., Choi, W.-G., Kim, S.-H. &amp; Gilroy, S. The vacuolar Ca<sup>2+</sup> transporter CATION EXCHANGER 2 regulates cytosolic calcium homeostasis, hypoxic signaling, and response to flooding in <em>Arabidopsis thaliana</em>. <em>New Phytol.</em> <strong>240</strong>, 1830–1847 (2023). <a href="https://doi.org/10.1111/nph.19274" target="_blank" rel="noopener">doi:10.1111/nph.19274</a></li>
+        <li id="ref15">Cerutti, A. et al. Mangroves in the leaves: anatomy, physiology, and immunity of epithemal hydathodes. <em>Annu. Rev. Phytopathol.</em> <strong>57</strong>, 91–116 (2019). <a href="https://doi.org/10.1146/annurev-phyto-082718-100228" target="_blank" rel="noopener">doi:10.1146/annurev-phyto-082718-100228</a></li>
+        <li id="ref16">Routaboul, J.-M. et al. Arabidopsis hydathodes are sites of auxin accumulation and nutrient scavenging. <em>Plant J.</em> <strong>120</strong>, 857–871 (2024). <a href="https://doi.org/10.1111/tpj.17014" target="_blank" rel="noopener">doi:10.1111/tpj.17014</a></li>
+        <li id="ref17">Tournaire-Roux, C. et al. Cytosolic pH regulates root water transport during anoxic stress through gating of aquaporins. <em>Nature</em> <strong>425</strong>, 393–397 (2003). <a href="https://doi.org/10.1038/nature01853" target="_blank" rel="noopener">doi:10.1038/nature01853</a></li>
+        <li id="ref18">Farmer, E. E., Gasperini, D. &amp; Acosta, I. F. The squeeze cell hypothesis for the activation of jasmonate synthesis in response to wounding. <em>New Phytol.</em> <strong>204</strong>, 282–288 (2014). <a href="https://doi.org/10.1111/nph.12897" target="_blank" rel="noopener">doi:10.1111/nph.12897</a></li>
+        <li id="ref19">Christmann, A., Grill, E. &amp; Huang, J. Hydraulic signals in long-distance signaling. <em>Curr. Opin. Plant Biol.</em> <strong>16</strong>, 293–300 (2013). <a href="https://doi.org/10.1016/j.pbi.2013.02.011" target="_blank" rel="noopener">doi:10.1016/j.pbi.2013.02.011</a></li>
+        <li id="ref20">Hamilton, E. S., Schlegel, A. M. &amp; Haswell, E. S. United in diversity: mechanosensitive ion channels in plants. <em>Annu. Rev. Plant Biol.</em> <strong>66</strong>, 113–137 (2015). <a href="https://doi.org/10.1146/annurev-arplant-043014-114700" target="_blank" rel="noopener">doi:10.1146/annurev-arplant-043014-114700</a></li>
+        <li id="ref21">Lokdarshi, A., Conner, W. C., McClintock, C. S., Li, T.-B. &amp; Roberts, D. M. Arabidopsis CML38, a calcium sensor that localizes to ribonucleoprotein complexes under hypoxia stress. <em>Plant Physiol.</em> <strong>170</strong>, 1046–1059 (2016). <a href="https://doi.org/10.1104/pp.15.01407" target="_blank" rel="noopener">doi:10.1104/pp.15.01407</a></li>
+        <li id="ref22">Kim, J.-Y. et al. Single-cell RNA sequencing of Arabidopsis leaves reveals distinct vascular and hydathode transcriptomes. <em>Plant Cell</em> <strong>33</strong>, 511–530 (2021). <a href="https://doi.org/10.1093/plcell/koaa060" target="_blank" rel="noopener">doi:10.1093/plcell/koaa060</a></li>
+        <li id="ref23">Bellenot, C., Routaboul, J.-M., Laufs, P. &amp; Noël, L. D. Hydathodes: anatomical and functional crossroads between vascular transport and immunity. <em>New Phytol.</em> <strong>236</strong>, 815–822 (2022). <a href="https://doi.org/10.1111/nph.18313" target="_blank" rel="noopener">doi:10.1111/nph.18313</a></li>
+        <li id="ref24">Luneau, J. S. et al. Genome-wide identification of fitness determinants in the <em>Xanthomonas campestris</em> bacterial pathogen during early stages of plant infection. <em>New Phytol.</em> <strong>236</strong>, 235–248 (2022). <a href="https://doi.org/10.1111/nph.18313" target="_blank" rel="noopener">doi:10.1111/nph.18313</a></li>
+        <li id="ref25">Lee, S. C. et al. Molecular characterization of the submergence response of the <em>Arabidopsis thaliana</em> ecotype Columbia. <em>New Phytol.</em> <strong>190</strong>, 457–471 (2011). <a href="https://doi.org/10.1111/j.1469-8137.2010.03590.x" target="_blank" rel="noopener">doi:10.1111/j.1469-8137.2010.03590.x</a></li>
+        <li id="ref26">Barker, R. et al. Variation in the transcriptome of different ecotypes of <em>Arabidopsis thaliana</em> reveals signatures of oxidative stress in plant responses to spaceflight. <em>Am. J. Bot.</em> <strong>106</strong>, 390–402 (2019). <a href="https://doi.org/10.1002/ajb2.1223" target="_blank" rel="noopener">doi:10.1002/ajb2.1223</a></li>
+        <li id="ref27">Barker, R. et al. Meta-analysis of the space flight and microgravity response of the Arabidopsis plant transcriptome. <em>npj Microgravity</em> <strong>9</strong>, 21 (2023). <a href="https://doi.org/10.1038/s41526-023-00247-6" target="_blank" rel="noopener">doi:10.1038/s41526-023-00247-6</a></li>
+        <li id="ref28">Patron, N. J. Beyond natural: synthetic expansions of botanical form and function. <em>New Phytol.</em> <strong>227</strong>, 295–310 (2020). <a href="https://doi.org/10.1111/nph.16562" target="_blank" rel="noopener">doi:10.1111/nph.16562</a></li>
+      </ol>
+
+    </article>
+  </main>
+
+  <!-- Native Modal Lightbox Dialog -->
+  <dialog id="figLightbox" closedby="any" class="lightbox-dialog" aria-labelledby="lightboxTitle">
+    <div class="lightbox-inner">
+      <div class="lightbox-top">
+        <h3 id="lightboxTitle">Figure Inspector</h3>
+        <form method="dialog" style="margin:0">
+          <button type="submit" class="lightbox-close-btn">Esc / Close ✕</button>
+        </form>
+      </div>
+      <img id="lightboxImg" src="assets/figures/expt08_regions_t50.png" alt="Expanded figure view">
+      <p id="lightboxCaption" style="font-size:0.86rem;color:var(--text-on-slate-muted);margin:0"></p>
+    </div>
+  </dialog>
+
+  <footer class="site-footer no-print">
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem">
+      <div>
+        <strong style="color:var(--text-on-slate)">FloodWave-At Perspective Manuscript</strong> · <a href="index.html" style="color:var(--accent-amber)">Return to Interactive Showcase</a>
+      </div>
+      <div>
+        Markdown source: <code>manuscript/FloodWave_NatureCommunications_Perspective.md</code>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

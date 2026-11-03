@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FloodWave-At · Root Flooding, Vascular Calcium &amp; Hydathode Signaling in Arabidopsis thaliana</title>
+  <meta name="description" content="Interactive scientific showcase and Nature Communications style Perspective re-evaluating 12 widefield GCaMP time-lapse recordings of Arabidopsis thaliana rosettes during root flooding (January 2020 – October 2026).">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Sticky Navigation -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="#top" class="brand-link">
+        <span class="brand-dot" aria-hidden="true"></span>
+        <span>FloodWave-At</span>
+        <span class="brand-sub">Jan 2020 → Oct 2026 Re-Analysis</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary Navigation">
+        <a href="#video-showcase">Video &amp; Telemetry</a>
+        <a href="#science">Root-to-Hydathode Science</a>
+        <a href="#forensic-audit">2020 vs 2026 Audit</a>
+        <a href="#representative-run">Pixel-Wise Pipeline</a>
+        <a href="#explorer">12-Run Explorer</a>
+        <a href="#literature">Literature</a>
+        <a href="manuscript.html" class="nav-cta">Perspective Manuscript →</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="top" class="hero-section">
+    <div class="container">
+      <p class="eyebrow">
+        <span>Widefield GCaMP Biosensor Archive</span>
+        <span>·</span>
+        <span>Arabidopsis thaliana</span>
+        <span>·</span>
+        <span>FAIR Data &amp; Forensic Re-Evaluation</span>
+      </p>
+      <h1 class="hero-title">From Submerged Roots to Leaf Hydathodes: Flood Wave, Revisited</h1>
+      <p class="hero-lead">
+        When plant roots go underwater, how fast does the aerial shoot respond—and why do leaf veins and marginal <strong>hydathodes</strong> light up? We combine a mechanistic synthesis of root-to-shoot hydraulic, reactive oxygen species (ROS), and calcium ($\text{Ca}^{2+}$) signaling with a pixel-by-pixel forensic re-analysis of twelve raw Zeiss <code>.czi</code> recordings from January 2020.
+      </p>
+
+      <div class="hero-meta-bar">
+        <div><strong>Experiment &amp; 2020 Analysis:</strong> Shreya Godishala, Richard Barker &amp; Simon Gilroy (UW–Madison, 10 Jan 2020)</div>
+        <div><strong>Raw-Data Forensic Re-Analysis:</strong> October 2026 (12 Zeiss Axio Zoom.V16 <code>.czi</code> stacks, 5.17 GB)</div>
+        <div><strong>Licenses:</strong> MIT (Code) · CC BY 4.0 (Data, Figures &amp; Video)</div>
+      </div>
+
+      <div class="hero-actions">
+        <a href="#video-showcase" class="btn btn-primary">▶ Watch Synchronized Expt 8 Time-Lapse</a>
+        <a href="manuscript.html" class="btn btn-secondary">📄 Read Nature Communications Perspective</a>
+        <a href="#explorer" class="btn btn-secondary">🔬 Explore All 12 Recordings</a>
+        <a href="https://github.com/dr-richard-barker/FloodWave-At" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">GitHub Repository ↗</a>
+      </div>
+
+      <div class="hero-kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-value">323 s</div>
+          <div class="kpi-label">Median Pixel Half-Rise (t50)</div>
+          <p class="kpi-desc">Across 8 QC-passing runs (range 194–520 s; ~5.4 min). Whole-plant fluorescence peaks at a median of <strong>527 s (~8.8 min)</strong>—matching the ~10 min waterlogging $\text{Ca}^{2+}$ wave reported by Peláez-Vico et al. (2023).</p>
+        </div>
+        <div class="kpi-card kpi-margin">
+          <div class="kpi-value">1.40×</div>
+          <div class="kpi-label">Outer 80 µm Margin Enrichment</div>
+          <p class="kpi-desc">Median share of the earliest 5% of activating pixels in the outer leaf margin vs. <strong>0.93×</strong> in the adjacent 80–160 µm inner control band (margin &gt; inner band in <strong>7 of 8 runs</strong>, sign test <em>p</em> = 0.070).</p>
+        </div>
+        <div class="kpi-card kpi-vein">
+          <div class="kpi-value">1.99× / 1.80×</div>
+          <div class="kpi-label">Veins &amp; Margin Lead in Expt 8</div>
+          <p class="kpi-desc">In the 2020 representative run (<code>expt08</code>), veins (1.99×) and outer margins (1.80×) lead the interior lamina (0.36×), reflecting acropetal vascular delivery terminating at marginal hydathodes.</p>
+        </div>
+        <div class="kpi-card kpi-lamina">
+          <div class="kpi-value">StDev ≠ Mean</div>
+          <div class="kpi-label">Why 2020 Claimed “Within Seconds”</div>
+          <p class="kpi-desc">The 2020 chart plotted within-ROI pixel <strong>standard deviation</strong> (edge contrast &amp; patchiness) on a 1 fps clock trimmed by 48.5 s. True background-subtracted ROI means rise smoothly over minutes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 1: Video Showcase & Live Telemetry -->
+  <section id="video-showcase" class="section-dark">
+    <div class="container">
+      <div class="section-header">
+        <p class="eyebrow">Representative Recording · Experiment 8 (ZEN #463)</p>
+        <h2 class="section-title">Fourteen Minutes in Twenty-Three Seconds: Live Registered Fluorescence &amp; ΔF Map</h2>
+        <p class="section-subtitle">
+          Every 2020 presentation movie derived from <code>expt08</code>. Here, the raw 700-frame Zeiss <code>.czi</code> recording is rigidly registered and background-subtracted using off-plant normalized convolution. <strong>Left panel:</strong> registered GCaMP fluorescence on its 1.46 mm support mesh. <strong>Right panel:</strong> signal change ($\Delta F$, 0–248 counts) above local background after flood motion settles at 48.5 s.
+        </p>
+      </div>
+
+      <div class="video-showcase-grid">
+        <div class="video-player-card">
+          <video id="expt08Video" controls preload="metadata" poster="assets/clips/expt08_clip_still.png" fetchpriority="high">
+            <source src="assets/clips/expt08_clip.mp4" type="video/mp4">
+            Your browser does not support HTML5 MP4 video playback.
+          </video>
+          <div class="video-telemetry-bar" aria-live="polite">
+            <div class="telemetry-item">
+              <span>True ZEN Hardware Time</span>
+              <strong id="telRealTime">0.0 s (00:00)</strong>
+            </div>
+            <div class="telemetry-item">
+              <span>Raw .czi Frame (1.212 s/fr)</span>
+              <strong id="telRawFrame">0 / 699</strong>
+            </div>
+            <div class="telemetry-item">
+              <span>2020 Video Stamp (1 fps)</span>
+              <strong id="telClock2020">Dropped (-49 s)</strong>
+            </div>
+            <div class="telemetry-item">
+              <span>Current Phase</span>
+              <strong id="telPhase">Water pouring &amp; mesh motion</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="video-chapters-panel">
+          <div style="font-size:0.82rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent-amber);font-weight:600;margin-bottom:0.2rem">
+            Interactive Physiological &amp; Analytical Chapters (Click to Jump)
+          </div>
+
+          <button type="button" class="chapter-btn active" data-real-sec="0">
+            <div class="chapter-time">
+              <span>t = 0.0 – 48.5 s (Frames 0–39)</span>
+              <span>Dropped in 2020 AVI</span>
+            </div>
+            <div class="chapter-title">1. Funnel Pour &amp; Hydrostatic Disturbance</div>
+            <p class="chapter-desc">Water is poured through the funnel onto the roots. The rosette shifts up to 7.7 binned px (~316 µm) and water menisci sharpen the 1.46 mm plastic support mesh.</p>
+          </button>
+
+          <button type="button" class="chapter-btn" data-real-sec="48.5">
+            <div class="chapter-time">
+              <span>t = 48.5 s (Raw Frame 40)</span>
+              <span>2020 Stamp: 00:00</span>
+            </div>
+            <div class="chapter-title">2. Motion Settles (t_settle) · Baseline Reference</div>
+            <p class="chapter-desc">Sample motion drops below 0.5 px/frame. Post-settle ΔF analysis begins here (plant sits 29.8 counts above local background). The 2020 videos started at this frame.</p>
+          </button>
+
+          <button type="button" class="chapter-btn" data-real-sec="260.6">
+            <div class="chapter-time">
+              <span>t = 260.6 s (4 min 21 s)</span>
+              <span>2020 Stamp: 02:55</span>
+            </div>
+            <div class="chapter-title">3. Earliest 5% Pixels Reach Half-Rise (t50_p5)</div>
+            <p class="chapter-desc">First responders light up at the rosette center, along petioles and veins (<strong>1.99× enriched</strong>), and at discrete spots on the outer 80 µm leaf margin (<strong>1.80× enriched</strong>).</p>
+          </button>
+
+          <button type="button" class="chapter-btn" data-real-sec="470.3">
+            <div class="chapter-time">
+              <span>t = 470.3 s (7 min 50 s)</span>
+              <span>2020 Stamp: 05:48</span>
+            </div>
+            <div class="chapter-title">4. Median Rosette Pixel Reaches Half-Rise (t50_median)</div>
+            <p class="chapter-desc">Half of all valid rosette pixels have reached 50% of their post-settle rise. Veins (t50 = 435 s) and margins (452 s) lead the interveinal lamina (492 s).</p>
+          </button>
+
+          <button type="button" class="chapter-btn" data-real-sec="695.8">
+            <div class="chapter-time">
+              <span>t = 695.8 s (11 min 36 s)</span>
+              <span>2020 Stamp: 08:55</span>
+            </div>
+            <div class="chapter-title">5. Whole-Plant Peak (+141.5 Counts Above Background)</div>
+            <p class="chapter-desc">Rosette fluorescence reaches its maximum (+217 counts in veins, +171 in lamina, +115 in margin) while held-out checkerboard background stays flat (≤ 0.98 counts).</p>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: The Science Explained (Root -> Vasculature -> Veins -> Hydathode) -->
+  <section id="science" class="section-light">
+    <div class="container">
+      <div class="section-header">
+        <p class="eyebrow">Mechanistic Plant Physiology · Literature Synthesis</p>
+        <h2 class="section-title">What Happens Scientifically When Roots Are Submerged?</h2>
+        <p class="section-subtitle">
+          Root flooding triggers an interconnected cascade of <strong>hydraulic pressure waves</strong>, <strong>apoplastic reactive oxygen species (ROS)</strong>, and <strong>vascular $\text{Ca}^{2+}$ signals</strong> that travel acropetally from the root cylinder through the petioles and leaf veins to terminate at marginal <strong>epithemal hydathodes</strong>. Click any anatomical zone in the diagram or buttons below to inspect the molecular machinery.
+        </p>
+      </div>
+
+      <div class="science-interactive-grid">
+        <!-- Interactive SVG Schematic -->
+        <div class="pathway-diagram-card">
+          <div class="pathway-svg-wrapper">
+            <svg viewBox="0 0 680 430" role="img" aria-label="Interactive anatomical diagram of Arabidopsis thaliana root flooding, vascular propagation through petioles and veins, and convergence at marginal leaf hydathodes">
+              <defs>
+                <linearGradient id="waterGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#2a78d6" stop-opacity="0.22"/>
+                  <stop offset="100%" stop-color="#174a8b" stop-opacity="0.48"/>
+                </linearGradient>
+                <linearGradient id="caWaveGrad" x1="0" y1="1" x2="1" y2="0">
+                  <stop offset="0%" stop-color="#2a78d6"/>
+                  <stop offset="55%" stop-color="#1baf7a"/>
+                  <stop offset="100%" stop-color="#eb6834"/>
+                </linearGradient>
+                <marker id="arrowAmber" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 1 L 10 5 L 0 9 z" fill="#e8a33d"/>
+                </marker>
+              </defs>
+
+              <!-- Background sky / chamber -->
+              <rect x="0" y="0" width="680" height="430" rx="12" fill="#f9f8f4"/>
+
+              <!-- Water level & submerged root compartment -->
+              <rect x="12" y="265" width="415" height="153" rx="8" fill="url(#waterGrad)" stroke="#2a78d6" stroke-dasharray="4 3"/>
+              <text x="24" y="286" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" fill="#174a8b">WATER FLOOD ZONE (Funnel Infusion · t = 30–90 s)</text>
+
+              <!-- 1.46 mm Plastic Support Mesh -->
+              <line x1="12" y1="260" x2="427" y2="260" stroke="#46505a" stroke-width="4" stroke-dasharray="10 6"/>
+              <text x="295" y="252" font-family="IBM Plex Mono, monospace" font-size="10" fill="#46505a">Support Mesh (1.46 mm pitch)</text>
+
+              <!-- STAGE 1: Submerged Root System -->
+              <g class="pathway-node-group" data-svg-stage="root">
+                <rect class="stage-highlight-ring" x="115" y="272" width="210" height="138" rx="10" fill="#ffffff" fill-opacity="0.55" stroke="#e8a33d" stroke-width="3.5"/>
+                <!-- Root branches -->
+                <path d="M220,260 L220,395 M220,295 C195,310 170,330 150,365 M220,315 C245,330 270,350 290,382 M190,325 C175,345 165,365 160,390 M250,340 C260,360 268,378 275,398" stroke="#8a5a2b" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+                <!-- Hydraulic / Ca2+ entry arrows -->
+                <path d="M135,345 L175,330" stroke="#2a78d6" stroke-width="2" marker-end="url(#arrowAmber)"/>
+                <path d="M305,345 L265,330" stroke="#2a78d6" stroke-width="2" marker-end="url(#arrowAmber)"/>
+                <circle cx="220" cy="310" r="7" fill="#2a78d6"/>
+                <text x="126" y="402" font-family="IBM Plex Sans, sans-serif" font-size="11.5" font-weight="700" fill="#1a1a19">1. Submerged Roots (PIP2;1, CAX2)</text>
+              </g>
+
+              <!-- STAGE 2: Hypocotyl & Petiole Vasculature -->
+              <g class="pathway-node-group" data-svg-stage="vascular">
+                <rect class="stage-highlight-ring" x="145" y="168" width="150" height="86" rx="10" fill="#ffffff" fill-opacity="0.7" stroke="#8a8984" stroke-width="1.5"/>
+                <!-- Hypocotyl and petioles -->
+                <path d="M220,260 L220,195 M220,205 L165,155 M220,205 L275,155 M220,200 L220,145" stroke="#2a78d6" stroke-width="5" fill="none" stroke-linecap="round"/>
+                <circle cx="220" cy="205" r="7" fill="#e8a33d"/>
+                <text x="154" y="244" font-family="IBM Plex Sans, sans-serif" font-size="11.5" font-weight="700" fill="#1a1a19">2. Petiole Xylem/Phloem</text>
+              </g>
+
+              <!-- STAGE 3: Rosette Leaf Blade & Veins -->
+              <g class="pathway-node-group" data-svg-stage="veins">
+                <rect class="stage-highlight-ring" x="35" y="24" width="370" height="138" rx="10" fill="#ffffff" fill-opacity="0.7" stroke="#8a8984" stroke-width="1.5"/>
+                <!-- Left Expanded Rosette Leaf with Serrated Margin -->
+                <path d="M170,155 C120,150 65,125 55,85 C62,72 75,65 82,55 C98,48 122,45 145,52 C168,62 185,95 170,155 Z" fill="#1baf7a" fill-opacity="0.28" stroke="#eb6834" stroke-width="4"/>
+                <!-- Right Expanded Rosette Leaf with Serrated Margin -->
+                <path d="M270,155 C320,150 375,125 385,85 C378,72 365,65 358,55 C342,48 318,45 295,52 C272,62 255,95 270,155 Z" fill="#1baf7a" fill-opacity="0.28" stroke="#eb6834" stroke-width="4"/>
+                <!-- Center Young Leaf -->
+                <path d="M220,150 C195,120 195,70 220,45 C245,70 245,120 220,150 Z" fill="#1baf7a" fill-opacity="0.38" stroke="#eb6834" stroke-width="3.5"/>
+                <!-- Leaf Veins (Blue) -->
+                <path d="M168,150 L85,62 M138,118 L72,85 M120,98 L138,56 M272,150 L355,62 M302,118 L368,85 M320,98 L302,56 M220,145 L220,52" stroke="#2a78d6" stroke-width="3" fill="none" stroke-linecap="round"/>
+                <text x="48" y="42" font-family="IBM Plex Sans, sans-serif" font-size="11.5" font-weight="700" fill="#1a1a19">3. Veins (1.99×) &amp; Lamina (t50 ~ 5–9 min)</text>
+              </g>
+
+              <!-- STAGE 4: Marginal Epithemal Hydathode Zoom Box (Right Side) -->
+              <g class="pathway-node-group" data-svg-stage="hydathode">
+                <rect class="stage-highlight-ring" x="442" y="24" width="224" height="386" rx="12" fill="#ffffff" stroke="#8a8984" stroke-width="1.5"/>
+                <!-- Callout connector from leaf margin tooth to zoom box -->
+                <circle cx="362" cy="58" r="9" fill="none" stroke="#eb6834" stroke-width="3"/>
+                <circle cx="80" cy="58" r="9" fill="none" stroke="#eb6834" stroke-width="3"/>
+                <line x1="371" y1="58" x2="442" y2="95" stroke="#eb6834" stroke-width="2" stroke-dasharray="4 3"/>
+
+                <text x="458" y="50" font-family="IBM Plex Sans, sans-serif" font-size="13" font-weight="700" fill="#9a5510">4. Marginal Hydathode</text>
+                <text x="458" y="67" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="#46505a">Outer 0–80 µm Margin (1.40×)</text>
+
+                <!-- Hydathode Anatomical Cross-Section -->
+                <path d="M465,340 C465,200 505,120 554,105 C603,120 643,200 643,340 Z" fill="#eef7f2" stroke="#eb6834" stroke-width="3.5"/>
+                <!-- Xylem Tracheary Fan (Blue) -->
+                <path d="M554,340 L554,245 M554,265 L515,210 M554,265 L593,210 M554,245 L538,195 M554,245 L570,195" stroke="#2a78d6" stroke-width="4" fill="none" stroke-linecap="round"/>
+                <text x="478" y="328" font-family="IBM Plex Sans, sans-serif" font-size="10.5" font-weight="600" fill="#2a78d6">Xylem Vascular Termini</text>
+
+                <!-- Epithem Parenchyma Cells (Orange/Amber) -->
+                <circle cx="522" cy="180" r="13" fill="#fde6d8" stroke="#eb6834" stroke-width="2"/>
+                <circle cx="554" cy="172" r="14" fill="#fde6d8" stroke="#eb6834" stroke-width="2"/>
+                <circle cx="586" cy="180" r="13" fill="#fde6d8" stroke="#eb6834" stroke-width="2"/>
+                <circle cx="538" cy="150" r="12" fill="#fde6d8" stroke="#eb6834" stroke-width="2"/>
+                <circle cx="570" cy="150" r="12" fill="#fde6d8" stroke="#eb6834" stroke-width="2"/>
+                <text x="488" y="280" font-family="IBM Plex Sans, sans-serif" font-size="10.5" font-weight="600" fill="#9a5510">Epithem (Ion/Auxin Scavenging)</text>
+
+                <!-- Water Pore & Guttation Exudate -->
+                <circle cx="554" cy="95" r="11" fill="#2a78d6" fill-opacity="0.35" stroke="#2a78d6" stroke-width="2"/>
+                <text x="485" y="88" font-family="IBM Plex Mono, monospace" font-size="10" font-weight="600" fill="#174a8b">Open Water Pore (Guttation)</text>
+
+                <rect x="458" y="352" width="192" height="44" rx="6" fill="#f4f2ec" stroke="#dedcd5"/>
+                <text x="466" y="370" font-family="IBM Plex Sans, sans-serif" font-size="10" fill="#1a1a19">• Unresolved at 41 µm/px binned</text>
+                <text x="466" y="386" font-family="IBM Plex Sans, sans-serif" font-size="10" fill="#1a1a19">• Margin &gt; Inner band in 7/8 runs</text>
+              </g>
+            </svg>
+          </div>
+
+          <div class="pathway-step-buttons" role="tablist" aria-label="Select physiological pathway stage">
+            <button type="button" class="stage-pill active" data-stage-target="root">1. Root Submergence</button>
+            <button type="button" class="stage-pill" data-stage-target="vascular">2. Vascular Relay</button>
+            <button type="button" class="stage-pill" data-stage-target="veins">3. Veins &amp; Lamina</button>
+            <button type="button" class="stage-pill" data-stage-target="hydathode">4. Leaf Hydathodes</button>
+          </div>
+        </div>
+
+        <!-- Dynamic Molecular Detail Card -->
+        <div class="pathway-detail-card" aria-live="polite">
+          <div>
+            <span id="pathwayBadge" class="pathway-badge">Stage 1 · 0 – 90 s · Root Zone Submergence</span>
+            <h3 id="pathwayTitle" class="pathway-detail-title">Hydrostatic Surge, Aquaporin Gating &amp; Root Hypoxia Onset</h3>
+            <p id="pathwaySummary" style="color:var(--text-secondary);font-size:0.95rem;margin-bottom:1rem">
+              When water is poured through the funnel onto the root system, matric tension vanishes and water rapidly enters root cortical and endodermal cells via plasma-membrane aquaporins (PIP2;1).
+            </p>
+            <div style="font-size:0.78rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);font-weight:600">
+              Key Channels, Transporters &amp; Molecular Nodes
+            </div>
+            <div id="pathwayChannels" class="molecular-tags"></div>
+            <div style="background:var(--bg-parchment-alt);padding:0.9rem 1rem;border-radius:var(--radius-sm);font-size:0.88rem;margin-top:0.75rem">
+              <strong style="color:var(--accent-ochre);display:block;margin-bottom:0.2rem">Empirical Observation in FloodWave-At (2026 Re-Analysis):</strong>
+              <span id="pathwayEvidence"></span>
+            </div>
+          </div>
+          <div id="pathwayRefs" class="pathway-refs"></div>
+        </div>
+      </div>
+
+      <!-- Timescale Comparison Table -->
+      <h3 style="font-family:var(--font-serif);font-size:1.45rem;margin:2rem 0 0.85rem 0">
+        Why Root Flooding Takes Minutes (~5–10 min), Not Seconds: Comparing Systemic Signaling Modalities
+      </h3>
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Stress Modality</th>
+              <th>Primary Stimulus</th>
+              <th>Core Molecular Machinery</th>
+              <th>Shoot Arrival / Peak Timescale</th>
+              <th>Spatial Pattern in Rosette Leaves</th>
+              <th>Key Reference</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Leaf Wounding / Herbivory</strong></td>
+              <td>Mechanical cell rupture &amp; apoplastic L-glutamate release</td>
+              <td class="mono">GLR3.3, GLR3.6, MSL10, AHA1, TPC1</td>
+              <td><strong>15 – 60 s</strong> (~400–1,000 µm/s)</td>
+              <td>Rapid vascular wave through veins into mesophyll &amp; marginal teeth</td>
+              <td><a href="https://doi.org/10.1126/science.aat7744" target="_blank" rel="noopener">Toyota et al. (2018) <em>Science</em></a></td>
+            </tr>
+            <tr>
+              <td><strong>Root Salt Shock (NaCl)</strong></td>
+              <td>100–150 mM NaCl at root tip</td>
+              <td class="mono">TPC1, RBOHD, cortical/endodermal relay</td>
+              <td><strong>30 – 120 s</strong> (~400 µm/s)</td>
+              <td>Acropetal petiole entry followed by primary &amp; secondary veins</td>
+              <td><a href="https://doi.org/10.1073/pnas.1319955111" target="_blank" rel="noopener">Choi et al. (2014) <em>PNAS</em></a></td>
+            </tr>
+            <tr>
+              <td><strong>Root Waterlogging (Literature)</strong></td>
+              <td>Abrupt root submergence in water</td>
+              <td class="mono">PIP2;1, RBOHD, GLR3.3/3.6, CAX2, ERF-VII</td>
+              <td>Hydraulic shift &lt;1 min; foliar $\text{Ca}^{2+}$ wave at <strong>~5 – 10 min</strong>; ROS at 10–20 min</td>
+              <td>Vascular bundles and leaf margins, priming shoot hypoxia genes</td>
+              <td><a href="https://doi.org/10.1093/plphys/kiad433" target="_blank" rel="noopener">Peláez-Vico et al. (2023) <em>Plant Physiol.</em></a></td>
+            </tr>
+            <tr style="background:var(--accent-ochre-light)">
+              <td><strong>FloodWave-At (2026 Raw Re-Analysis)</strong></td>
+              <td>Funnel water flood to roots (12 runs, 10 Jan 2020)</td>
+              <td class="mono">Widefield GCaMP (n = 8 QC-passing runs)</td>
+              <td>Motion settles at <strong>74 s</strong>; median $t_{50} =$ <strong>323 s (5.4 min)</strong>; peak $=$ <strong>527 s (8.8 min)</strong></td>
+              <td>Earliest 5% pixels enriched in <strong>outer 80 µm margin (1.40×)</strong> &amp; <strong>veins (1.99× in expt 8)</strong></td>
+              <td><strong>This repository (<code>results/</code>)</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Forensic Audit (2020 Deck vs 2026 Raw Files) -->
+  <section id="forensic-audit" class="section-alt">
+    <div class="container">
+      <div class="section-header">
+        <p class="eyebrow">Forensic Data Curation · Re-Reading the 2020 Analysis</p>
+        <h2 class="section-title">Three Things the Raw Zeiss <code>.czi</code> Files Change About the 2020 Deck</h2>
+        <p class="section-subtitle">
+          In April 2020, the preliminary slide deck (<em>“The Original Flood Wave”</em>) concluded that <em>“Hydathodes appear to be the source of Calcium waves in the leaves almost within seconds of flooding the roots.”</em> Checking the 2020 spreadsheet (<code>Flood_Glow_Shreya_DRB_Spring_2020.xlsx</code>) and five exported <code>.avi</code> videos against the raw <code>.czi</code> pixel arrays explains why.
+        </p>
+      </div>
+
+      <div class="correction-trio">
+        <div class="correction-card">
+          <div class="correction-big">StDev, not Mean</div>
+          <h3>Within-ROI standard deviation was plotted</h3>
+          <p>
+            The 2020 <em>“All Flood Waves”</em> chart plotted Fiji’s <code>StDev</code> column (y-axis: <em>“Fluorescence Standard Deviation”</em>). Standard deviation measures spatial patchiness and edge contrast inside a circle—not cytosolic $\text{Ca}^{2+}$ concentration. Five of the six tabs in the 2020 workbook did not even save the <code>Mean</code> column.
+          </p>
+        </div>
+        <div class="correction-card">
+          <div class="correction-big">1.212 s / frame</div>
+          <h3>Burned-in video clocks ran 17.5% slow &amp; dropped 48.5 s</h3>
+          <p>
+            The camera ran at a median of <strong>1.212 s per frame</strong> (574.8 ms exposure), not 1.000 s. Each 2020 <code>.avi</code> dropped the first 40 frames (48.5 s) and stamped <code>00:00</code> at raw frame 40. Thus <code>“06:36 Time”</code> on slide 55 was actually <strong>8 min 48 s</strong> into the recording.
+          </p>
+        </div>
+        <div class="correction-card">
+          <div class="correction-big">1 of 6 Shown</div>
+          <h3>Not every “hydathode” circle sat on a leaf margin</h3>
+          <p>
+            Six runs were measured in the 2020 workbook (<code>expts 5, 6, 7, 8, 10, 11</code>), but only <code>expt 8</code> was shown. Registered onto raw <code>expt 8</code> (NCC 0.959), <code>Hydrathode-2</code> (75% on plant) and <code>Mersitem-1</code> (76% on plant) straddle the leaf edge, gaining SD whenever the leaf brightens against the dark background.
+          </p>
+        </div>
+      </div>
+
+      <!-- Interactive Forensic Evidence Tabs -->
+      <div class="forensic-tabs" role="tablist" aria-label="Forensic Audit Evidence Panels">
+        <button type="button" class="tab-btn active" data-forensic-tab="stdev-mean">1. StDev Reproduction vs. True Mean</button>
+        <button type="button" class="tab-btn" data-forensic-tab="roi-geometry">2. The Seven 2020 ROIs &amp; Edge Geometry</button>
+        <button type="button" class="tab-btn" data-forensic-tab="clock-audit">3. Video Frame Matching &amp; Clock Audit</button>
+        <button type="button" class="tab-btn" data-forensic-tab="mesh-surface">4. Support Mesh Pitch (1.46 mm) &amp; 3D Surface Plot</button>
+      </div>
+
+      <!-- Panel 1: StDev vs Mean -->
+      <div class="forensic-panel active" data-forensic-panel="stdev-mean">
+        <div class="figure-comparison-grid">
+          <div>
+            <img src="assets/figures/slide55_chart_image.png" alt="Original 2020 Slide 55 chart: All Flood Waves plotting Fluorescence Standard Deviation for seven ROIs" data-title="2020 Slide 55 Chart: 'All Flood Waves' (Fluorescence Standard Deviation)" class="zoomable-fig">
+            <p class="fig-caption">
+              <strong>Original 2020 chart (Slide 55):</strong> Y-axis reads <em>“Fluorescence Standard Deviation”</em>; time axis starts at raw frame 40 (48.5 s into the run). Click image to enlarge.
+            </p>
+          </div>
+          <div>
+            <img src="assets/figures/roi2020_reproduction.png" alt="Left: within-ROI standard deviation recomputed from raw expt 8, reproducing the 2020 chart. Right: background-subtracted ROI means, which all rise gradually over minutes." data-title="2026 Re-Analysis: Within-ROI Standard Deviation (Left) vs. Background-Subtracted Mean (Right)" class="zoomable-fig">
+            <p class="fig-caption">
+              <strong>2026 Re-computation on raw <code>expt08</code> (<code>analysis/roi2020.py</code>):</strong> <em>Left:</em> Raw pixel standard deviation inside the exact same 7 circles reproduces the 2020 curves. <em>Right:</em> Background-subtracted mean fluorescence inside the same circles rises gradually over 8–11 min. Click image to enlarge.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 2: ROI Geometry -->
+      <div class="forensic-panel" data-forensic-panel="roi-geometry">
+        <div class="figure-comparison-grid">
+          <div>
+            <img src="assets/figures/slide55_roi_image.png" alt="Original 2020 Slide 55 image showing the seven numbered circular ROIs drawn on expt 8" data-title="2020 Slide 55 Hand-Drawn ROIs on Expt 8" class="zoomable-fig">
+            <p class="fig-caption">
+              <strong>The seven 2020 ROIs on <code>expt08</code>:</strong> Registered onto the raw 692 × 520 px frame with normalized cross-correlation <strong>NCC = 0.959</strong> (circle radius 245 µm; meristem circle 422 µm).
+            </p>
+          </div>
+          <div>
+            <h3 style="margin-top:0;font-family:var(--font-serif)">Registered Geometry of the Seven 2020 Circles (<code>results/roi2020_expt08.json</code>)</h3>
+            <div class="table-scroll">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>ROI #</th>
+                    <th>2020 Chart Label</th>
+                    <th class="num">Radius (µm)</th>
+                    <th class="num">Center Inside Outline (µm)</th>
+                    <th class="num">Pixels on Plant</th>
+                    <th class="num">Frame 0 StDev (2020 / Raw)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="mono">1</td>
+                    <td><strong>Hydrathode-1</strong></td>
+                    <td class="num">245</td>
+                    <td class="num">222 µm</td>
+                    <td class="num">98.4%</td>
+                    <td class="num">49.0 / 49.5</td>
+                  </tr>
+                  <tr>
+                    <td class="mono">2</td>
+                    <td><strong>Hydrathode-2</strong></td>
+                    <td class="num">245</td>
+                    <td class="num">110 µm</td>
+                    <td class="num" style="color:var(--status-excl-text);font-weight:700">75.1% (Edge)</td>
+                    <td class="num">39.1 / 39.8</td>
+                  </tr>
+                  <tr>
+                    <td class="mono">3</td>
+                    <td><strong>Hydrathode-3</strong></td>
+                    <td class="num">245</td>
+                    <td class="num">569 µm</td>
+                    <td class="num">100.0%</td>
+                    <td class="num">32.6 / 32.8</td>
+                  </tr>
+                  <tr>
+                    <td class="mono">4</td>
+                    <td>Lamina-1</td>
+                    <td class="num">245</td>
+                    <td class="num">779 µm</td>
+                    <td class="num">100.0%</td>
+                    <td class="num">30.7 / 30.8</td>
+                  </tr>
+                  <tr>
+                    <td class="mono">5</td>
+                    <td>Lamina-2</td>
+                    <td class="num">245</td>
+                    <td class="num">467 µm</td>
+                    <td class="num">100.0%</td>
+                    <td class="num">35.8 / 35.9</td>
+                  </tr>
+                  <tr>
+                    <td class="mono">6</td>
+                    <td><strong>Mersitem-1</strong></td>
+                    <td class="num">422</td>
+                    <td class="num">176 µm</td>
+                    <td class="num" style="color:var(--status-excl-text);font-weight:700">76.1% (Edge)</td>
+                    <td class="num">103.7 / 104.2</td>
+                  </tr>
+                  <tr>
+                    <td class="mono">7</td>
+                    <td>Lamina-3</td>
+                    <td class="num">245</td>
+                    <td class="num">410 µm</td>
+                    <td class="num">100.0%</td>
+                    <td class="num">48.5 / 48.6</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="fig-caption">
+              Note: By the law of total variance, $\sigma_{\text{ROI}}^2(t) = p\sigma_{\text{leaf}}^2 + (1-p)\sigma_{\text{bg}}^2 + p(1-p)(\mu_{\text{leaf}} - \mu_{\text{bg}})^2$. Circles straddling the plant edge ($p \approx 0.75$) gain standard deviation automatically whenever $\mu_{\text{leaf}} - \mu_{\text{bg}}$ rises.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 3: Clock Audit -->
+      <div class="forensic-panel" data-forensic-panel="clock-audit">
+        <div class="figure-comparison-grid">
+          <div>
+            <img src="assets/figures/burned_in_timestamps_frames_0_60_396_659.png" alt="Four frames from the 2020 video showing burned-in timestamps 00:00, 01:00, 06:36, and 10:59" data-title="2020 Video Burned-in Timestamps (Frames 0, 60, 396, 659)" class="zoomable-fig">
+          </div>
+          <div>
+            <h3 style="margin-top:0;font-family:var(--font-serif)">Mapping the 2020 AVI Videos to Raw <code>expt08</code> Frames (<code>analysis/match_video.py</code>)</h3>
+            <p style="color:var(--text-secondary)">
+              Cross-correlating whole-frame means between the five 660-frame 2020 <code>.avi</code> videos and the 700-frame raw <code>expt08</code> <code>.czi</code> file achieves <strong><em>r</em> = 0.996</strong> at an exact offset of <strong>+40 frames</strong>:
+            </p>
+            <ul style="color:var(--text-secondary);line-height:1.65">
+              <li><strong>Video Frame 0 (stamped <code>00:00 Time</code>):</strong> Raw frame 40 → <strong>48.5 s</strong> after recording started.</li>
+              <li><strong>Video Frame 60 (stamped <code>01:00 Time</code>):</strong> Raw frame 100 → <strong>121.2 s (2 min 01 s)</strong> true elapsed time.</li>
+              <li><strong>Video Frame 396 (stamped <code>06:36 Time</code> on Slide 52):</strong> Raw frame 436 → <strong>528.5 s (8 min 48 s)</strong> true elapsed time.</li>
+              <li><strong>Video Frame 659 (stamped <code>10:59 Time</code>):</strong> Raw frame 699 → <strong>847.5 s (14 min 07 s)</strong> true elapsed time.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 4: Mesh Pitch & Surface Plot -->
+      <div class="forensic-panel" data-forensic-panel="mesh-surface">
+        <div class="figure-comparison-grid">
+          <div>
+            <img src="assets/figures/grid_pitch_expt08.png" alt="Autocorrelation of a grid-only patch in expt 8 measuring a mesh period of 71 px = 1.46 mm" data-title="Plastic Support Mesh Pitch Measurement (71 px = 1.46 mm)" class="zoomable-fig">
+            <p class="fig-caption">
+              <strong>Support mesh autocorrelation (<code>analysis/grid_acf.py</code>):</strong> Period along <em>x</em> is 71 native pixels = <strong>1.46 mm</strong> (at 20.49 µm/px), ruling out 100–200 µm nylon/nitex mesh.
+            </p>
+          </div>
+          <div>
+            <img src="assets/figures/surface_plot_frame300.png" alt="Frame 300 of the 2020 3D surface plot video showing 11,311.8 x 8,176.5 um crop dimensions" data-title="2020 Fiji 3D Surface Plot (Frame 300)" class="zoomable-fig">
+            <p class="fig-caption">
+              <strong>2020 Fiji 3D Surface Plot (<code>Flood_Wave_Surface_Plot.avi</code>, frame 300):</strong> Axis lengths read 11,311.8 × 8,176.5 µm, equal to the 552 × 399 px video crop at 20.4925 µm/px.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: The 2026 Pixel-Wise Analysis & Representative Run -->
+  <section id="representative-run" class="section-light">
+    <div class="container">
+      <div class="section-header">
+        <p class="eyebrow">The 2026 Pixel-Wise Pipeline · Every Pixel, Every Run</p>
+        <h2 class="section-title">Mapping Half-Maximum Rise Time ($t_{50}$) Across Anatomical Compartments</h2>
+        <p class="section-subtitle">
+          Because the pre-flood baseline overlaps water arrival and initial rosette intensity sits only 19–71 counts above background, $\Delta F / F_0$ ratios blow up. Instead, <code>analysis/flood_wave.py</code> measures each pixel’s post-settle half-rise time ($t_{50}$) and compares the outer 80 µm leaf margin against an immediately adjacent 80–160 µm inner control band, veins, and interior lamina.
+        </p>
+      </div>
+
+      <div class="pipeline-steps">
+        <div class="pipeline-step-card">
+          <div class="step-num">1</div>
+          <h4>Read &amp; Bin 2×2</h4>
+          <p>Read raw 12-bit <code>.czi</code> stack read-only; bin 2×2 to 41.0 µm/px (346 × 260 px) to boost per-pixel SNR.</p>
+        </div>
+        <div class="pipeline-step-card">
+          <div class="step-num">2</div>
+          <h4>Rigid Registration</h4>
+          <p>Align every frame to the late reference (last 20%) using high-pass DoG filtering ($\sigma = 1.5, 15\text{ px}$).</p>
+        </div>
+        <div class="pipeline-step-card">
+          <div class="step-num">3</div>
+          <h4>Settle Gate (t_settle)</h4>
+          <p>Start analysis 3 frames after the last early registration step &gt; 0.5 px (at least 20 s; median 73.9 s).</p>
+        </div>
+        <div class="pipeline-step-card">
+          <div class="step-num">4</div>
+          <h4>Local Background</h4>
+          <p>Subtract off-plant normalized convolution ($\sigma = 12\text{ px}$); validate on held-out 20×20 checkerboard blocks.</p>
+        </div>
+        <div class="pipeline-step-card">
+          <div class="step-num">5</div>
+          <h4>Pixel t50 &amp; Regions</h4>
+          <p>Compute half-rise time $t_{50}$ for pixels with $\text{SNR} \ge 5$; test earliest 5% enrichment across 4 leaf zones.</p>
+        </div>
+      </div>
+
+      <!-- Expt 8 Maps and Traces -->
+      <div style="background:var(--bg-slate);color:var(--text-on-slate);padding:2rem;border-radius:var(--radius-lg);margin-bottom:2rem">
+        <h3 style="font-family:var(--font-serif);font-size:1.5rem;margin:0 0 0.5rem 0;color:var(--accent-amber)">
+          Representative Run (<code>expt08</code>): Anatomical Regions, Pixel $t_{50}$ Map &amp; Regional Traces
+        </h3>
+        <p style="color:var(--text-on-slate-muted);font-size:0.94rem;margin:0 0 1.25rem 0">
+          Motion settles at 48.5 s. Earliest 5% of activating pixels ($t_{50} \le 260.6\text{ s}$, outlined in white) cluster along veins, the rosette center, and outer leaf margins. Held-out background residual remains $\le 0.98$ counts. Click either figure to inspect at full resolution.
+        </p>
+        <div style="display:grid;grid-template-columns:1.25fr 1fr;gap:1.25rem;align-items:center">
+          <div>
+            <img src="assets/figures/expt08_regions_t50.png" alt="Expt 8 anatomical region masks (left) and half-maximum rise time t50 map (right) with earliest 5% outlined in white" data-title="Expt 8: Region Segmentation & Pixel-Wise t50 Map" class="zoomable-fig" style="border-color:var(--border-slate)">
+          </div>
+          <div>
+            <img src="assets/figures/expt08_traces.png" alt="Expt 8 mean signal above local background per region from settle time onwards, with flat held-out background residual" data-title="Expt 8: Background-Subtracted Regional Fluorescence Traces" class="zoomable-fig" style="border-color:var(--border-slate)">
+          </div>
+        </div>
+      </div>
+
+      <!-- Expt 8 Earliest 5% Cards -->
+      <h3 style="font-family:var(--font-serif);font-size:1.35rem;margin:0 0 0.5rem 0">
+        Where Are the Earliest 5% of Pixels to Reach Half-Rise in <code>expt08</code> ($t_{50} \le 261\text{ s}$)?
+      </h3>
+      <div class="region-enrichment-grid">
+        <div class="region-card vein">
+          <div class="region-stat" style="color:var(--region-vein)">1.99×</div>
+          <h4 style="margin:0.3rem 0">Veins (Vasculature)</h4>
+          <p style="margin:0;font-size:0.84rem;color:var(--text-secondary)">25.8% of earliest-5% pixels (1,600 px total; median $t_{50} = 435.2\text{ s}$; rise $+217.2\text{ counts}$).</p>
+        </div>
+        <div class="region-card margin">
+          <div class="region-stat" style="color:var(--region-margin)">1.80×</div>
+          <h4 style="margin:0.3rem 0">Outer Margin (0–80 µm)</h4>
+          <p style="margin:0;font-size:0.84rem;color:var(--text-secondary)">33.3% of earliest-5% pixels (2,339 px total; median $t_{50} = 452.1\text{ s}$; rise $+115.4\text{ counts}$).</p>
+        </div>
+        <div class="region-card inner">
+          <div class="region-stat" style="color:var(--region-inner)">1.34×</div>
+          <h4 style="margin:0.3rem 0">Inner Control Band (80–160 µm)</h4>
+          <p style="margin:0;font-size:0.84rem;color:var(--text-secondary)">22.5% of earliest-5% pixels (2,075 px total; median $t_{50} = 446.1\text{ s}$; rise $+153.2\text{ counts}$).</p>
+        </div>
+        <div class="region-card lamina">
+          <div class="region-stat" style="color:var(--region-lamina)">0.36×</div>
+          <h4 style="margin:0.3rem 0">Interior Lamina</h4>
+          <p style="margin:0;font-size:0.84rem;color:var(--text-secondary)">18.5% of earliest-5% pixels (6,398 px total; median $t_{50} = 492.1\text{ s}$; rise $+171.1\text{ counts}$).</p>
+        </div>
+      </div>
+
+      <!-- Whole Dataset Order Maps & Enrichment -->
+      <div class="figure-comparison-grid" style="margin-top:2.5rem;grid-template-columns:1fr 1fr">
+        <div style="background:var(--bg-card);padding:1.25rem;border-radius:var(--radius-md);border:1px solid var(--border-light)">
+          <h4 style="margin:0 0 0.65rem 0;font-family:var(--font-serif);font-size:1.15rem">All 12 Runs: Within-Run $t_{50}$ Activation Rank Maps</h4>
+          <img src="assets/figures/all_runs_order_maps.png" alt="Twelve maps coloring each plant pixel by its rank in half-maximum rise time t50 from earliest (light) to latest (dark)" data-title="All 12 Runs: Pixel-Wise t50 Rank Order Maps" class="zoomable-fig">
+          <p class="fig-caption">
+            Each plant pixel colored by its $t_{50}$ rank within its own run (light = earliest to reach half-rise). Four runs (`expt 2, 3, 4, 10`) are excluded by QC rules.
+          </p>
+        </div>
+        <div style="background:var(--bg-card);padding:1.25rem;border-radius:var(--radius-md);border:1px solid var(--border-light)">
+          <h4 style="margin:0 0 0.65rem 0;font-family:var(--font-serif);font-size:1.15rem">Earliest-5% Regional Enrichment Across All Runs</h4>
+          <img src="assets/figures/enrichment_all_runs.png" alt="Dot plot of earliest-5% enrichment per run for margin, inner control band, vein and lamina on a log scale" data-title="Earliest-5% Regional Enrichment Across All 12 Runs" class="zoomable-fig">
+          <p class="fig-caption">
+            Across the 8 pooled runs, outer margin median enrichment is <strong>1.40×</strong> (range 0.62–2.38×) vs. <strong>0.93×</strong> for the inner control band. Margin exceeds inner band in <strong>7 of 8 runs</strong> (two-sided sign test <em>p</em> = 0.070).
+          </p>
+        </div>
+      </div>
+
+      <!-- Verdict Table -->
+      <h3 style="font-family:var(--font-serif);font-size:1.45rem;margin:2.5rem 0 0.85rem 0">
+        Summary Verdict: The 2020 Claims Tested Against All Twelve Raw Recordings
+      </h3>
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th style="width:26%">2020 Claim</th>
+              <th style="width:20%">2026 Verdict</th>
+              <th style="width:54%">What the Raw <code>.czi</code> Files Show</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Flooding the roots changes the rosette signal</strong></td>
+              <td><span class="badge-pass" style="background:var(--status-pass-bg);color:var(--status-pass-text)">Consistent, unproven</span></td>
+              <td>Every pooled run rises after water arrives (median $t_{50} = 323\text{ s}$, median peak $= 527\text{ s}$, median rise $+64\text{ counts}$), and held-out background is flat. However, no unflooded or GFP-only control run was recorded to exclude blue-light excitation or handling effects.</td>
+            </tr>
+            <tr>
+              <td><strong>It happens within seconds</strong></td>
+              <td><span class="badge-excl" style="background:var(--status-excl-bg);color:var(--status-excl-text)">Not seen</span></td>
+              <td>Only one run (<code>expt 10</code>) jumps within ~6 s ($+21\text{ counts}$), and that step is simultaneous everywhere across the field (likely optical meniscus coupling). All passing runs rise over minutes.</td>
+            </tr>
+            <tr>
+              <td><strong>Hydathodes are the source</strong></td>
+              <td><span class="badge-pass" style="background:var(--accent-ochre-light);color:var(--accent-ochre)">Weak / modest support</span></td>
+              <td>Outer 80 µm margins lead the adjacent inner control band in 7 of 8 runs (median 1.40× vs 0.93×, <em>p</em> = 0.070), and veins lead in several runs (1.99× in <code>expt 8</code>). Individual hydathode pores are not resolved at 41 µm per binned pixel.</td>
+            </tr>
+            <tr>
+              <td><strong>A wave travels root to shoot</strong></td>
+              <td><span class="mono" style="color:var(--text-muted)">Not testable here</span></td>
+              <td>Roots and hypocotyls were beneath the support mesh and never in the camera’s field of view.</td>
+            </tr>
+            <tr>
+              <td><strong>$\text{LaCl}_3$ blocks the wave</strong></td>
+              <td><span class="mono" style="color:var(--text-muted)">No data in archive</span></td>
+              <td>All 12 recordings on the drive are plain-water floods; no $\text{LaCl}_3$ recordings exist in this dataset.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: Interactive 12-Run Explorer -->
+  <section id="explorer" class="section-dark">
+    <div class="container">
+      <div class="section-header">
+        <p class="eyebrow">Complete Dataset Curation · 10 January 2020 (11:19–14:56 CST)</p>
+        <h2 class="section-title">Interactive 12-Run Explorer: Inspect Every Recording, Mask &amp; Trace</h2>
+        <p class="section-subtitle">
+          Select any of the twelve recordings below (or click any row in the master table) to inspect its 6-panel activation diagnostic (<code>flood_wave.py</code>), 5-timepoint frame montage, and whole-field motion QC trace.
+        </p>
+      </div>
+
+      <div class="explorer-controls">
+        <div class="filter-group" role="group" aria-label="Filter runs by QC status">
+          <button type="button" class="tab-btn active" data-run-filter="all">All 12 Runs</button>
+          <button type="button" class="tab-btn" data-run-filter="pooled">8 Pooled (QC Pass)</button>
+          <button type="button" class="tab-btn" data-run-filter="excluded">4 Excluded Runs</button>
+        </div>
+        <div style="font-size:0.84rem;color:var(--text-on-slate-muted)">
+          Tip: Click any diagnostic image to open the full-resolution lightbox inspector.
+        </div>
+      </div>
+
+      <!-- 12 Run Pills -->
+      <div id="runSelectorStrip" class="run-selector-strip"></div>
+
+      <!-- Active Run Detail Inspector -->
+      <div id="runDetailInspector" class="run-detail-inspector" aria-live="polite">
+        <div class="run-inspector-header">
+          <div>
+            <h3 id="inspTitle" style="font-family:var(--font-serif);font-size:1.6rem;margin:0 0 0.25rem 0;color:var(--text-on-slate)">
+              Experiment 8 (expt08) · NormalWater small plant representative
+            </h3>
+            <p id="inspSubtitle" class="mono" style="font-size:0.82rem;color:var(--text-on-slate-muted);margin:0"></p>
+          </div>
+          <span id="inspStatusBadge" class="badge-pass">Pooled · Representative Run</span>
+        </div>
+
+        <p id="inspNote" style="background:rgba(232,163,61,0.12);border-left:3px solid var(--accent-amber);padding:0.65rem 0.9rem;border-radius:4px;font-size:0.9rem;margin:0 0 1.25rem 0;color:var(--text-on-slate)"></p>
+
+        <div class="run-metrics-strip">
+          <div class="run-metric-box"><span>Frames (Length)</span><strong id="mFrames">700 (847 s)</strong></div>
+          <div class="run-metric-box"><span>Settle (t_settle)</span><strong id="mSettle">48.5 s</strong></div>
+          <div class="run-metric-box"><span>Earliest 5% (t50_p5)</span><strong id="mT50P5">260.6 s</strong></div>
+          <div class="run-metric-box"><span>Median t50</span><strong id="mT50Med">470.3 s</strong></div>
+          <div class="run-metric-box"><span>Whole-Plant Peak</span><strong id="mPeak">695.8 s</strong></div>
+          <div class="run-metric-box"><span>Post-Settle Rise</span><strong id="mRise">+141.5 cts</strong></div>
+          <div class="run-metric-box"><span>Margin Enrich</span><strong id="mEnrichMargin" style="color:#ff9b73">1.80×</strong></div>
+          <div class="run-metric-box"><span>Inner Control</span><strong id="mEnrichInner">1.34×</strong></div>
+          <div class="run-metric-box"><span>Vein Enrich</span><strong id="mEnrichVein" style="color:#6eb2ff">1.99×</strong></div>
+          <div class="run-metric-box"><span>Lamina Enrich</span><strong id="mEnrichLamina" style="color:#5ce6b5">0.36×</strong></div>
+        </div>
+
+        <div class="run-visuals-grid">
+          <div class="run-visual-card">
+            <h4>
+              <span>6-Panel Pixel-Wise Activation &amp; Region Diagnostic (<code>flood_wave.py</code>)</span>
+              <span class="mono" style="font-size:0.72rem;color:var(--text-on-slate-muted)">Click to zoom</span>
+            </h4>
+            <img id="inspImgActivation" src="assets/runs/expt08_activation.png" alt="Expt 8 activation diagnostic" data-title="6-Panel Pixel-Wise Activation Diagnostic" class="zoomable-fig" style="border-color:var(--border-slate)">
+          </div>
+          <div style="display:flex;flex-direction:column;gap:1.25rem">
+            <div class="run-visual-card">
+              <h4>
+                <span>Time-Lapse Frame Montage &amp; Max Projection (<code>scripts/preview.py</code>)</span>
+                <span class="mono" style="font-size:0.72rem;color:var(--text-on-slate-muted)">2 mm scale bar</span>
+              </h4>
+              <img id="inspImgFrames" src="assets/previews/expt08_frames.png" alt="Expt 8 frame montage" data-title="Time-Lapse Frame Montage (0, 1/4, 1/2, 3/4, End, Max Projection)" class="zoomable-fig" style="border-color:var(--border-slate)">
+            </div>
+            <div class="run-visual-card">
+              <h4>
+                <span>Whole-Field Mean, 99th Percentile &amp; Frame-to-Frame Motion Trace</span>
+                <span class="mono" style="font-size:0.72rem;color:var(--text-on-slate-muted)">Raw counts</span>
+              </h4>
+              <img id="inspImgQC" src="assets/previews/expt08_qc_traces.png" alt="Expt 8 QC traces" data-title="Whole-Field QC Traces (Mean, p99, Frame Difference)" class="zoomable-fig" style="border-color:var(--border-slate)">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Master Table of All 12 Runs -->
+      <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:1rem;margin-bottom:0.75rem">
+        <h3 style="font-family:var(--font-serif);font-size:1.35rem;margin:0">
+          Master Summary Table of All 12 Recordings (<code>results/summary_all_runs.csv</code>)
+        </h3>
+        <span style="font-size:0.82rem;color:var(--text-on-slate-muted)">Click any row to load that recording in the inspector above</span>
+      </div>
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Run</th>
+              <th>Filename Label</th>
+              <th>ZEN #</th>
+              <th>QC Status</th>
+              <th class="num">Frames</th>
+              <th class="num">Settled (s)</th>
+              <th class="num">Median t50 (s)</th>
+              <th class="num">Peak (s)</th>
+              <th class="num">Rise (cts)</th>
+              <th class="num">Margin (1st 5%)</th>
+              <th class="num">Inner Band</th>
+              <th class="num">Veins</th>
+              <th class="num">Lamina</th>
+            </tr>
+          </thead>
+          <tbody id="allRunsTableBody"></tbody>
+        </table>
+      </div>
+
+      <!-- Mask QC Contact Sheet -->
+      <div style="margin-top:2rem;background:var(--bg-slate-card);border:1px solid var(--border-slate);border-radius:var(--radius-md);padding:1.25rem">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;margin-bottom:0.75rem">
+          <h4 style="margin:0;font-family:var(--font-serif);font-size:1.15rem;color:var(--accent-amber)">
+            Quality Control Mask Sheet Across All 12 Recordings (<code>results/figures/mask_qc_sheet.png</code>)
+          </h4>
+          <span class="mono" style="font-size:0.78rem;color:var(--text-on-slate-muted)">Red contour = automated plant mask over late reference image</span>
+        </div>
+        <img src="assets/figures/mask_qc_sheet.png" alt="Plant mask red outline over each run's late registered reference image for all 12 runs" data-title="All 12 Runs: Plant Segmentation Mask Quality Control Sheet" class="zoomable-fig" style="border-color:var(--border-slate);max-height:380px;width:100%;object-fit:contain;background:#0e1317">
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6: Curated Literature Review Library -->
+  <section id="literature" class="section-light">
+    <div class="container">
+      <div class="section-header">
+        <p class="eyebrow">Peer-Reviewed Scientific Context</p>
+        <h2 class="section-title">Literature Review: Root Flooding, Systemic $\text{Ca}^{2+}$ Waves &amp; Hydathode Biology</h2>
+        <p class="section-subtitle">
+          Curated primary research and reviews supporting the biological narrative and methodological standards of <code>FloodWave-At</code>. Filter by research pillar below.
+        </p>
+      </div>
+
+      <div class="forensic-tabs" role="group" aria-label="Filter literature by topic">
+        <button type="button" class="tab-btn active" data-lit-filter="all">All Key References (12)</button>
+        <button type="button" class="tab-btn" data-lit-filter="flooding">Flooding &amp; Waterlogging</button>
+        <button type="button" class="tab-btn" data-lit-filter="calcium">Vascular Ca²⁺, GLRs &amp; Hydraulics</button>
+        <button type="button" class="tab-btn" data-lit-filter="hydathode">Hydathodes &amp; Guttation</button>
+        <button type="button" class="tab-btn" data-lit-filter="imaging">Biosensor Imaging &amp; Hypoxia</button>
+      </div>
+
+      <div id="litGrid" class="lit-grid"></div>
+    </div>
+  </section>
+
+  <!-- Section 7: Perspective Manuscript Preview & FAIR Citation -->
+  <section id="manuscript-cta" class="section-alt">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:1.35fr 1fr;gap:2rem;align-items:start">
+        <div style="background:var(--bg-card);border:1px solid var(--border-light);border-top:5px solid #b5121b;border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow-sm)">
+          <p class="eyebrow" style="color:#b5121b;margin-bottom:0.4rem">Draft Manuscript · Nature Communications Perspective Style</p>
+          <h2 style="font-family:var(--font-serif);font-size:1.85rem;line-height:1.2;margin:0 0 0.75rem 0">
+            From submerged roots to leaf hydathodes: resolving vascular calcium dynamics and imaging artifacts during plant flooding
+          </h2>
+          <p style="font-weight:600;font-size:0.95rem;margin:0 0 1rem 0;color:var(--text-secondary)">
+            Shreya Godishala, Richard Barker &amp; Simon Gilroy · Department of Botany, University of Wisconsin–Madison
+          </p>
+          <p style="font-size:0.95rem;color:var(--text-secondary);margin:0 0 1.25rem 0">
+            Our companion Perspective manuscript synthesizes the biophysical pathway connecting root waterlogging (`PIP2;1`, `RBOHD`, `GLR3.3/3.6`, `TPC1`, `CAX2`) to vascular termini at leaf hydathodes (`Cerutti et al. 2019`; `Routaboul et al. 2024`), presents the complete forensic audit of the 2020 vs. 2026 `FloodWave-At` analyses (Boxes 1–2, Tables 1–3, Figures 1–4, 28 references), and outlines a five-point FAIR checklist for whole-plant fluorescence biosensing.
+          </p>
+          <div style="display:flex;flex-wrap:wrap;gap:0.75rem">
+            <a href="manuscript.html" class="btn btn-primary" style="background:#12181d;color:#f4f2ec">📖 Read Full Perspective Piece (Web &amp; Print Edition)</a>
+            <a href="https://github.com/dr-richard-barker/FloodWave-At/blob/main/manuscript/FloodWave_NatureCommunications_Perspective.md" target="_blank" rel="noopener noreferrer" class="btn btn-light">Markdown Source (<code>manuscript/</code>) ↗</a>
+          </div>
+        </div>
+
+        <div style="background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:1.75rem;box-shadow:var(--shadow-sm)">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem">
+            <h3 style="font-family:var(--font-serif);font-size:1.25rem;margin:0">Cite This Dataset &amp; Re-Analysis</h3>
+            <button type="button" id="copyBibtexBtn" class="btn btn-light" style="padding:0.35rem 0.75rem;font-size:0.8rem">Copy BibTeX</button>
+          </div>
+          <pre id="bibtexBlock" style="background:var(--bg-parchment);padding:0.9rem;border-radius:var(--radius-sm);border:1px solid var(--border-light);font-size:0.75rem;overflow-x:auto;margin:0 0 1rem 0">@dataset{godishala2026floodwave,
+  author    = {Godishala, Shreya and Barker, Richard and Gilroy, Simon},
+  title     = {{FloodWave-At: root flooding and rosette GCaMP fluorescence in Arabidopsis thaliana, a re-analysis of the January 2020 recordings}},
+  year      = {2026},
+  publisher = {GitHub / Zenodo},
+  url       = {https://github.com/dr-richard-barker/FloodWave-At},
+  license   = {CC-BY-4.0}
+}</pre>
+          <p style="font-size:0.82rem;color:var(--text-muted);margin:0">
+            <strong>Reproducibility:</strong> Run <code>analysis/run_all.sh &lt;czi_folder&gt; &lt;python&gt;</code> to regenerate every table, JSON summary, figure, and video clip deterministically from the 12 raw <code>.czi</code> recordings.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Native Modal Lightbox Dialog (Modern Web Guidance <dialog closedby="any">) -->
+  <dialog id="figLightbox" closedby="any" class="lightbox-dialog" aria-labelledby="lightboxTitle">
+    <div class="lightbox-inner">
+      <div class="lightbox-top">
+        <h3 id="lightboxTitle">Figure Inspector</h3>
+        <form method="dialog" style="margin:0">
+          <button type="submit" class="lightbox-close-btn">Esc / Close ✕</button>
+        </form>
+      </div>
+      <img id="lightboxImg" src="assets/figures/expt08_regions_t50.png" alt="Expanded figure view">
+      <p id="lightboxCaption" style="font-size:0.86rem;color:var(--text-on-slate-muted);margin:0"></p>
+    </div>
+  </dialog>
+
+  <footer class="site-footer">
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem">
+      <div>
+        <strong style="color:var(--text-on-slate)">FloodWave-At</strong> · Shreya Godishala, Richard Barker (<a href="https://orcid.org/0000-0001-5681-9857" target="_blank" rel="noopener" style="color:var(--accent-amber)">0000-0001-5681-9857</a>) &amp; Simon Gilroy · University of Wisconsin–Madison
+      </div>
+      <div>
+        Code: <a href="https://github.com/dr-richard-barker/FloodWave-At/blob/main/LICENSE" style="color:var(--accent-amber)">MIT</a> · Data &amp; Figures: <a href="https://github.com/dr-richard-barker/FloodWave-At/blob/main/LICENSE-DATA.md" style="color:var(--accent-amber)">CC BY 4.0</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
