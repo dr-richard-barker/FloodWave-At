@@ -8,6 +8,10 @@ const RUNS_DATA = [
   {
     expt: 1,
     tag: 'expt01',
+    water_onset_s: 48.5,
+    water_window_str: '48.5–111.5 s',
+    surge_peak_s: 94.6,
+    surge_peak_px: 228.83,
     label: 'no label',
     file: 'Flooding expt 1  10012020.czi',
     zen: 'Experiment-454.czi',
@@ -41,6 +45,10 @@ const RUNS_DATA = [
   {
     expt: 2,
     tag: 'expt02',
+    water_onset_s: 30.3,
+    water_window_str: '30.3–36.4 s',
+    surge_peak_s: 31.5,
+    surge_peak_px: 0.73,
     label: 'no label',
     file: 'Flooding expt 2  10012020.czi',
     zen: 'Experiment-455.czi',
@@ -74,6 +82,10 @@ const RUNS_DATA = [
   {
     expt: 3,
     tag: 'expt03',
+    water_onset_s: 26.7,
+    water_window_str: '26.7–34.0 s',
+    surge_peak_s: 30.3,
+    surge_peak_px: 0.61,
     label: 'no label',
     file: 'Flooding expt 3  10012020.czi',
     zen: 'Experiment-456.czi',
@@ -107,6 +119,10 @@ const RUNS_DATA = [
   {
     expt: 4,
     tag: 'expt04',
+    water_onset_s: 26.7,
+    water_window_str: '26.7–40.0 s',
+    surge_peak_s: 27.9,
+    surge_peak_px: 1.0,
     label: 'no label',
     file: 'Flooding expt 4  10012020.czi',
     zen: 'Experiment-457.czi',
@@ -140,6 +156,10 @@ const RUNS_DATA = [
   {
     expt: 5,
     tag: 'expt05',
+    water_onset_s: 21.8,
+    water_window_str: '21.8–124.9 s',
+    surge_peak_s: 67.9,
+    surge_peak_px: 7.23,
     label: 'NormalWater',
     file: 'Flooding expt 5 NormalWater 10012020.czi',
     zen: 'Experiment-459.czi',
@@ -173,6 +193,10 @@ const RUNS_DATA = [
   {
     expt: 6,
     tag: 'expt06',
+    water_onset_s: 25.5,
+    water_window_str: '25.5–67.9 s',
+    surge_peak_s: 58.2,
+    surge_peak_px: 5.87,
     label: 'NormalWater YoungLeaf',
     file: 'Flooding expt 6 NormalWater YoungLeaf 10012020.czi',
     zen: 'Experiment-460.czi',
@@ -206,6 +230,10 @@ const RUNS_DATA = [
   {
     expt: 7,
     tag: 'expt07',
+    water_onset_s: 21.8,
+    water_window_str: '21.8–72.7 s',
+    surge_peak_s: 33.9,
+    surge_peak_px: 6.8,
     label: 'NormalWater YoungLeaf',
     file: 'Flooding expt 7 NormalWater YoungLeaf 10012020.czi',
     zen: 'Experiment-461.czi',
@@ -239,6 +267,10 @@ const RUNS_DATA = [
   {
     expt: 8,
     tag: 'expt08',
+    water_onset_s: 14.6,
+    water_window_str: '14.6–48.5 s',
+    surge_peak_s: 36.4,
+    surge_peak_px: 1.41,
     label: 'NormalWater small plant representative',
     file: 'Flooding expt 8 NormalWater small plant representative 10012020.czi',
     zen: 'Experiment-463.czi',
@@ -272,6 +304,10 @@ const RUNS_DATA = [
   {
     expt: 9,
     tag: 'expt09',
+    water_onset_s: 17.0,
+    water_window_str: '17.0–75.2 s',
+    surge_peak_s: 70.3,
+    surge_peak_px: 9.4,
     label: 'NormalWater small plant',
     file: 'Flooding expt 9 NormalWater small plant 10012020.czi',
     zen: 'Experiment-464.czi',
@@ -305,6 +341,10 @@ const RUNS_DATA = [
   {
     expt: 10,
     tag: 'expt10',
+    water_onset_s: 12.1,
+    water_window_str: '12.1–20.6 s',
+    surge_peak_s: 14.5,
+    surge_peak_px: 1.55,
     label: 'NormalWater Medium plant',
     file: 'Flooding expt 10 NormalWater Medium plant 10012020.czi',
     zen: 'Experiment-466.czi',
@@ -338,6 +378,10 @@ const RUNS_DATA = [
   {
     expt: 11,
     tag: 'expt11',
+    water_onset_s: 26.7,
+    water_window_str: '26.7–83.7 s',
+    surge_peak_s: 43.7,
+    surge_peak_px: 0.71,
     label: 'NormalWater small plant',
     file: 'Flooding expt 11 NormalWater small plant 10012020.czi',
     zen: 'Experiment-465.czi',
@@ -371,6 +415,10 @@ const RUNS_DATA = [
   {
     expt: 12,
     tag: 'expt12',
+    water_onset_s: 24.3,
+    water_window_str: '24.3–61.8 s',
+    surge_peak_s: 26.7,
+    surge_peak_px: 1.53,
     label: 'NormalWater YoungLeaf',
     file: 'Flooding expt 12 NormalWater YoungLeaf 10012020.czi',
     zen: 'Experiment-462.czi',
@@ -619,7 +667,7 @@ function initVideoController() {
       }
     }
 
-    let phaseText = 'Water pouring & mesh motion';
+    let phaseText = 'Pre-flood dry baseline (0–14.6 s)';
     let activeChapterIdx = 0;
     if (realSec >= 650) {
       phaseText = 'Whole-plant peak plateau (~696 s)';
@@ -630,9 +678,12 @@ function initVideoController() {
     } else if (realSec >= 240) {
       phaseText = 'Earliest 5% pixels (veins & margin)';
       activeChapterIdx = 2;
-    } else if (realSec >= 48.4) {
+    } else if (realSec >= 48.5) {
       phaseText = 'Post-settle slow rise (veins lead)';
       activeChapterIdx = 1;
+    } else if (realSec >= 14.6) {
+      phaseText = 'Water influx & meniscus surge (peak 36.4 s)';
+      activeChapterIdx = 0;
     }
     if (elPhase) elPhase.textContent = phaseText;
 
@@ -796,6 +847,8 @@ function initRunExplorer() {
     setTxt('inspNote', r.qc_note);
     setTxt('mFrames', `${r.frames} (${r.duration_s.toFixed(0)} s)`);
     setTxt('mSettle', `${r.t_settle_s.toFixed(1)} s`);
+    setTxt('mWaterWindow', r.water_window_str);
+    setTxt('mSurgePeak', `${r.surge_peak_s.toFixed(1)} s (${r.surge_peak_px.toFixed(1)} px)`);
     setTxt('mT50P5', `${r.t50_p5_s.toFixed(1)} s`);
     setTxt('mT50Med', `${r.t50_median_s.toFixed(1)} s`);
     setTxt('mPeak', `${r.plant_trace_tpeak_s.toFixed(1)} s`);
@@ -832,6 +885,7 @@ function initRunExplorer() {
         <td class="mono">${r.zen.replace('Experiment-', '#').replace('.czi', '')}</td>
         <td><span class="${r.pooled ? 'badge-pass' : 'badge-excl'}">${r.pooled ? 'Pooled' : 'Excluded'}</span></td>
         <td class="num">${r.frames}</td>
+        <td class="num" style="color:var(--accent-amber);font-weight:600">${r.water_window_str}</td>
         <td class="num">${r.t_settle_s.toFixed(1)}</td>
         <td class="num"><strong>${r.t50_median_s.toFixed(1)}</strong></td>
         <td class="num">${r.plant_trace_tpeak_s.toFixed(1)}</td>
