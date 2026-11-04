@@ -286,6 +286,43 @@ To enable broader community re-use and establish an open benchmark for botanical
 
 ---
 
+## Discussion: Where FloodWave-At Fits in the Modern Landscape of Plant Long-Distance Signaling
+
+The forensic re-analysis of `FloodWave-At` provides an opportunity to reflect on more than a decade of research into systemic signaling, biosensor imaging, and flooding physiology in plants. By reconciling empirical observations with theoretical biomechanics and quantitative imaging, our findings directly resolve discrepancies in the literature and suggest a revised model of root-to-shoot communication.
+
+### 1. The Two-Phase Model: Resolving the Seconds-Scale vs. Minutes-Scale Paradox
+A central point of contention in plant signaling has been the apparent disconnect between ultra-rapid wound-induced signaling (~seconds; Mousavi et al., 2013; Toyota et al., 2018) and slow hypoxia acclimation (~hours; Bailey-Serres & Voesenek, 2008). The original 2020 interpretation of `FloodWave-At` attempted to fit root flooding into the ultra-rapid paradigm by claiming an instantaneous calcium wave peaking within seconds.
+
+Our pixel-level quantification refutes this claim: foliar GCaMP fluorescence increases progressively over 5–10 minutes (*t*₅₀ = 323 s, peak = 527 s). This directly corroborates the landmark study by **Peláez-Vico et al. (2023)**, which demonstrated that root waterlogging in Arabidopsis triggers an acropetal calcium and ROS wave that reaches the shoot over approximately 10 minutes. 
+
+However, our SLEAP pose tracking reveals that root flooding *does* exert an immediate, seconds-scale impact on the shoot—not as an ion wave, but as an immediate **hydrostatic and biomechanical shock**:
+- **Phase 1: Hydrostatic Distension and Buoyant Kinematics (10–50 s):** Fluid arrival drives rapid upward thrust and petiole stretching, generating **7.5%–20.9% branch elongation strain** and up to **23° of angular leaf deflection**.
+- **Phase 2: Acropetal Vascular Relay (5–10 min):** As roots experience oxygen deprivation and altered water potentials, an active vascular relay mediated by `RBOHD`, `GLR3.3/GLR3.6`, and `TPC1` propagates acropetally along petiole and midrib conduits (*v*<sub>vascular</sub> = 680.4 µm/s).
+
+### 2. Hydathodes as Epithemal Sinks Rather Than Autonomous Generators
+In the 2020 model, leaf hydathodes were envisioned as autonomous peripheral triggers that launched an inward-propagating wave. Modern structural and transcriptomic analyses of hydathodes (Cerutti et al., 2017, 2019; Routaboul et al., 2024; Bellenot et al., 2022) paint a very different picture. Hydathodes are the open anatomical termini of the vascular system: xylem tracheids discharge into the loose, intercellular epithem directly beneath permanently open water stomata. 
+
+Our findings are fully consistent with this anatomy:
+- Primary veins sustain the highest peak amplitude (Δ*F* = 99.9 counts), confirming that signals are delivered acropetally via vascular conduits.
+- Marginal teeth exhibit a **1.39× enrichment** of early activating pixels (*t*₅₀ ≤ *P*₅) because incoming fluid and ions pool at the terminal tracheid lacunae.
+- Rather than initiating a wave, hydathodes serve as **pressure-relief sinks and solute accumulation zones** where vascular transients naturally concentrate.
+
+### 3. Topological Geodesics vs. Euclidean Assumptions
+A common assumption in widefield plant imaging is that signals propagate radially from the stem center according to Euclidean straight-line distance (Fichman & Mittler, 2021). Our Dijkstra graph analysis demonstrates that petiole curvature and leaf branching impose a **1.11×–1.57× tortuosity factor**. Signal arrival latency (*t*₅₀) correlates with vascular geodesic distance (*d*<sub>graph</sub>), not Euclidean distance (*d*<sub>euclid</sub>). Modeling velocity along true vascular conduits yields *v*<sub>vascular</sub> = 680.4 µm/s (40.8 mm/min), which fits neatly into the physiological range established for systemic Ca²⁺ waves in salt stress (400–600 µm/s; Choi et al., 2014) and systemic wound waves (~1,000 µm/s; Toyota et al., 2018).
+
+### 4. Literature Comparison Matrix
+
+| Signaling Dimension | FloodWave-At 2026 Finding | Current Literature Benchmark | Synthesis & Impact |
+| :--- | :--- | :--- | :--- |
+| **Systemic Wave Time Scale** | Whole-plant GCaMP rises smoothly over **5–10 min** (*t*₅₀ = 323 s, peak = 527 s). | **Peláez-Vico et al. (2023)** report root waterlogging Ca²⁺/ROS waves reach the shoot over **~10 min**. | **Direct Agreement:** Corroborates Peláez-Vico et al.; refutes the 2020 seconds-scale claim. |
+| **Mechanical vs. Chemical Waves** | Submergence triggers immediate **branch strain (7.5%–20.9%) and hyponasty (up to 23°)** within 14–48 s. | **Christmann et al. (2013)** & **Farmer et al. (2014)** hypothesize rapid hydraulic pressure waves (> 1 cm/s) preceding chemical waves. | **Novel Advancement:** First in vivo quantification of submergence-induced organ strain, providing the mechanical substrate for MSL10 and aquaporin gating. |
+| **Vascular Conduction Speed** | Conduction velocity along vascular bundles is ***v*<sub>vascular</sub> = 680.4 µm/s** (40.8 mm/min). | Salt waves: **400–600 µm/s** (Choi et al., 2014); Wound waves: **~1,000 µm/s** (Toyota et al., 2018). | **Harmonious Alignment:** Fits the physiological envelope of long-distance vascular Ca²⁺ waves mediated by GLR3.3/3.6, RBOHD, and TPC1. |
+| **Hydathode Epithemal Role** | Early convergence sinks (**1.39× enrichment**); veins sustain highest amplitude. | **Cerutti et al. (2019)** & **Routaboul et al. (2024)** identify hydathodes as open xylem termini and guttation valves. | **Conceptual Refinement:** Disproves autonomous peripheral wave generation; confirms hydathodes act as anatomical pressure-relief and solute-pooling terminals. |
+| **Spatial Distance Metric** | Vascular wiring introduces **1.11×–1.57× tortuosity**. Latency follows vascular conduits, not Euclidean space. | Most macro-imaging studies assume radial Euclidean distance from the plant center (Fichman & Mittler, 2021). | **Methodological Advancement:** Proves that vascular topology must replace Euclidean approximations to accurately model plant signal conduction. |
+| **Biosensor Motion & Edge Bias** | Border-straddling circular ROIs generate artificial standard deviation peaks (σ<sub>ROI</sub>) via total variance. | Fixed ROIs are widely used in live biosensor imaging without verifying background contamination or motion drift. | **Methodological Cautionary Tale:** Demonstrates how edge contrast mimics ion spikes; establishes SLEAP motion de-warping for plant biosensing. |
+
+---
+
 
 ## Optical Confounds and FAIR Standards for Whole-Plant Biosensor Imaging
 

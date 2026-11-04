@@ -1255,6 +1255,96 @@ for inst in labels.labeled_frames[0].instances:
         </p>
       </div>
 
+      <!-- Literature Synthesis & Reflection Matrix -->
+      <div style="background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:1.75rem;margin-bottom:2.5rem;box-shadow:var(--shadow-sm)">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;margin-bottom:1.25rem">
+          <div>
+            <h3 style="margin:0;font-family:var(--font-serif);font-size:1.45rem;color:var(--teal)">
+              Scientific State of the Art: How FloodWave-At Fits, Refutes, and Advances the Field
+            </h3>
+            <p style="margin:0.25rem 0 0 0;font-size:0.88rem;color:var(--text-secondary)">
+              Synthesizing our pixel-level re-analysis and biomechanical tracking against modern literature (2011–2026).
+            </p>
+          </div>
+          <div>
+            <a href="manuscript.html#sec-discussion" class="btn btn-secondary" style="font-size:0.82rem">📖 Read Full Literature Discussion →</a>
+          </div>
+        </div>
+
+        <!-- Matrix Tabs -->
+        <div class="forensic-tabs" role="group" aria-label="Literature Reflection Perspectives" style="margin-bottom:1.25rem">
+          <button type="button" class="tab-btn active" data-sota-tab="agree">🤝 Where We Agree (Confirming Literature)</button>
+          <button type="button" class="tab-btn" data-sota-tab="refute">⚡ Where We Challenge &amp; Refute Prior Claims</button>
+          <button type="button" class="tab-btn" data-sota-tab="advance">🚀 Novel Discoveries &amp; Advancements</button>
+        </div>
+
+        <!-- SOTA Panel 1: Agree -->
+        <div class="sota-panel active" data-sota-panel="agree">
+          <div class="sleap-panel-grid" style="margin-top:0">
+            <div class="sleap-panel-card" style="border-left:4px solid #16a085">
+              <h5 style="color:#16a085">1. Minutes-Scale Systemic Relay (~5–10 min)</h5>
+              <p><strong>Corroborates Peláez-Vico et al. (2023):</strong> Across 8 pooled runs, whole-plant GCaMP rises smoothly with a median half-rise latency of <em>t</em><sub>50</sub> = 323 s (~5.4 min) and peaks at 527 s (~8.8 min). This precisely matches the ~10-minute waterlogging systemic Ca<sup>2+</sup>/ROS wave observed by Peláez-Vico et al.</p>
+            </div>
+            <div class="sleap-panel-card" style="border-left:4px solid #16a085">
+              <h5 style="color:#16a085">2. Vascular Wave Conduction Velocity (~680 µm/s)</h5>
+              <p><strong>Aligns with Choi et al. (2014) &amp; Evans et al. (2016):</strong> Modeling propagation latency along rosette vascular geodesics yields <em>v</em><sub>vascular</sub> = 680.4 µm/s (40.8 mm/min), which fits squarely into the known physiological velocity envelope of long-distance vascular Ca<sup>2+</sup> waves (400–600 µm/s for salt; ~1,000 µm/s for wounding).</p>
+            </div>
+            <div class="sleap-panel-card" style="border-left:4px solid #16a085">
+              <h5 style="color:#16a085">3. Hydathodes as Terminal Epithemal Sinks</h5>
+              <p><strong>Corroborates Cerutti et al. (2019) &amp; Routaboul et al. (2024):</strong> Marginal teeth exhibit 1.39× median enrichment of early responders because xylem tracheids discharge into the loose intercellular epithem. Hydathodes naturally pool acropetal vascular flow and serve as hydraulic pressure-relief valves.</p>
+            </div>
+            <div class="sleap-panel-card" style="border-left:4px solid #16a085">
+              <h5 style="color:#16a085">4. Intensiometric Biosensor Vulnerabilities</h5>
+              <p><strong>Corroborates Wagner et al. (2019):</strong> Confirms that single-wavelength GCaMP intensity is vulnerable to hypoxic pH shifts (p<em>K</em><sub>a</sub> &asymp; 7.0–7.5), optical coupling under support meshes, and leaf motion, necessitating ratiometric calibration and sub-pixel registration.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- SOTA Panel 2: Refute -->
+        <div class="sota-panel" data-sota-panel="refute" style="display:none">
+          <div class="sleap-panel-grid" style="margin-top:0">
+            <div class="sleap-panel-card" style="border-left:4px solid #c0392b">
+              <h5 style="color:#c0392b">1. Refuting the 2020 "Seconds-Scale" Claim</h5>
+              <p><strong>The Standard Deviation Artifact:</strong> The 2020 claim of an instantaneous calcium wave peaking within seconds was entirely an artifact of plotting within-ROI standard deviation (<code>StDev</code>). Due to 27.7% border-straddling background contamination, the cross-term of total variance peaked artificially as tissue brightened. Refined ROIs prove true tissue mean rises smoothly over minutes.</p>
+            </div>
+            <div class="sleap-panel-card" style="border-left:4px solid #c0392b">
+              <h5 style="color:#c0392b">2. Refuting Autonomous Hydathode Triggering</h5>
+              <p><strong>Convergence Sinks, Not Wave Spark Plugs:</strong> The 2020 hypothesis assumed hydathodes autonomously launched a reverse inward wave. In reality, primary veins sustain the highest peak dynamic range (&Delta;<em>F</em> = 99.9 counts), demonstrating that signals travel acropetally up the petiole and midrib before terminating at the hydathode epithem.</p>
+            </div>
+            <div class="sleap-panel-card" style="border-left:4px solid #c0392b">
+              <h5 style="color:#c0392b">3. Refuting Euclidean Distance Assumptions</h5>
+              <p><strong>Vascular Routing vs. Air Shortcuts:</strong> Most widefield imaging studies assume radial Euclidean distance from the plant center. We prove rosette vascular wiring imposes a tortuosity factor up to 1.57× over straight-line distances. Signal arrival latency is dictated by vascular connectivity, not straight-line proximity.</p>
+            </div>
+            <div class="sleap-panel-card" style="border-left:4px solid #c0392b">
+              <h5 style="color:#c0392b">4. Refuting Static Sampling on Moving Plants</h5>
+              <p><strong>Motion Drift Mimics Signaling:</strong> Stamping static circular ROIs onto deflecting leaves generates high-frequency motion jitter that corrupts calcium traces. We demonstrate that static sampling introduces up to 71% spurious noise, which is eliminated by dynamic pose tracking.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- SOTA Panel 3: Advance -->
+        <div class="sota-panel" data-sota-panel="advance" style="display:none">
+          <div class="sleap-panel-grid" style="margin-top:0">
+            <div class="sleap-panel-card" style="border-left:4px solid #2980b9">
+              <h5 style="color:#2980b9">1. The Two-Phase Signaling Model</h5>
+              <p><strong>Reconciling Mechanics with Ion Fluxes:</strong> We introduce a unified model: Phase 1 (10–50 s) is an immediate <strong>hydrostatic and mechanical shock</strong> (water impact, branch strain, hyponasty); Phase 2 (5–10 min) is an <strong>acropetal vascular relay</strong> mediated by RBOHD, GLRs, and TPC1.</p>
+            </div>
+            <div class="sleap-panel-card" style="border-left:4px solid #2980b9">
+              <h5 style="color:#2980b9">2. First In Vivo Proof of Flooding Organ Strain</h5>
+              <p><strong>Biomechanical Quantification:</strong> Sub-pixel SLEAP tracking provides the first empirical quantification of organ-scale deformation during submergence: <strong>7.5%–20.9% branch elongation strain</strong> and up to <strong>22.98° angular leaf deflection</strong>, providing the physical trigger for MSL10 mechanosensitive channel activation.</p>
+            </div>
+            <div class="sleap-panel-card" style="border-left:4px solid #2980b9">
+              <h5 style="color:#2980b9">3. SLEAP Botanical Pose Estimation Pipeline</h5>
+              <p><strong>Open Community Benchmark:</strong> We formulated the 33-node <code>ArabidopsisRosette</code> skeleton and exported standardized HDF5 <code>.slp</code> project packages, achieving a <strong>54.3% reduction in baseline motion noise</strong> via automated motion de-warping.</p>
+            </div>
+            <div class="sleap-panel-card" style="border-left:4px solid #2980b9">
+              <h5 style="color:#2980b9">4. Five-Point FAIR Biosensor Blueprint</h5>
+              <p><strong>Methodological Standards:</strong> We outline a five-point checklist (ratiometric imaging, hardware TTL fluid delivery, optical hypocotyl baffling, marginal imaging with epithem markers, and deterministic open code) to permanently avoid historical biosensing traps.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="forensic-tabs" role="group" aria-label="Filter literature by topic">
         <button type="button" class="tab-btn active" data-lit-filter="all">All Key References (12)</button>
         <button type="button" class="tab-btn" data-lit-filter="flooding">Flooding &amp; Waterlogging</button>

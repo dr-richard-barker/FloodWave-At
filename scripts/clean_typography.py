@@ -165,6 +165,8 @@ def clean_markdown(content):
 
     # Water potential, chemical formulas in markdown
     content = content.replace(r'($\Delta \Psi_w$)', '(ΔΨ<sub>w</sub>)')
+    content = content.replace(r'$\Delta\Psi_w$', 'ΔΨ<sub>w</sub>')
+    content = content.replace(r'($\Delta\Psi_w$)', '(ΔΨ<sub>w</sub>)')
     content = content.replace(r'($O_2^{\bullet-}$)', '(O₂•⁻)')
     content = content.replace(r'$O_2^{\bullet-}$', 'O₂•⁻')
     content = content.replace(r'$H_2O_2$', 'H₂O₂')
@@ -179,6 +181,33 @@ def clean_markdown(content):
     content = content.replace(r'($\Delta F$', '(Δ*F*')
     content = content.replace(r'$t_{50} \le 260.6$ s', '*t*₅₀ ≤ 260.6 s')
     content = content.replace(r'$t_{50} \le 261$ s', '*t*₅₀ ≤ 261 s')
+
+    # Literature synthesis specific patterns
+    content = content.replace(r'$$\sigma^2_{\text{ROI}}(t) = p\,\sigma^2_{\text{leaf}}(t) + (1-p)\,\sigma^2_{\text{bg}}(t) + p(1-p)[\mu_{\text{leaf}}(t) - \mu_{\text{bg}}(t)]^2$$',
+                              '*σ*²<sub>ROI</sub>(*t*) = *p* *σ*²<sub>leaf</sub>(*t*) + (1 − *p*) *σ*²<sub>bg</sub>(*t*) + *p*(1 − *p*)[*μ*<sub>leaf</sub>(*t*) − *μ*<sub>bg</sub>(*t*)]²')
+    content = content.replace(r'$p(1-p)$', '*p*(1 − *p*)')
+    content = content.replace(r'$p \approx 0.5$', '*p* ≈ 0.5')
+    content = content.replace(r'$\mu_{\text{leaf}}$', '*μ*<sub>leaf</sub>')
+    content = content.replace(r'$\mu_{\text{bg}}$', '*μ*<sub>bg</sub>')
+    content = content.replace(r'$p = 1.0$', '*p* = 1.0')
+    content = content.replace(r'$E_{\text{tissue}}$', '*E*<sub>tissue</sub>')
+    content = content.replace(r'$t_{50} \le P_5$', '*t*₅₀ ≤ *P*₅')
+    content = content.replace(r'$\Delta F = 99.9\text{ counts}$', 'Δ*F* = 99.9 counts')
+    content = content.replace(r'$t_{50} = 503–560\text{ s}$', '*t*₅₀ = 503–560 s')
+    content = content.replace(r'$\tau = d_{\text{graph}} / d_{\text{euclid}} = 1.11\times - 1.57\times$', '*τ* = *d*<sub>graph</sub> / *d*<sub>euclid</sub> = 1.11×–1.57×')
+    content = content.replace(r'$\tau = d_{\text{graph}} / d_{\text{euclid}}$', '*τ* = *d*<sub>graph</sub> / *d*<sub>euclid</sub>')
+    content = content.replace(r'**$v_{\text{vascular}} = 680.4\,\mu\text{m/s}$ ($40.8\,\text{mm/min}$)**', '***v*<sub>vascular</sub> = 680.4 µm/s (40.8 mm/min)**')
+    content = content.replace(r'$v_{\text{vascular}} = 680.4\,\mu\text{m/s}$', '*v*<sub>vascular</sub> = 680.4 µm/s')
+    content = content.replace(r'($40.8\,\text{mm/min}$)', '(40.8 mm/min)')
+    content = content.replace(r'$\epsilon(t) = \Delta L / L_0$', '*ε*(*t*) = Δ*L* / *L*₀')
+    content = content.replace(r'peak $= 527\text{ s}$', 'peak = 527 s')
+    content = content.replace(r'$> 1–10\text{ cm/s}$', '> 1–10 cm/s')
+    content = content.replace(r'$1,000\,\mu\text{m/s}$', '1,000 µm/s')
+    content = content.replace(r'$400–600\,\mu\text{m/s}$', '400–600 µm/s')
+    content = content.replace(r'$\sigma_{\text{ROI}}$', '*σ*<sub>ROI</sub>')
+    content = content.replace(r'$\epsilon < 5\%$', '*ε* < 5%')
+    content = content.replace(r'$t_{50} > 500\text{ s}$', '*t*₅₀ > 500 s')
+    content = content.replace(r'$v \ll 600\,\mu\text{m/s}$', '*v* ≪ 600 µm/s')
 
     # Units and numbers in $...$
     content = re.sub(r'\$([0-9.,–-]+)\\\s*mum\s*s\^\{-1\}\$', r'\1 µm s⁻¹', content)
@@ -229,6 +258,7 @@ def main():
         ('docs/index.html', clean_html),
         ('docs/manuscript.html', clean_html),
         ('manuscript/FloodWave_NatureCommunications_Perspective.md', clean_markdown),
+        ('manuscript/LITERATURE_SYNTHESIS.md', clean_markdown),
         ('README.md', clean_markdown)
     ]
     

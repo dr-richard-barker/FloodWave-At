@@ -961,6 +961,14 @@ pre,
   display: block;
 }
 
+.sota-panel {
+  display: none;
+}
+
+.sota-panel.active {
+  display: block;
+}
+
 .sleap-panel-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));

@@ -706,6 +706,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initSciencePathway();
   initForensicTabs();
   initRunExplorer();
+  initLitMatrix();
   initLiteratureLibrary();
   initLightboxDialog();
   initCitationCopy();
@@ -1007,6 +1008,22 @@ function initRunExplorer() {
   });
 
   renderStrip();
+}
+
+/* ==========================================================================
+   4b. State-of-the-Art Literature Reflection Matrix Tabs
+   ========================================================================== */
+function initLitMatrix() {
+  const tabBtns = document.querySelectorAll('[data-sota-tab]');
+  const panels = document.querySelectorAll('[data-sota-panel]');
+
+  tabBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const target = btn.dataset.sotaTab;
+      tabBtns.forEach((b) => b.classList.toggle('active', b === btn));
+      panels.forEach((p) => p.classList.toggle('active', p.dataset.sotaPanel === target));
+    });
+  });
 }
 
 /* ==========================================================================
