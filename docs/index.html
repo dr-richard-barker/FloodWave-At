@@ -39,7 +39,8 @@
           <a href="#science">Root-to-Hydathode Science</a>
           <a href="#forensic-audit">2020 vs 2026 Audit</a>
           <a href="#representative-run">Pixel-Wise Pipeline</a>
-          <a href="#explorer">12-Run Explorer</a>
+          <a href="#all-runs">12-Run Explorer</a>
+          <a href="#sleap-pose">SLEAP Plant Pose</a>
           <a href="#literature">Literature</a>
           <a href="manuscript.html" class="nav-cta">Perspective Manuscript →</a>
         </nav>
@@ -939,6 +940,107 @@
           <span class="mono" style="font-size:0.78rem;color:var(--text-on-slate-muted)">Red contour = automated plant mask over late reference image</span>
         </div>
         <img src="assets/figures/mask_qc_sheet.png" alt="Plant mask red outline over each run's late registered reference image for all 12 runs" data-title="All 12 Runs: Plant Segmentation Mask Quality Control Sheet" class="zoomable-fig" style="border-color:var(--border-slate);max-height:380px;width:100%;object-fit:contain;background:#0e1317">
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5B: SLEAP Plant Pose Estimation & Biomechanical Kinematics -->
+  <section id="sleap-pose" class="section-alt">
+    <div class="container">
+      <div class="section-header">
+        <p class="eyebrow" style="color:var(--cose-teal)">AI-Powered Botanical Pose Estimation · sleap.ai</p>
+        <h2 class="section-title">SLEAP Plant Pose: Vascular Geodesics, Hydraulic Strain &amp; Motion De-Warping</h2>
+        <p class="section-subtitle">
+          Using the official <code>sleap-io</code> framework (<a href="https://sleap.ai/" target="_blank" rel="noopener" style="color:var(--cose-teal)">sleap.ai</a>), we formulated an articulated 33-node botanical skeleton (<code>ArabidopsisRosette</code>) connecting the shoot apical meristem, petiole conduits, vascular midribs, and 22 discrete marginal hydathode teeth. Landmark tracking across 700 frames uncovers four novel biomechanical and physiological patterns.
+        </p>
+      </div>
+
+      <!-- Quick Metrics Strip -->
+      <div class="kpi-grid" style="grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:1rem;margin-bottom:2rem">
+        <div class="kpi-card">
+          <div class="kpi-label">Rosette Pose Skeleton</div>
+          <div class="kpi-value" style="color:var(--cose-navy)">33 Nodes</div>
+          <div class="kpi-sub">32 hierarchical vascular edges</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Vascular Wave Velocity</div>
+          <div class="kpi-value" style="color:var(--cose-teal)">680.4 µm/s</div>
+          <div class="kpi-sub">40.8 mm/min via graph geodesic fit</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Vascular Tortuosity Index</div>
+          <div class="kpi-value" style="color:#27ae60">1.11× – 1.57×</div>
+          <div class="kpi-sub">Topological petiole &amp; vein routing</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Peak Hydraulic Strain</div>
+          <div class="kpi-value" style="color:#d35400">20.87%</div>
+          <div class="kpi-sub">Transient branch elongation in flood surge</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Motion Jitter Reduction</div>
+          <div class="kpi-value" style="color:#8e44ad">54.3%</div>
+          <div class="kpi-sub">Motion-compensated GCaMP sampling</div>
+        </div>
+      </div>
+
+      <!-- Two-column Figure Showcase -->
+      <div class="two-col-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem">
+        <div class="run-visual-card" style="background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--radius-md);padding:1.25rem;box-shadow:var(--shadow-sm)">
+          <h4 style="display:flex;justify-content:space-between;align-items:center;margin-top:0">
+            <span style="color:var(--cose-navy)">Figure 9 | SLEAP Rosette Skeleton &amp; Vascular Geodesic Conduction</span>
+            <span class="mono" style="font-size:0.72rem;color:var(--text-muted)">Click to zoom</span>
+          </h4>
+          <img src="assets/figures/sleap_skeleton_and_graph.png" alt="SLEAP Botanical Pose Skeleton and Vascular Graph Geodesic Conduction" class="zoomable-fig" data-title="Figure 9: SLEAP Skeleton and Vascular Geodesic Conduction" style="border:1px solid var(--border-light);border-radius:var(--radius-sm);width:100%">
+          <p style="font-size:0.82rem;color:var(--text-secondary);margin:0.75rem 0 0 0">
+            <strong>Topological Geodesics vs Euclidean Shortcuts:</strong> Rosette vascular wiring imposes a tortuosity factor up to 1.57× over straight-line distances. Graph-based shortest paths through vascular conduits accurately predict Ca<sup>2+</sup> wave transit latency (<em>v</em><sub>vascular</sub> = 680.4 µm/s).
+          </p>
+        </div>
+
+        <div class="run-visual-card" style="background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--radius-md);padding:1.25rem;box-shadow:var(--shadow-sm)">
+          <h4 style="display:flex;justify-content:space-between;align-items:center;margin-top:0">
+            <span style="color:var(--cose-navy)">Figure 10 | Flooding Kinematics, Hydraulic Strain &amp; De-Warping</span>
+            <span class="mono" style="font-size:0.72rem;color:var(--text-muted)">Click to zoom</span>
+          </h4>
+          <img src="assets/figures/sleap_kinematics_and_strain.png" alt="Flooding-Induced Biomechanical Kinematics, Hydraulic Strain, and Motion Compensation" class="zoomable-fig" data-title="Figure 10: Flooding Kinematics, Strain, and Motion Compensation" style="border:1px solid var(--border-light);border-radius:var(--radius-sm);width:100%">
+          <p style="font-size:0.82rem;color:var(--text-secondary);margin:0.75rem 0 0 0">
+            <strong>Biomechanical Distension &amp; Hyponastic Tilting:</strong> Water arrival triggers 7.5%–20.9% transient branch strain and up to 22.98° angular leaf deflection. Sub-pixel landmark tracking suppresses 54.3% of baseline motion noise, isolating true GCaMP signaling.
+          </p>
+        </div>
+      </div>
+
+      <!-- SLEAP Project Package Download & FAIR Data Card -->
+      <div style="background:var(--bg-card);border:1px solid var(--border-light);border-left:5px solid var(--cose-teal);border-radius:var(--radius-md);padding:1.5rem;box-shadow:var(--shadow-sm);margin-bottom:1rem">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1.5rem">
+          <div style="flex:1;min-width:280px">
+            <h4 style="margin:0 0 0.5rem 0;font-family:var(--font-serif);font-size:1.2rem;color:var(--cose-navy)">
+              📦 Download Standardized SLEAP Project Package (<code>.slp</code>)
+            </h4>
+            <p style="font-size:0.88rem;color:var(--text-secondary);margin:0 0 1rem 0;line-height:1.5">
+              The complete labeled dataset is packaged in the official HDF5-based SLEAP format (<code>expt08_plant_pose.slp</code>, 111 KB) paired with the registered 20-fps MP4 video (4.4 MB). Open it directly in the SLEAP GUI (<code>sleap-label</code>) or in Python via <code>sleap-io</code> for custom machine learning training and biomechanical tracking.
+            </p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.75rem">
+              <a href="assets/sleap/expt08_plant_pose.slp" download class="btn btn-primary" style="background:var(--cose-navy);color:#ffffff;font-size:0.85rem">
+                ⬇ Download SLEAP Project (.slp · 111 KB)
+              </a>
+              <a href="assets/sleap/expt08_rosette_registered.mp4" download class="btn btn-light" style="font-size:0.85rem">
+                🎥 Download Registered MP4 (4.4 MB)
+              </a>
+              <a href="https://github.com/dr-richard-barker/FloodWave-At/blob/main/results/sleap/pose_kinematics_summary.csv" target="_blank" rel="noopener" class="btn btn-light" style="font-size:0.85rem">
+                📊 Kinematics CSV Table ↗
+              </a>
+            </div>
+          </div>
+          <div style="background:var(--bg-parchment);padding:1rem;border-radius:var(--radius-sm);border:1px solid var(--border-light);font-size:0.8rem;line-height:1.5;min-width:260px">
+            <strong style="color:var(--cose-navy)">Python Quickstart via <code>sleap-io</code>:</strong>
+            <pre style="margin:0.4rem 0 0 0;font-family:var(--font-mono);font-size:0.75rem;overflow-x:auto"><code>import sleap_io as sio
+
+labels = sio.load_slp("expt08_plant_pose.slp")
+print(f"Loaded {len(labels.labeled_frames)} frames")
+for inst in labels.labeled_frames[0].instances:
+    print("Meristem at:", inst.points[0])</code></pre>
+          </div>
+        </div>
       </div>
     </div>
   </section>

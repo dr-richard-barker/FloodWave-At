@@ -38,6 +38,7 @@
           <a href="#sec-biophysics">Biophysical Relay</a>
           <a href="#sec-hydathodes">Hydathodes</a>
           <a href="#sec-forensic">2020 vs 2026 Audit</a>
+          <a href="#sec-sleap">SLEAP Kinematics</a>
           <a href="#sec-fair">FAIR Blueprint</a>
           <a href="#references">References (28)</a>
           <button type="button" onclick="window.print()" class="btn btn-primary" style="padding:0.4rem 0.85rem;font-size:0.84rem;margin-left:0.4rem">🖨 Print / Save PDF</button>
@@ -792,8 +793,58 @@
         </figcaption>
       </figure>
 
+      <!-- Section 5: SLEAP Plant Pose Estimation & Biomechanics -->
+      <h2 id="sec-sleap">Botanical Pose Estimation and Biomechanical Kinematics of Flooding Stress Using SLEAP</h2>
+      <p>
+        A persistent challenge in whole-plant biosensor imaging during rapid environmental perturbation is separating genuine physiological ion fluxes from gross organ motion, buoyant deflection, and mechanical strain. To achieve automated, motion-compensated tracking and quantify rosette biomechanics during flooding, we deployed the open-source pose estimation framework <strong>SLEAP</strong> (<code>sleap.ai</code> / <code>sleap-io</code>).
+      </p>
+      <p>
+        Using <code>sleap-io</code> (v0.9.5), we formulated an articulated, biologically informed rosette skeleton (<code>ArabidopsisRosette</code>) composed of <strong>33 anatomical landmark nodes</strong> and <strong>32 directed vascular edges</strong> anchored at the shoot apical meristem (SAM) base:
+      </p>
+      <ul>
+        <li><strong>Rosette Anchor:</strong> 1 central shoot apical meristem node (<code>SAM_meristem</code>), serving as the anatomical entry point for acropetal signals from the root&ndash;hypocotyl axis.</li>
+        <li><strong>Vascular Conduits:</strong> 5 petiole conduit nodes (<code>petiole_conduit</code>) and 5 midrib nodes (<code>vascular_midrib</code>) establishing the primary axial conduits into each major rosette leaf branch (<code>Leaf_L</code>, <code>Leaf_UL</code>, <code>Leaf_UR</code>, <code>Leaf_R</code>, <code>Leaf_B</code>).</li>
+        <li><strong>Hydathode Loci:</strong> 5 distal apical hydathodes (<code>hydathode_apex</code>) terminating each midrib, and 22 discrete marginal tooth hydathodes (<code>hydathode_tooth</code>) along the leaf serrations.</li>
+      </ul>
+      <p>
+        Across all 700 frames (847.5 s) of representative recording <code>expt08</code>, sub-pixel landmark tracking and graph-theoretic modeling uncovered four fundamental patterns:
+      </p>
 
-      <!-- Section 5 -->
+      <figure class="manuscript-figure">
+        <img src="assets/figures/sleap_skeleton_and_graph.png" alt="Figure 9: SLEAP Botanical Pose Skeleton and Vascular Graph Geodesic Conduction" data-title="Figure 9: SLEAP Skeleton and Vascular Geodesic Conduction" class="zoomable-fig">
+        <figcaption>
+          <strong>Figure 9 | SLEAP botanical pose estimation: resolving vascular geodesic conduction in Arabidopsis.</strong> <strong>A:</strong> Articulated <code>ArabidopsisRosette</code> skeleton (33 nodes, 32 edges) overlaid on the grayscale reference image with segmented tissue boundaries, showing the central SAM anchor (purple star), petiole conduits (blue squares), vascular midribs (green diamonds), and terminal hydathodes (amber circles). Scale bar, 2 mm. <strong>B:</strong> Continuous 2D vascular geodesic distance grid (<em>d</em><sub>graph</sub>) propagated from the meristem base. <strong>C:</strong> Activation latency (<em>t</em><sub>50</sub>) correlated against vascular graph geodesics versus Euclidean straight-line distance. <strong>D:</strong> Vascular tortuosity index (&tau; = <em>d</em><sub>graph</sub> / <em>d</em><sub>euclid</sub>) grouped across individual leaf branches, quantifying anatomical signal routing delays to distal leaf teeth.
+        </figcaption>
+      </figure>
+
+      <p>
+        <strong>Pattern 1: Vascular Graph Geodesics Outperform Euclidean Proximity.</strong> In conventional plant image analysis, signal distance from an organ center is frequently approximated as straight-line Euclidean distance (<em>d</em><sub>euclid</sub>). However, because plant vascular bundles follow tortuous petiole curvatures and branching midrib paths, Euclidean distance introduces severe anatomical shortcuts across non-vascular air gaps. Using Dijkstra's algorithm across the vascular network, we computed true vascular graph geodesic distances (<em>d</em><sub>graph</sub>) from the meristem to all skeleton nodes. The rosette's vascular tortuosity index (&tau; = <em>d</em><sub>graph</sub> / <em>d</em><sub>euclid</sub>) ranges from 1.00&times; to <strong>1.57&times;</strong> (mean 1.11&times;). Modeling signal arrival latency (<em>t</em><sub>50</sub>) against graph geodesic distance yields an estimated in vivo vascular conduction velocity of <strong>680.4 &micro;m/s</strong> (40.8 mm/min), aligning with systemic vascular Ca<sup>2+</sup> wave velocities reported in Arabidopsis.
+      </p>
+
+      <figure class="manuscript-figure">
+        <img src="assets/figures/sleap_kinematics_and_strain.png" alt="Figure 10: Flooding-Induced Biomechanical Kinematics, Hydraulic Strain, and Motion Compensation" data-title="Figure 10: Flooding Kinematics, Strain, and Motion Compensation" class="zoomable-fig">
+        <figcaption>
+          <strong>Figure 10 | Flooding-induced biomechanical kinematics, hydraulic strain, and motion compensation.</strong> <strong>A:</strong> Quiver displacement field illustrating landmark motion vectors (scaled 8&times;) during the flood influx surge at 36.4 s. <strong>B:</strong> Branch elongation strain &epsilon;(<em>t</em>) time series across 5 leaves, highlighting transient mechanical distension during the water influx window (14.6&ndash;48.5 s, shaded blue). <strong>C:</strong> Non-rigid leaf angular deflection &Delta;&theta;(<em>t</em>) capturing buoyant tilting and hyponasty. <strong>D:</strong> Physiological signal fidelity: dynamic SLEAP landmark tracking suppresses 54.3% of baseline motion noise compared to static circular sampling.
+        </figcaption>
+      </figure>
+
+      <p>
+        <strong>Pattern 2: Biomechanical Kinematics and Hydraulic Strain During Flooding.</strong> Root water influx does not merely deliver an optical meniscus; it exerts direct hydrostatic and buoyant forces on the intact plant. By tracking landmark coordinates across time, we directly quantified two orthogonal mechanical modes:
+      </p>
+      <ul>
+        <li><strong>Axial Branch Strain:</strong> Branch elongation strain &epsilon;(<em>t</em>) = (<em>L</em>(<em>t</em>) &minus; <em>L</em><sub>0</sub>) / <em>L</em><sub>0</sub> reveals marked transient distension coinciding with water addition (14.6&ndash;48.5 s, peaking at 36.4 s). Peak mechanical strain reaches <strong>20.87%</strong> in Leaf B, <strong>13.82%</strong> in Leaf R, <strong>12.91%</strong> in Leaf UL, <strong>10.53%</strong> in Leaf UR, and <strong>7.45%</strong> in Leaf L.</li>
+        <li><strong>Non-Rigid Angular Deflection:</strong> Flooding induces substantial buoyant hyponasty and leaf tilting, with Leaf UL exhibiting up to <strong>22.98&deg;</strong> of transient angular deflection before settling into a new post-flood equilibrium.</li>
+      </ul>
+
+      <p>
+        <strong>Pattern 3: Motion-Compensated "De-Warping" Restores Physiological GCaMP Fidelity.</strong> Static circular ROIs applied to moving leaves inevitably sample fluctuating proportions of leaf lamina, veins, and background as leaves deflect, creating spurious high-frequency noise and false "wave" spikes. By dynamically querying GCaMP fluorescence within moving circular discs centered exactly on the tracked SLEAP landmarks at each frame, we achieved motion-compensated extraction. This dynamic sampling achieved a <strong>54.3% mean reduction in baseline motion jitter</strong> across rosette landmarks (and up to 71.2% in peripheral teeth), isolating genuine physiological calcium transients from mechanical motion artifacts.
+      </p>
+
+      <p>
+        <strong>Pattern 4: Standardized Open SLEAP Package for Plant Biomechanics.</strong> To enable broader community re-use and establish an open benchmark for botanical pose estimation, we exported the complete tracking dataset in the standardized HDF5-based SLEAP format (<code>expt08_plant_pose.slp</code>, 111 KB; 140 labeled frames) accompanied by the registered MP4 video (<code>expt08_rosette_registered.mp4</code>, 4.4 MB) and summary kinematics table (<code>results/sleap/pose_kinematics_summary.csv</code>). The project can be opened directly in the SLEAP desktop annotation GUI (<code>sleap-label</code>) or loaded programmatically via <code>sleap-io</code> in Python.
+      </p>
+
+      <!-- Section 6 -->
       <h2 id="sec-fair">Optical Confounds and FAIR Standards for Whole-Plant Biosensor Imaging</h2>
       <p>
         Macroscopic widefield fluorescence imaging of intact rosettes during root treatment is uniquely susceptible to physical and optical confounds: (1) <strong>refractive index and meniscus coupling</strong> when water contacts a sub-rosette support grid (1.46 mm pitch in our setup); (2) <strong>buoyant leaf motion and focal plane drift</strong>; and (3) <strong>single-wavelength intensity ambiguity</strong> when initial tissue fluorescence sits only 19–71 counts above camera offset and cytosolic pH shifts during hypoxia can quench GCaMP (p<em>K</em><sub>a</sub> &asymp; 7.0–7.5)<sup><a href="#ref4">4</a></sup>.
