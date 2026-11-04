@@ -629,6 +629,170 @@
       </div>
 
 
+      
+      <!-- Refined Tissue-Specific Segmentation Subsection -->
+      <h3 id="sec-tissue-segmentation">From Crude Circles to Anatomical Tissues: A Refined Segmentation System</h3>
+      <p>
+        A central limitation of the initial 2020 exploratory analysis was the reliance on crude circular regions of interest (radius 245 µm; meristem circle 422 µm) hand-drawn onto a single video frame. Circular geometries do not conform to irregular leaf margins, serrations, or vascular anatomy. Consequently, measuring circles positioned near the rosette boundary introduced severe <strong>off-plant background contamination</strong>: <code>Hydrathode-2</code> encompassed <strong>27.7%</strong> off-plant background pixels (only 72.3% on plant), while <code>Mersitem-1</code> straddled petiole bases and empty voids with <strong>21.3%</strong> background pixels (Fig. 7; Table 4).
+      </p>
+      <p>
+        By the law of total variance (Box 2), any uniform brightening of the leaf relative to the dark background creates a massive, spurious spike in within-ROI pixel standard deviation (&sigma;<sub>ROI</sub>) strictly proportional to the boundary contrast term <em>p</em>(1 &minus; <em>p</em>)[<em>&mu;</em><sub>leaf</sub> &minus; <em>&mu;</em><sub>bg</sub>]<sup>2</sup>. This mathematical artifact explains why <code>Hydrathode-2</code> and <code>Mersitem-1</code> produced steep, early "waves" in the 2020 workbook that vanished when mean fluorescence was plotted instead (Fig. 7d). Furthermore, circular lamina ROIs directly intersected major primary and secondary veins, conflating high-amplitude vascular calcium transients with slower interveinal mesophyll responses.
+      </p>
+      <p>
+        To overcome these limitations and determine whether tissue-specific kinetics genuinely exist, we developed an automated, reproducible anatomical segmentation pipeline applied across all twelve recordings (<code>analysis/tissue_segmentation.py</code>; Fig. 6):
+      </p>
+      <ol>
+        <li><strong>Hydathode Epithems / Marginal Teeth (<code>hydathodes</code>):</strong> Morphological boundary curvature peaks along leaf serrations and the distal apex that connect to terminal branches of the vascular network. Clipped strictly to plant tissue (<em>r</em> &approx; 40–80 µm, 0.00% background contamination).</li>
+        <li><strong>Primary &amp; Secondary Vasculature (<code>veins</code>):</strong> Multiscale Sato ridge filter (&gt; 80th percentile on the rosette core) isolating xylem and phloem bundles along petioles and leaf veins.</li>
+        <li><strong>Pure Interveinal Lamina (<code>pure_lamina</code>):</strong> Mesophyll ground tissue located &gt; 120 µm inward from leaf margins and &gt; 80 µm away from any vascular bundle. This guarantees <strong>zero edge contrast artifacts and zero vascular spillover</strong>.</li>
+        <li><strong>Rosette Shoot Apex / Meristem (<code>meristem</code>):</strong> The central confluence of the rosette where petiole bases converge, strictly masked to tissue (0.00% background void).</li>
+        <li><strong>Spatial Negative Controls:</strong> Non-hydathode leaf margin (<code>margin_other</code>) and an 80–160 µm concentric inner control band (<code>inner_control</code>).</li>
+      </ol>
+
+      <figure class="manuscript-figure">
+        <img src="assets/figures/tissue_comparison_expt08.png" alt="Figure 7: Forensic Performance Audit: 2020 Crude Circles vs 2026 Refined Tissue ROIs on Representative Run expt08" data-title="Figure 7: Forensic Performance Audit on expt08" class="zoomable-fig">
+        <figcaption>
+          <strong>Figure 7 | Quantitative forensic performance audit: 2020 crude circular ROIs versus 2026 refined tissue ROIs on the representative recording (<code>expt08</code>).</strong> <strong>A:</strong> Spatial layout showing the seven 2020 circular ROIs (dashed colored rings) with off-plant background leakage highlighted in red, compared with the refined tissue masks. <strong>B:</strong> Off-plant background contamination percentage: crude circles suffered up to 27.7% contamination (<code>Hydrathode-2</code>: 27.7%, <code>Mersitem-1</code>: 21.3%), whereas all refined ROIs achieve <strong>0.00% contamination</strong>. <strong>C:</strong> Background-subtracted mean fluorescence time courses (counts above local background). <strong>D:</strong> Within-ROI pixel standard deviation over time: the steep peaks in <code>Hydrathode-2</code> and <code>Mersitem-1</code> present in crude circles completely collapse in the refined 0%-background ROIs, proving they were boundary-contrast artifacts.
+        </figcaption>
+      </figure>
+
+      <div class="table-scroll" style="margin:1.75rem 0">
+        <table class="data-table">
+          <caption><strong>Table 4 | Direct forensic audit of the seven 2020 ROIs versus 2026 refined pure-tissue ROIs on representative recording <code>expt08</code> (<code>results/refined_rois_expt08.json</code>).</strong></caption>
+          <thead>
+            <tr>
+              <th>ROI Label</th>
+              <th>Anatomical Target</th>
+              <th>2020 Crude Pixels</th>
+              <th>2020 BG Contamination</th>
+              <th>2020 Rise (counts)</th>
+              <th>2020 SNR</th>
+              <th>2026 Refined Pixels</th>
+              <th>2026 BG Contamination</th>
+              <th>2026 Rise (counts)</th>
+              <th>2026 SNR</th>
+              <th>2026 <em>t</em><sub>50</sub> (s)</th>
+              <th>Forensic Finding</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>Hydrathode-1</code></td>
+              <td>Marginal tooth epithem</td>
+              <td>110</td>
+              <td>2.7%</td>
+              <td>225.7</td>
+              <td>569.0</td>
+              <td>25</td>
+              <td><strong>0.00%</strong></td>
+              <td>218.0</td>
+              <td>257.9</td>
+              <td>417.0</td>
+              <td>Refined to discrete tooth apex; true rise matches vascular fan</td>
+            </tr>
+            <tr>
+              <td><code>Hydrathode-2</code></td>
+              <td>Marginal tooth tip</td>
+              <td>112</td>
+              <td><span class="badge badge-warning">27.7%</span></td>
+              <td>108.4</td>
+              <td>124.8</td>
+              <td>35</td>
+              <td><strong>0.00%</strong></td>
+              <td>136.6</td>
+              <td>173.0</td>
+              <td>339.4</td>
+              <td>27.7% BG depressed amplitude; refined ROI restores +26% signal</td>
+            </tr>
+            <tr>
+              <td><code>Lamina-1</code></td>
+              <td>Blade mesophyll</td>
+              <td>112</td>
+              <td>0.0%</td>
+              <td>220.7</td>
+              <td>361.8</td>
+              <td>102</td>
+              <td><strong>0.00%</strong></td>
+              <td>216.6</td>
+              <td>343.9</td>
+              <td>507.9</td>
+              <td>Overlapped secondary vein; refined mesophyll rises at 8.5 min</td>
+            </tr>
+            <tr>
+              <td><code>Lamina-2</code></td>
+              <td>Blade/petiole nexus</td>
+              <td>111</td>
+              <td>0.0%</td>
+              <td>199.2</td>
+              <td>533.2</td>
+              <td>78</td>
+              <td><strong>0.00%</strong></td>
+              <td>198.5</td>
+              <td>502.2</td>
+              <td>527.3</td>
+              <td>Overlapped primary midrib; pure lamina lags vein by ~90 s</td>
+            </tr>
+            <tr>
+              <td><code>Lamina-3</code></td>
+              <td>Distal blade mesophyll</td>
+              <td>114</td>
+              <td>0.0%</td>
+              <td>155.0</td>
+              <td>97.3</td>
+              <td>108</td>
+              <td><strong>0.00%</strong></td>
+              <td>153.6</td>
+              <td>95.1</td>
+              <td>560.0</td>
+              <td>Pure interveinal mesophyll; latest activating sector (9.3 min)</td>
+            </tr>
+            <tr>
+              <td><code>Mersitem-1</code></td>
+              <td>Rosette shoot apex</td>
+              <td>334</td>
+              <td><span class="badge badge-warning">21.3%</span></td>
+              <td>71.5</td>
+              <td>105.7</td>
+              <td>263</td>
+              <td><strong>0.00%</strong></td>
+              <td>113.0</td>
+              <td>123.4</td>
+              <td>258.2</td>
+              <td>21.3% void depressed amplitude; refined ROI restores +58% signal</td>
+            </tr>
+            <tr>
+              <td><code>Hydrathode-3</code></td>
+              <td>Internal lamina/vein</td>
+              <td>111</td>
+              <td>0.0%</td>
+              <td>145.3</td>
+              <td>287.4</td>
+              <td>111</td>
+              <td><strong>0.00%</strong></td>
+              <td>145.3</td>
+              <td>287.4</td>
+              <td>301.8</td>
+              <td>Sits 569 µm inside plant; actually internal vascular termination</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <figure class="manuscript-figure">
+        <img src="assets/figures/tissue_segmentation_all_runs.png" alt="Figure 6: Multi-Run Tissue-Specific Anatomical Segmentation Atlas Across All 12 Recordings" data-title="Figure 6: Multi-Run Tissue Segmentation Atlas" class="zoomable-fig">
+        <figcaption>
+          <strong>Figure 6 | Multi-run tissue-specific anatomical segmentation atlas across all twelve recordings (<code>analysis/tissue_segmentation.py</code>).</strong> Grayscale reference images with transparent multi-color overlays defining the five pure anatomical compartments: hydathode teeth (orange/gold markers, 0% background), primary and secondary veins (cyan/blue), pure interveinal lamina (green), rosette shoot apex / meristem (purple), and concentric inner control band (grey). Scale bars, 2 mm. Border color denotes QC status (teal = pooled, red = excluded).
+        </figcaption>
+      </figure>
+
+      <figure class="manuscript-figure">
+        <img src="assets/figures/tissue_kinetics_population.png" alt="Figure 8: Dataset-Wide Tissue Kinetics and Hierarchical Signaling Flow Across 8 Pooled Runs" data-title="Figure 8: Population Kinetics Across 8 Pooled Runs" class="zoomable-fig">
+        <figcaption>
+          <strong>Figure 8 | Dataset-wide tissue kinetics and hierarchical signaling flow across the eight pooled recordings.</strong> <strong>A:</strong> Population-normalized background-subtracted time courses (median &plusmn; interquartile range) for hydathodes (orange), veins (blue), pure lamina (green), and shoot meristem (purple). <strong>B:</strong> Half-rise time (<em>t</em><sub>50</sub>) boxplots with paired individual-run lines. <strong>C:</strong> Spatial enrichment of the earliest 5% of activating pixels (<em>t</em><sub>50</sub> &le; <em>P</em><sub>5</sub>): hydathode teeth exhibit a median enrichment of <strong>1.39&times;</strong> (up to 4.52&times;), exceeding non-hydathode margin and lamina. <strong>D:</strong> Dynamic range by tissue: primary veins sustain the highest peak amplitude (&Delta;<em>F</em> median 99.9 counts).
+        </figcaption>
+      </figure>
+
+
       <!-- Section 5 -->
       <h2 id="sec-fair">Optical Confounds and FAIR Standards for Whole-Plant Biosensor Imaging</h2>
       <p>
