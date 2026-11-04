@@ -92,12 +92,13 @@
 
       <div class="hero-actions">
         <a href="#video-showcase" class="btn btn-primary">▶ Watch Synchronized Expt 8 Time-Lapse</a>
+        <a href="#sleap-pose" class="btn btn-secondary" style="border-color:var(--cose-teal);color:var(--teal);font-weight:600">🌿 SLEAP Pose &amp; Kinematics (Figures 9 &amp; 10) →</a>
         <a href="manuscript.html" class="btn btn-secondary">📄 Read Nature Communications Perspective</a>
-        <a href="#explorer" class="btn btn-secondary">🔬 Explore All 12 Recordings</a>
+        <a href="#all-runs" class="btn btn-secondary">🔬 Explore All 12 Recordings</a>
         <a href="https://github.com/dr-richard-barker/FloodWave-At" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">GitHub Repository ↗</a>
       </div>
 
-      <div class="hero-kpi-grid">
+      <div class="hero-kpi-grid" style="grid-template-columns:repeat(auto-fit, minmax(220px, 1fr))">
         <div class="kpi-card">
           <div class="kpi-value">323 s</div>
           <div class="kpi-label">Median Pixel Half-Rise (t50)</div>
@@ -112,6 +113,11 @@
           <div class="kpi-value">1.99× / 1.80×</div>
           <div class="kpi-label">Veins &amp; Margin Lead in Expt 8</div>
           <p class="kpi-desc">In the 2020 representative run (<code>expt08</code>), veins (1.99×) and outer margins (1.80×) lead the interior lamina (0.36×), reflecting acropetal vascular delivery terminating at marginal hydathodes.</p>
+        </div>
+        <div class="kpi-card" style="border-top:3px solid var(--cose-teal)">
+          <div class="kpi-value" style="color:var(--teal)">33 Nodes · Figs 9 &amp; 10</div>
+          <div class="kpi-label">SLEAP Botanical Pose &amp; Kinematics</div>
+          <p class="kpi-desc">Articulated <code>ArabidopsisRosette</code> skeleton tracks 33 vascular &amp; hydathode landmarks across 700 frames. Resolves a <strong>680.4 µm/s</strong> vascular wave, <strong>20.9%</strong> peak hydraulic strain, and <strong>54.3%</strong> motion noise reduction.</p>
         </div>
         <div class="kpi-card kpi-lamina">
           <div class="kpi-value">StDev ≠ Mean</div>
@@ -170,7 +176,7 @@
               <span>Dropped in 2020 AVI</span>
             </div>
             <div class="chapter-title">1. Pre-Flood Baseline (0–14.6 s) &amp; Water Influx Surge (14.6–48.5 s)</div>
-            <p class="chapter-desc">Recording starts with the plant completely stationary on the dry mesh (frames 0–11; motion step &lt; 0.1 px). Water enters at frame 12 (14.6 s), causing a meniscus surge peaking at frame 30 (36.4 s) before settling at frame 40 (48.5 s).</p>
+            <p class="chapter-desc">Recording starts with the plant completely stationary on the dry mesh (frames 0–11; motion step &lt; 0.1 px). Water enters at frame 12 (14.6 s), causing a meniscus surge peaking at frame 30 (36.4 s) before settling at frame 40 (48.5 s). <em>Quantified with sub-pixel botanical pose tracking in <a href="#sleap-pose" style="color:var(--accent-amber);text-decoration:underline">Figure 10</a> (up to 20.9% branch strain &amp; 23° leaf deflection).</em></p>
           </button>
 
           <button type="button" class="chapter-btn" data-real-sec="48.5">
@@ -686,6 +692,27 @@
         </div>
       </div>
 
+      <!-- SLEAP Integration Feature Callout in Representative Run -->
+      <div style="background:var(--bg-card);border:1px solid var(--border-light);border-left:5px solid var(--teal);border-radius:var(--radius-md);padding:1.5rem;margin:2.25rem 0;box-shadow:var(--shadow-sm);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.25rem">
+        <div style="flex:1;min-width:280px">
+          <div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:0.35rem">
+            <span style="background:var(--teal);color:#ffffff;font-size:0.75rem;padding:0.2rem 0.55rem;border-radius:4px;font-weight:600">NEW · SLEAP Pose Tracking</span>
+            <span style="font-size:0.85rem;color:var(--blue);font-weight:600">Figures 9 &amp; 10</span>
+          </div>
+          <h4 style="margin:0 0 0.4rem 0;font-family:var(--font-serif);font-size:1.25rem;color:var(--teal)">
+            Beyond Fixed ROIs: Articulated Plant Pose Estimation on <code>expt08</code>
+          </h4>
+          <p style="font-size:0.9rem;color:var(--text-secondary);margin:0;line-height:1.5">
+            By applying the official <code>sleap-io</code> framework across all 700 frames, we mapped an articulated 33-node skeleton (<code>ArabidopsisRosette</code>) connecting the shoot apex, petioles, midribs, and 22 marginal hydathode teeth. This directly separates genuine vascular calcium signals from flooding-induced organ deflection and mechanical distension.
+          </p>
+        </div>
+        <div>
+          <a href="#sleap-pose" class="btn btn-primary" style="background:var(--teal);color:#ffffff">
+            Explore Figures 9 &amp; 10 Showcase ↓
+          </a>
+        </div>
+      </div>
+
       <!-- Whole Dataset Order Maps & Enrichment -->
       <div class="figure-comparison-grid" style="margin-top:2.5rem;grid-template-columns:1fr 1fr">
         <div style="background:var(--bg-card);padding:1.25rem;border-radius:var(--radius-md);border:1px solid var(--border-light)">
@@ -948,7 +975,7 @@
   <section id="sleap-pose" class="section-alt">
     <div class="container">
       <div class="section-header">
-        <p class="eyebrow" style="color:var(--cose-teal)">AI-Powered Botanical Pose Estimation · sleap.ai</p>
+        <p class="eyebrow" style="color:var(--cose-teal)">AI-Powered Botanical Pose Estimation · sleap.ai · Figures 9 &amp; 10 Showcase</p>
         <h2 class="section-title">SLEAP Plant Pose: Vascular Geodesics, Hydraulic Strain &amp; Motion De-Warping</h2>
         <p class="section-subtitle">
           Using the official <code>sleap-io</code> framework (<a href="https://sleap.ai/" target="_blank" rel="noopener" style="color:var(--cose-teal)">sleap.ai</a>), we formulated an articulated 33-node botanical skeleton (<code>ArabidopsisRosette</code>) connecting the shoot apical meristem, petiole conduits, vascular midribs, and 22 discrete marginal hydathode teeth. Landmark tracking across 700 frames uncovers four novel biomechanical and physiological patterns.
@@ -959,12 +986,12 @@
       <div class="kpi-grid" style="grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:1rem;margin-bottom:2rem">
         <div class="kpi-card">
           <div class="kpi-label">Rosette Pose Skeleton</div>
-          <div class="kpi-value" style="color:var(--cose-navy)">33 Nodes</div>
+          <div class="kpi-value" style="color:var(--teal)">33 Nodes</div>
           <div class="kpi-sub">32 hierarchical vascular edges</div>
         </div>
         <div class="kpi-card">
           <div class="kpi-label">Vascular Wave Velocity</div>
-          <div class="kpi-value" style="color:var(--cose-teal)">680.4 µm/s</div>
+          <div class="kpi-value" style="color:var(--blue)">680.4 µm/s</div>
           <div class="kpi-sub">40.8 mm/min via graph geodesic fit</div>
         </div>
         <div class="kpi-card">
@@ -984,28 +1011,200 @@
         </div>
       </div>
 
-      <!-- Two-column Figure Showcase -->
-      <div class="two-col-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem">
-        <div class="run-visual-card" style="background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--radius-md);padding:1.25rem;box-shadow:var(--shadow-sm)">
-          <h4 style="display:flex;justify-content:space-between;align-items:center;margin-top:0">
-            <span style="color:var(--cose-navy)">Figure 9 | SLEAP Rosette Skeleton &amp; Vascular Geodesic Conduction</span>
-            <span class="mono" style="font-size:0.72rem;color:var(--text-muted)">Click to zoom</span>
-          </h4>
-          <img src="assets/figures/sleap_skeleton_and_graph.png" alt="SLEAP Botanical Pose Skeleton and Vascular Graph Geodesic Conduction" class="zoomable-fig" data-title="Figure 9: SLEAP Skeleton and Vascular Geodesic Conduction" style="border:1px solid var(--border-light);border-radius:var(--radius-sm);width:100%">
-          <p style="font-size:0.82rem;color:var(--text-secondary);margin:0.75rem 0 0 0">
-            <strong>Topological Geodesics vs Euclidean Shortcuts:</strong> Rosette vascular wiring imposes a tortuosity factor up to 1.57× over straight-line distances. Graph-based shortest paths through vascular conduits accurately predict Ca<sup>2+</sup> wave transit latency (<em>v</em><sub>vascular</sub> = 680.4 µm/s).
+      <!-- Interactive Figure Showcase Tabs -->
+      <div class="forensic-tabs" role="group" aria-label="SLEAP Figure Showcase Mode" style="margin-bottom:1.5rem">
+        <button type="button" class="tab-btn active" data-sleap-tab="fig9">🌿 Figure 9: Vascular Geodesics &amp; Skeleton</button>
+        <button type="button" class="tab-btn" data-sleap-tab="fig10">🌊 Figure 10: Biomechanical Strain &amp; De-Warping</button>
+        <button type="button" class="tab-btn" data-sleap-tab="both">📑 Compare Figures 9 &amp; 10 Side-by-Side</button>
+        <button type="button" class="tab-btn" data-sleap-tab="inspector">🔬 Interactive 33-Node Skeleton Explorer</button>
+      </div>
+
+      <!-- Panel 1: Figure 9 Showcase (Active by default) -->
+      <div class="sleap-panel active" data-sleap-panel="fig9">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;margin-bottom:1rem">
+          <div>
+            <h3 style="margin:0;font-family:var(--font-serif);font-size:1.45rem;color:var(--teal)">
+              Figure 9 | SLEAP Botanical Pose Skeleton &amp; Vascular Graph Geodesic Conduction
+            </h3>
+            <p style="margin:0.25rem 0 0 0;font-size:0.88rem;color:var(--text-secondary)">
+              Articulated hierarchical skeleton resolving anatomical wave conduction through vascular bundles into marginal hydathode teeth.
+            </p>
+          </div>
+          <div style="display:flex;gap:0.5rem;flex-wrap:wrap">
+            <span class="mono" style="font-size:0.75rem;background:var(--bg-parchment-alt);padding:0.35rem 0.65rem;border-radius:4px;border:1px solid var(--border-light);color:var(--teal)"><strong>33</strong> Nodes</span>
+            <span class="mono" style="font-size:0.75rem;background:var(--bg-parchment-alt);padding:0.35rem 0.65rem;border-radius:4px;border:1px solid var(--border-light);color:var(--teal)"><strong>v</strong> = 680.4 µm/s</span>
+            <span class="mono" style="font-size:0.75rem;background:var(--bg-parchment-alt);padding:0.35rem 0.65rem;border-radius:4px;border:1px solid var(--border-light);color:var(--teal)"><strong>Max Tortuosity:</strong> 1.57×</span>
+          </div>
+        </div>
+
+        <div style="text-align:center;background:#0c1a1f;padding:1rem;border-radius:var(--radius-md);margin-bottom:1.5rem">
+          <img src="assets/figures/sleap_skeleton_and_graph.png" alt="Figure 9: SLEAP Botanical Pose Skeleton and Vascular Graph Geodesic Conduction" class="zoomable-fig" data-title="Figure 9: SLEAP Rosette Skeleton and Vascular Geodesic Conduction" style="max-height:650px;width:100%;object-fit:contain;border-radius:var(--radius-sm)">
+          <div class="mono" style="font-size:0.75rem;color:var(--text-on-slate-muted);margin-top:0.5rem">Click image to expand in high-resolution lightbox</div>
+        </div>
+
+        <div class="sleap-panel-grid">
+          <div class="sleap-panel-card">
+            <h5>A | Articulated Botanical Rosette Skeleton</h5>
+            <p>Constructed via <code>sleap-io</code> with 33 landmarks: 1 central shoot apical meristem (SAM) anchor (*), 5 petiole conduit nodes (■), 5 vascular midribs (◆), 5 distal apices (●), and 22 discrete marginal teeth (●). Directs signals along authentic petiole-to-lamina vascular conduits.</p>
+          </div>
+          <div class="sleap-panel-card">
+            <h5>B | Topological Geodesic Distance Grid (d_graph)</h5>
+            <p>2D continuous Dijkstra graph distance map rooted at the SAM base. Unlike Euclidean straight lines that cross air gaps, geodesic paths follow authentic xylem vascular bundles, measuring true anatomical transport distances (in mm) to every leaf sector.</p>
+          </div>
+          <div class="sleap-panel-card">
+            <h5>C | Geodesic vs Euclidean Signal Latency (t50)</h5>
+            <p>Half-rise activation times (<em>t</em><sub>50</sub>) plotted against vascular geodesic distance (<em>d</em><sub>graph</sub>) vs. Euclidean distance (<em>d</em><sub>euclid</sub>). Linear regression fit yields an in vivo vascular conduction velocity of <strong>680.4 µm/s (40.8 mm/min)</strong>, matching systemic Ca<sup>2+</sup> wave velocities in Arabidopsis.</p>
+          </div>
+          <div class="sleap-panel-card">
+            <h5>D | Vascular Tortuosity Index by Leaf Branch</h5>
+            <p>Anatomical routing delay (&tau; = <em>d</em><sub>graph</sub> / <em>d</em><sub>euclid</sub>) grouped across individual leaf branches (Leaf L, UL, UR, R, B). Shows how petiole curvature imposes an anatomical delay up to <strong>1.57×</strong> over direct straight-line distance, resolving why marginal teeth activate later.</p>
+          </div>
+        </div>
+
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--border-light)">
+          <span style="font-size:0.85rem;color:var(--text-secondary)">Download Figure 9 assets:</span>
+          <div style="display:flex;gap:0.75rem;flex-wrap:wrap">
+            <a href="assets/figures/sleap_skeleton_and_graph.png" download class="btn btn-secondary" style="font-size:0.82rem">⬇ Figure 9 PNG (High-Res)</a>
+            <a href="https://github.com/dr-richard-barker/FloodWave-At/blob/main/results/sleap/pose_kinematics_summary.csv" target="_blank" rel="noopener" class="btn btn-light" style="font-size:0.82rem">📊 Geodesic Summary CSV ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 2: Figure 10 Showcase -->
+      <div class="sleap-panel" data-sleap-panel="fig10">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;margin-bottom:1rem">
+          <div>
+            <h3 style="margin:0;font-family:var(--font-serif);font-size:1.45rem;color:var(--teal)">
+              Figure 10 | Flooding-Induced Biomechanical Kinematics, Hydraulic Strain &amp; Motion De-Warping
+            </h3>
+            <p style="margin:0.25rem 0 0 0;font-size:0.88rem;color:var(--text-secondary)">
+              Sub-pixel landmark tracking capturing flood surge distension, buoyant tilting, and motion-compensated physiological GCaMP extraction.
+            </p>
+          </div>
+          <div style="display:flex;gap:0.5rem;flex-wrap:wrap">
+            <span class="mono" style="font-size:0.75rem;background:var(--bg-parchment-alt);padding:0.35rem 0.65rem;border-radius:4px;border:1px solid var(--border-light);color:var(--teal)"><strong>Peak Surge:</strong> 36.4 s</span>
+            <span class="mono" style="font-size:0.75rem;background:var(--bg-parchment-alt);padding:0.35rem 0.65rem;border-radius:4px;border:1px solid var(--border-light);color:var(--teal)"><strong>Max Strain:</strong> 20.87%</span>
+            <span class="mono" style="font-size:0.75rem;background:var(--bg-parchment-alt);padding:0.35rem 0.65rem;border-radius:4px;border:1px solid var(--border-light);color:var(--teal)"><strong>Max Deflection:</strong> 22.98°</span>
+            <span class="mono" style="font-size:0.75rem;background:var(--bg-parchment-alt);padding:0.35rem 0.65rem;border-radius:4px;border:1px solid var(--border-light);color:var(--teal)"><strong>Jitter Reduction:</strong> 54.3%</span>
+          </div>
+        </div>
+
+        <div style="text-align:center;background:#0c1a1f;padding:1rem;border-radius:var(--radius-md);margin-bottom:1.5rem">
+          <img src="assets/figures/sleap_kinematics_and_strain.png" alt="Figure 10: Flooding-Induced Biomechanical Kinematics, Hydraulic Strain, and Motion Compensation" class="zoomable-fig" data-title="Figure 10: Flooding Kinematics, Strain, and Motion Compensation" style="max-height:650px;width:100%;object-fit:contain;border-radius:var(--radius-sm)">
+          <div class="mono" style="font-size:0.75rem;color:var(--text-on-slate-muted);margin-top:0.5rem">Click image to expand in high-resolution lightbox</div>
+        </div>
+
+        <div class="sleap-panel-grid">
+          <div class="sleap-panel-card">
+            <h5>A | Landmark Displacement Quiver Field</h5>
+            <p>Vector field illustrating sub-pixel displacement vectors (scaled 8× for visibility) during the flood surge peak at 36.4 s (frame 30), capturing outward mechanical thrust and buoyant leaf lift across all 33 landmark positions.</p>
+          </div>
+          <div class="sleap-panel-card">
+            <h5>B | Transient Hydraulic Branch Strain ε(t)</h5>
+            <p>Real-time branch elongation strain time series &epsilon;(<em>t</em>) = (<em>L</em>(<em>t</em>) &minus; <em>L</em><sub>0</sub>) / <em>L</em><sub>0</sub> across all 5 leaves. Highlights marked hydrostatic distension during the 14.6–48.5 s water influx window (shaded blue), peaking at <strong>20.87%</strong> in Leaf B and 13.82% in Leaf R before settling.</p>
+          </div>
+          <div class="sleap-panel-card">
+            <h5>C | Non-Rigid Angular Deflection Δθ(t)</h5>
+            <p>Real-time angular tilting capturing buoyant leaf reorientation and hyponasty during flooding. Leaf UL undergoes up to <strong>22.98°</strong> of angular deflection before stabilizing into a new post-flood equilibrium at 48.5 s.</p>
+          </div>
+          <div class="sleap-panel-card">
+            <h5>D | Physiological Signal Fidelity</h5>
+            <p>Direct comparison of baseline high-frequency noise between static circular sampling and SLEAP motion-compensated tracking. Dynamic tracking reduces baseline motion jitter by a mean of <strong>54.3%</strong> across landmarks, successfully isolating true biological Ca<sup>2+</sup> transients.</p>
+          </div>
+        </div>
+
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--border-light)">
+          <span style="font-size:0.85rem;color:var(--text-secondary)">Download Figure 10 assets &amp; SLEAP package:</span>
+          <div style="display:flex;gap:0.75rem;flex-wrap:wrap">
+            <a href="assets/figures/sleap_kinematics_and_strain.png" download class="btn btn-secondary" style="font-size:0.82rem">⬇ Figure 10 PNG (High-Res)</a>
+            <a href="assets/sleap/expt08_rosette_registered.mp4" download class="btn btn-light" style="font-size:0.82rem">🎥 Registered MP4 (4.4 MB)</a>
+            <a href="assets/sleap/expt08_plant_pose.slp" download class="btn btn-primary" style="background:var(--teal);color:#ffffff;font-size:0.82rem">📦 Download SLEAP Project (.slp)</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 3: Both Figures Side-by-Side -->
+      <div class="sleap-panel" data-sleap-panel="both">
+        <div style="margin-bottom:1.25rem">
+          <h3 style="margin:0;font-family:var(--font-serif);font-size:1.45rem;color:var(--teal)">
+            Side-by-Side Comparison: Figure 9 (Geodesics) &amp; Figure 10 (Kinematics)
+          </h3>
+          <p style="margin:0.25rem 0 0 0;font-size:0.88rem;color:var(--text-secondary)">
+            Comparing static vascular network topology against dynamic biomechanical deformation and motion de-warping.
           </p>
         </div>
 
-        <div class="run-visual-card" style="background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--radius-md);padding:1.25rem;box-shadow:var(--shadow-sm)">
-          <h4 style="display:flex;justify-content:space-between;align-items:center;margin-top:0">
-            <span style="color:var(--cose-navy)">Figure 10 | Flooding Kinematics, Hydraulic Strain &amp; De-Warping</span>
-            <span class="mono" style="font-size:0.72rem;color:var(--text-muted)">Click to zoom</span>
-          </h4>
-          <img src="assets/figures/sleap_kinematics_and_strain.png" alt="Flooding-Induced Biomechanical Kinematics, Hydraulic Strain, and Motion Compensation" class="zoomable-fig" data-title="Figure 10: Flooding Kinematics, Strain, and Motion Compensation" style="border:1px solid var(--border-light);border-radius:var(--radius-sm);width:100%">
-          <p style="font-size:0.82rem;color:var(--text-secondary);margin:0.75rem 0 0 0">
-            <strong>Biomechanical Distension &amp; Hyponastic Tilting:</strong> Water arrival triggers 7.5%–20.9% transient branch strain and up to 22.98° angular leaf deflection. Sub-pixel landmark tracking suppresses 54.3% of baseline motion noise, isolating true GCaMP signaling.
+        <div class="two-col-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1rem">
+          <div class="run-visual-card" style="background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--radius-md);padding:1.25rem;box-shadow:var(--shadow-sm)">
+            <h4 style="display:flex;justify-content:space-between;align-items:center;margin-top:0">
+              <span style="color:var(--teal)">Figure 9 | Skeleton &amp; Vascular Conduction</span>
+              <span class="mono" style="font-size:0.72rem;color:var(--text-muted)">Click to zoom</span>
+            </h4>
+            <img src="assets/figures/sleap_skeleton_and_graph.png" alt="Figure 9: SLEAP Rosette Skeleton and Vascular Geodesic Conduction" class="zoomable-fig" data-title="Figure 9: SLEAP Skeleton and Vascular Geodesic Conduction" style="border:1px solid var(--border-light);border-radius:var(--radius-sm);width:100%">
+            <p style="font-size:0.82rem;color:var(--text-secondary);margin:0.75rem 0 0 0">
+              <strong>Topological Geodesics vs Euclidean Shortcuts:</strong> Rosette vascular wiring imposes a tortuosity factor up to 1.57× over straight-line distances. Graph-based shortest paths through vascular conduits accurately predict Ca<sup>2+</sup> wave transit latency (<em>v</em><sub>vascular</sub> = 680.4 µm/s).
+            </p>
+          </div>
+
+          <div class="run-visual-card" style="background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--radius-md);padding:1.25rem;box-shadow:var(--shadow-sm)">
+            <h4 style="display:flex;justify-content:space-between;align-items:center;margin-top:0">
+              <span style="color:var(--teal)">Figure 10 | Kinematics, Strain &amp; De-Warping</span>
+              <span class="mono" style="font-size:0.72rem;color:var(--text-muted)">Click to zoom</span>
+            </h4>
+            <img src="assets/figures/sleap_kinematics_and_strain.png" alt="Figure 10: Flooding Kinematics, Strain, and Motion Compensation" class="zoomable-fig" data-title="Figure 10: Flooding Kinematics, Strain, and Motion Compensation" style="border:1px solid var(--border-light);border-radius:var(--radius-sm);width:100%">
+            <p style="font-size:0.82rem;color:var(--text-secondary);margin:0.75rem 0 0 0">
+              <strong>Biomechanical Distension &amp; Hyponastic Tilting:</strong> Water arrival triggers 7.5%–20.9% transient branch strain and up to 22.98° angular leaf deflection. Sub-pixel landmark tracking suppresses 54.3% of baseline motion noise, isolating true GCaMP signaling.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 4: Interactive 33-Node Skeleton Explorer -->
+      <div class="sleap-panel" data-sleap-panel="inspector">
+        <div style="margin-bottom:1.25rem">
+          <h3 style="margin:0;font-family:var(--font-serif);font-size:1.45rem;color:var(--teal)">
+            Interactive 33-Node Rosette Skeleton &amp; Kinematics Inspector
+          </h3>
+          <p style="margin:0.25rem 0 0 0;font-size:0.88rem;color:var(--text-secondary)">
+            Explore the exact anatomical landmarks, coordinates, geodesic path distances, activation latencies, and mechanical strain across individual leaf branches.
           </p>
+        </div>
+
+        <!-- Filter Buttons for Leaves -->
+        <div class="forensic-tabs" role="group" aria-label="Filter Skeleton Nodes" style="margin-bottom:1.25rem">
+          <button type="button" class="tab-btn active" data-sleap-filter="all">All 33 Landmarks</button>
+          <button type="button" class="tab-btn" data-sleap-filter="meristem">SAM Meristem (1)</button>
+          <button type="button" class="tab-btn" data-sleap-filter="Leaf_L">Leaf L (8 nodes)</button>
+          <button type="button" class="tab-btn" data-sleap-filter="Leaf_UL">Leaf UL (5 nodes)</button>
+          <button type="button" class="tab-btn" data-sleap-filter="Leaf_UR">Leaf UR (6 nodes)</button>
+          <button type="button" class="tab-btn" data-sleap-filter="Leaf_R">Leaf R (6 nodes)</button>
+          <button type="button" class="tab-btn" data-sleap-filter="Leaf_B">Leaf B (7 nodes)</button>
+        </div>
+
+        <!-- Dynamic Leaf Summary Box -->
+        <div id="sleapLeafSummary" style="background:var(--bg-parchment);border:1px solid var(--border-light);border-radius:var(--radius-md);padding:1rem 1.25rem;margin-bottom:1.25rem">
+          <!-- Populated dynamically via JS -->
+        </div>
+
+        <!-- Data Table -->
+        <div class="table-scroll">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th class="num">#</th>
+                <th>Landmark Name</th>
+                <th>Anatomical Type</th>
+                <th class="num">Coord (x, y)</th>
+                <th class="num">d_euclid (µm)</th>
+                <th class="num">d_graph (µm)</th>
+                <th class="num">Tortuosity</th>
+                <th class="num">t50 Latency (s)</th>
+              </tr>
+            </thead>
+            <tbody id="sleapNodesTableBody">
+              <!-- Populated dynamically via JS -->
+            </tbody>
+          </table>
         </div>
       </div>
 

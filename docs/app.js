@@ -709,6 +709,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initLiteratureLibrary();
   initLightboxDialog();
   initCitationCopy();
+  initSleapShowcase();
 });
 
 /* ==========================================================================
@@ -1102,4 +1103,161 @@ function initCitationCopy() {
       }, 2000);
     });
   });
+}
+
+/* ==========================================================================
+   8. SLEAP Plant Pose & Biomechanical Kinematics Showcase
+   ========================================================================== */
+const SLEAP_NODES = [
+  {"idx": 0, "name": "meristem", "type": "SAM_meristem", "x": 157.6, "y": 164.8, "d_euc": 17.8, "d_geo": 0.0, "tort": 1.0, "t50": 138.2},
+  {"idx": 1, "name": "Leaf_L_petiole", "type": "petiole_conduit", "x": 118.6, "y": 186.7, "d_euc": 1841.9, "d_geo": 2302.4, "tort": 1.25, "t50": null},
+  {"idx": 2, "name": "Leaf_L_midrib", "type": "vascular_midrib", "x": 67.1, "y": 215.5, "d_euc": 4261.4, "d_geo": 5326.8, "tort": 1.25, "t50": 426.1},
+  {"idx": 3, "name": "Leaf_L_apex", "type": "hydathode_apex", "x": 18.4, "y": 242.9, "d_euc": 6550.2, "d_geo": 8187.7, "tort": 1.25, "t50": 532.7},
+  {"idx": 4, "name": "Leaf_L_tooth_1", "type": "hydathode_tooth", "x": 134.5, "y": 175.0, "d_euc": 1046.7, "d_geo": 996.5, "tort": 1.0, "t50": 410.9},
+  {"idx": 5, "name": "Leaf_L_tooth_2", "type": "hydathode_tooth", "x": 123.8, "y": 177.8, "d_euc": 1495.8, "d_geo": 1869.8, "tort": 1.25, "t50": 472.7},
+  {"idx": 6, "name": "Leaf_L_tooth_3", "type": "hydathode_tooth", "x": 98.5, "y": 185.5, "d_euc": 2579.3, "d_geo": 3224.1, "tort": 1.25, "t50": 284.3},
+  {"idx": 7, "name": "Leaf_L_tooth_4", "type": "hydathode_tooth", "x": 16.5, "y": 204.5, "d_euc": 6021.1, "d_geo": 7526.4, "tort": 1.25, "t50": 436.4},
+  {"idx": 8, "name": "Leaf_L_tooth_5", "type": "hydathode_tooth", "x": 12.0, "y": 227.5, "d_euc": 6509.0, "d_geo": 8136.3, "tort": 1.25, "t50": 363.6},
+  {"idx": 9, "name": "Leaf_UL_petiole", "type": "petiole_conduit", "x": 155.8, "y": 181.8, "d_euc": 695.4, "d_geo": 590.8, "tort": 1.0, "t50": null},
+  {"idx": 10, "name": "Leaf_UL_midrib", "type": "vascular_midrib", "x": 153.3, "y": 204.3, "d_euc": 1620.7, "d_geo": 1611.3, "tort": 1.0, "t50": 424.3},
+  {"idx": 11, "name": "Leaf_UL_apex", "type": "hydathode_apex", "x": 151.0, "y": 225.5, "d_euc": 2496.1, "d_geo": 3057.4, "tort": 1.22, "t50": 367.9},
+  {"idx": 12, "name": "Leaf_UL_tooth_1", "type": "hydathode_tooth", "x": 130.7, "y": 189.4, "d_euc": 1501.0, "d_geo": 1542.2, "tort": 1.03, "t50": 61.8},
+  {"idx": 13, "name": "Leaf_UL_tooth_2", "type": "hydathode_tooth", "x": 147.5, "y": 208.5, "d_euc": 1834.1, "d_geo": 1775.2, "tort": 1.0, "t50": 509.1},
+  {"idx": 14, "name": "Leaf_UR_petiole", "type": "petiole_conduit", "x": 157.8, "y": 188.1, "d_euc": 947.5, "d_geo": 853.7, "tort": 1.0, "t50": null},
+  {"idx": 15, "name": "Leaf_UR_midrib", "type": "vascular_midrib", "x": 158.0, "y": 218.9, "d_euc": 2208.7, "d_geo": 2446.7, "tort": 1.11, "t50": 655.8},
+  {"idx": 16, "name": "Leaf_UR_apex", "type": "hydathode_apex", "x": 158.3, "y": 248.0, "d_euc": 3401.8, "d_geo": 4337.9, "tort": 1.28, "t50": 588.5},
+  {"idx": 17, "name": "Leaf_UR_tooth_1", "type": "hydathode_tooth", "x": 161.0, "y": 189.0, "d_euc": 991.3, "d_geo": 894.6, "tort": 1.0, "t50": 647.3},
+  {"idx": 18, "name": "Leaf_UR_tooth_2", "type": "hydathode_tooth", "x": 161.0, "y": 192.0, "d_euc": 1113.4, "d_geo": 1034.6, "tort": 1.0, "t50": 211.5},
+  {"idx": 19, "name": "Leaf_UR_tooth_3", "type": "hydathode_tooth", "x": 161.0, "y": 234.7, "d_euc": 2859.9, "d_geo": 3085.5, "tort": 1.08, "t50": 565.5},
+  {"idx": 20, "name": "Leaf_R_petiole", "type": "petiole_conduit", "x": 183.9, "y": 176.8, "d_euc": 1165.8, "d_geo": 1095.4, "tort": 1.0, "t50": 524.9},
+  {"idx": 21, "name": "Leaf_R_midrib", "type": "vascular_midrib", "x": 218.6, "y": 192.6, "d_euc": 2729.9, "d_geo": 2801.5, "tort": 1.03, "t50": 469.1},
+  {"idx": 22, "name": "Leaf_R_apex", "type": "hydathode_apex", "x": 251.5, "y": 207.5, "d_euc": 4209.4, "d_geo": 4408.7, "tort": 1.05, "t50": 521.2},
+  {"idx": 23, "name": "Leaf_R_tooth_1", "type": "hydathode_tooth", "x": 176.5, "y": 164.0, "d_euc": 759.3, "d_geo": 614.8, "tort": 1.0, "t50": 686.7},
+  {"idx": 24, "name": "Leaf_R_tooth_2", "type": "hydathode_tooth", "x": 192.5, "y": 161.0, "d_euc": 1423.5, "d_geo": 2229.0, "tort": 1.57, "t50": 368.5},
+  {"idx": 25, "name": "Leaf_R_tooth_3", "type": "hydathode_tooth", "x": 225.5, "y": 144.5, "d_euc": 2891.3, "d_geo": 3401.0, "tort": 1.18, "t50": 340.6},
+  {"idx": 26, "name": "Leaf_R_tooth_4", "type": "hydathode_tooth", "x": 251.4, "y": 183.8, "d_euc": 3904.8, "d_geo": 3960.3, "tort": 1.01, "t50": 504.3},
+  {"idx": 27, "name": "Leaf_R_tooth_5", "type": "hydathode_tooth", "x": 253.2, "y": 200.0, "d_euc": 4159.0, "d_geo": 4313.9, "tort": 1.04, "t50": 466.1},
+  {"idx": 28, "name": "Leaf_B_petiole", "type": "petiole_conduit", "x": 151.6, "y": 140.2, "d_euc": 1048.8, "d_geo": 952.6, "tort": 1.0, "t50": null},
+  {"idx": 29, "name": "Leaf_B_midrib", "type": "vascular_midrib", "x": 143.6, "y": 107.7, "d_euc": 2420.3, "d_geo": 2399.9, "tort": 1.0, "t50": 298.2},
+  {"idx": 30, "name": "Leaf_B_apex", "type": "hydathode_apex", "x": 136.0, "y": 77.0, "d_euc": 3717.7, "d_geo": 3806.3, "tort": 1.02, "t50": 470.3},
+  {"idx": 31, "name": "Leaf_B_tooth_1", "type": "hydathode_tooth", "x": 134.0, "y": 107.8, "d_euc": 2541.1, "d_geo": 2781.7, "tort": 1.09, "t50": 436.4},
+  {"idx": 32, "name": "Leaf_B_tooth_2", "type": "hydathode_tooth", "x": 195.4, "y": 102.8, "d_euc": 2974.6, "d_geo": 3091.4, "tort": 1.04, "t50": 355.2}
+];
+
+const SLEAP_LEAF_KINEMATICS = {
+  "Leaf_L": {"L0": 6859, "strain": 7.45, "deflection": 6.5},
+  "Leaf_UL": {"L0": 2501, "strain": 12.91, "deflection": 22.98},
+  "Leaf_UR": {"L0": 3115, "strain": 10.53, "deflection": 8.82},
+  "Leaf_R": {"L0": 4220, "strain": 13.82, "deflection": 5.94},
+  "Leaf_B": {"L0": 4037, "strain": 20.87, "deflection": 7.73}
+};
+
+function initSleapShowcase() {
+  const tabBtns = document.querySelectorAll('[data-sleap-tab]');
+  const panels = document.querySelectorAll('[data-sleap-panel]');
+
+  tabBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const target = btn.dataset.sleapTab;
+      tabBtns.forEach((b) => b.classList.toggle('active', b === btn));
+      panels.forEach((p) => p.classList.toggle('active', p.dataset.sleapPanel === target));
+    });
+  });
+
+  const filterBtns = document.querySelectorAll('[data-sleap-filter]');
+  const tableBody = document.getElementById('sleapNodesTableBody');
+  const summaryBox = document.getElementById('sleapLeafSummary');
+
+  if (!tableBody || !summaryBox) return;
+
+  function renderNodes(filter) {
+    let filtered = SLEAP_NODES;
+    if (filter === 'meristem') {
+      filtered = SLEAP_NODES.filter((n) => n.name === 'meristem');
+    } else if (filter !== 'all') {
+      filtered = SLEAP_NODES.filter((n) => n.name.startsWith(filter));
+    }
+
+    // Render summary box
+    if (filter === 'all') {
+      summaryBox.innerHTML = `
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem">
+          <div>
+            <strong style="color:var(--teal)">Rosette Architecture Overview:</strong>
+            <span style="font-size:0.86rem;color:var(--text-secondary);margin-left:0.5rem">
+              33 landmarks (1 SAM meristem, 5 petiole conduits, 5 midribs, 5 apices, 17 marginal teeth).
+            </span>
+          </div>
+          <div style="font-size:0.82rem;color:var(--text-secondary)">
+            Vascular wave speed: <strong>680.4 µm/s</strong> · Mean tortuosity: <strong>1.11×</strong> · Max strain: <strong>20.9%</strong>
+          </div>
+        </div>
+      `;
+    } else if (filter === 'meristem') {
+      summaryBox.innerHTML = `
+        <div>
+          <strong style="color:var(--teal)">Shoot Apical Meristem (SAM) Anchor Node:</strong>
+          <span style="font-size:0.86rem;color:var(--text-secondary);margin-left:0.5rem">
+            Central rosette base anchor at (157.6, 164.8). Origin (d = 0.0 µm) for all vascular geodesic shortest-path calculations. Half-rise latency t₅₀ = 138.2 s.
+          </span>
+        </div>
+      `;
+    } else {
+      const kin = SLEAP_LEAF_KINEMATICS[filter];
+      const leafClean = filter.replace('Leaf_', 'Leaf ');
+      summaryBox.innerHTML = `
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem">
+          <div>
+            <strong style="color:var(--teal)">${leafClean} Biomechanical Profile:</strong>
+            <span style="font-size:0.86rem;color:var(--text-secondary);margin-left:0.5rem">
+              Resting length: <strong>${kin.L0} µm</strong> · Peak water strain: <strong style="color:#d35400">+${kin.strain}%</strong> · Peak angular deflection: <strong style="color:#2980b9">${kin.deflection}°</strong>
+            </span>
+          </div>
+          <div style="font-size:0.82rem;color:var(--text-secondary)">
+            ${filtered.length} landmarks tracked across 700 frames
+          </div>
+        </div>
+      `;
+    }
+
+    // Render table rows
+    tableBody.innerHTML = filtered.map((n) => {
+      let typeBadge = '';
+      if (n.type === 'SAM_meristem') {
+        typeBadge = '<span class="status-badge" style="background:#f3e8fd;color:#6b21a8">SAM Meristem</span>';
+      } else if (n.type === 'petiole_conduit') {
+        typeBadge = '<span class="status-badge" style="background:#e0f2fe;color:#0369a1">Petiole Conduit</span>';
+      } else if (n.type === 'vascular_midrib') {
+        typeBadge = '<span class="status-badge" style="background:#dcfce7;color:#15803d">Vascular Midrib</span>';
+      } else if (n.type === 'hydathode_apex') {
+        typeBadge = '<span class="status-badge" style="background:#ffedd5;color:#c2410c">Hydathode Apex</span>';
+      } else {
+        typeBadge = '<span class="status-badge" style="background:#fef9c3;color:#854d0e">Marginal Tooth</span>';
+      }
+
+      return `
+        <tr>
+          <td class="num mono">${n.idx}</td>
+          <td><strong>${n.name}</strong></td>
+          <td>${typeBadge}</td>
+          <td class="num mono">(${n.x}, ${n.y})</td>
+          <td class="num mono">${n.d_euc.toFixed(1)}</td>
+          <td class="num mono">${n.d_geo.toFixed(1)}</td>
+          <td class="num mono">${n.tort.toFixed(2)}×</td>
+          <td class="num mono">${n.t50 !== null ? n.t50.toFixed(1) + ' s' : '<span style="color:var(--text-muted)">—</span>'}</td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  filterBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderNodes(btn.dataset.sleapFilter);
+    });
+  });
+
+  // Initial render
+  renderNodes('all');
 }
